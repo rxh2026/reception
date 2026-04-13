@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>お客様入力フォーム</title>
+
+<style>
+body {
+  font-family: "Helvetica Neue", sans-serif;
+  background: linear-gradient(135deg, #1e1e1e, #2c2c54, #3a3a3a);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+/* カード */
+.form-container {
+  background: #ffffff;
+  padding: 40px;
+  border-radius: 16px;
+  width: 420px;
+  box-shadow: 0 20px 50px rgba(0,0,0,0.4);
+}
+
+/* タイトル */
+h2 {
+  text-align: center;
+  margin-bottom: 25px;
+  font-weight: 600;
+  letter-spacing: 1px;
+}
+
+/* ラベル */
+label {
+  display: block;
+  margin-top: 15px;
+  font-size: 13px;
+  color: #555;
+}
+
+/* 入力 */
+input, select {
+  width: 100%;
+  padding: 12px;
+  margin-top: 6px;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  background: #f9f9f9;
+  transition: 0.2s;
+}
+
+input:focus, select:focus {
+  border: 1px solid #2c2c54;
+  background: #fff;
+  outline: none;
+}
+
+/* ボタン */
+button {
+  width: 100%;
+  margin-top: 30px;
+  padding: 14px;
+  background: linear-gradient(135deg, #2c2c54, #000);
+  color: white;
+  border: none;
+  border-radius: 10px;
+  font-size: 15px;
+  cursor: pointer;
+  letter-spacing: 1px;
+}
+
+button:hover {
+  opacity: 0.9;
+}
+
+/* サンクス */
+#thankYou {
+  display: none;
+  text-align: center;
+  color: white;
+}
+
+#thankYou h2 {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+</style>
+
+</head>
+
+<body>
+
+<div class="form-container" id="formArea">
+  <h2>お客様入力フォーム</h2>
+
+  <form id="myForm">
+
+    <!-- 日付追加 -->
+    <label>ご入力日</label>
+    <input type="date" name="date" required>
+
+    <label>お名前（フリガナ）</label>
+    <input type="text" name="name" required>
+
+    <label>年齢</label>
+    <input type="number" name="age">
+
+    <label>電話番号</label>
+    <input type="tel" name="phone" required>
+
+    <label>メールアドレス</label>
+    <input type="email" name="email">
+
+    <label>住所</label>
+    <input type="text" name="address">
+
+    <label>勤務先名・学校名</label>
+    <input type="text" name="work">
+
+    <label>ご職業</label>
+    <select name="job">
+      <option value="">選択してください</option>
+      <option>会社員</option>
+      <option>会社役員</option>
+      <option>会社経営</option>
+      <option>自営業</option>
+      <option>公務員</option>
+      <option>契約社員</option>
+      <option>派遣社員</option>
+      <option>学生</option>
+      <option>アルバイト</option>
+      <option>その他</option>
+    </select>
+
+    <label>契約名義</label>
+    <select name="contract">
+      <option value="">選択してください</option>
+      <option>個人</option>
+      <option>法人（総務の方）</option>
+      <option>法人（社宅代行）</option>
+      <option>未定</option>
+    </select>
+
+    <button type="submit">送信する</button>
+
+  </form>
+</div>
+
+<div id="thankYou">
+  <h2>送信ありがとうございました。</h2>
+  <p>内容を確認させていただきます。</p>
+</div>
+
+<script>
+const form = document.getElementById("myForm");
+
+form.addEventListener("submit", function(e) {
+  e.preventDefault();
+
+  const data = new FormData(form);
+
+  fetch("https://script.google.com/macros/s/AKfycbzvQbjt2_LGr_iTw1ssi2w8LNvyY21o9r6U4_5oELfotGrOr8twfpFNGGfPwyQYCrwr/exec", {
+    method: "POST",
+    body: data,
+    mode: "no-cors"
+  })
+  .then(() => {
+    document.getElementById("formArea").style.display = "none";
+    document.getElementById("thankYou").style.display = "block";
+  })
+  .catch(() => {
+    alert("送信に失敗しました");
+  });
+});
+</script>
+
+</body>
+</html>
