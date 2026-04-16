@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<title>お客様入力フォーム</title>
+
+<style>
+* {
+  box-sizing: border-box;
+}
+body {
+  font-family: "Helvetica Neue", sans-serif;
+  background: linear-gradient(135deg, #1e1e1e, #2c2c54, #3a3a3a);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  /* 修正ポイント */
+  min-height: 100vh;
+  padding: 20px;
+  margin: 0;
+}
+
+/* カード */
+.form-container {
+  background: #ffffff;
+  padding: 25px;
+  border-radius: 16px;
+
+  /* 修正ポイント */
+  width: 100%;
+  max-width: 420px;
+
+  box-shadow: 0 20px 50px rgba(0,0,0,0.4);
+}
+
+/* タイトル */
+h2 {
+  text-align: center;
+  margin-bottom: 25px;
+  font-weight: 600;
+  letter-spacing: 1px;
+}
+
+/* ラベル */
+label {
+  display: block;
+  margin-top: 18px;
+  font-size: 14px;
+  color: #555;
+}
+
+/* 入力 */
+input, select {
+  width: 100%;
+  padding: 14px;
+  margin-top: 6px;
+  border-radius: 10px;
+  border: 1px solid #ddd;
+  background: #f9f9f9;
+  transition: 0.2s;
+
+  /* スマホでズーム防止 */
+  font-size: 16px;
+}
+
+input:focus, select:focus {
+  border: 1px solid #2c2c54;
+  background: #fff;
+  outline: none;
+}
+
+/* ボタン */
+button {
+  width: 100%;
+  margin-top: 30px;
+  padding: 16px;
+
+  background: linear-gradient(135deg, #2c2c54, #000);
+  color: white;
+  border: none;
+  border-radius: 12px;
+
+  /* 押しやすく */
+  font-size: 16px;
+  font-weight: bold;
+
+  cursor: pointer;
+  letter-spacing: 1px;
+}
+
+button:hover {
+  opacity: 0.9;
+}
+
+/* サンクス */
+#thankYou {
+  display: none;
+  text-align: center;
+  color: white;
+}
+
+#thankYou h2 {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+/* 会社名（ロゴ風） */
+.company-name {
+  text-align: center;
+  margin-bottom: 25px;
+}
+
+/* 株式会社（小さめ） */
+.company-name .sub {
+  font-size: 12px;
+  color: #888;
+  letter-spacing: 2px;
+  margin-bottom: 5px;
+}
+
+/* R×H（メインロゴ） */
+.company-name .logo {
+  font-size: 32px;
+  font-weight: bold;
+  letter-spacing: 6px;
+
+  font-family: "Georgia", "Times New Roman", serif;
+
+  background: linear-gradient(135deg, #2c2c54, #000);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+
+  text-shadow: 0 2px 8px rgba(0,0,0,0.2);
+}
+
+textarea {
+  width: 100%;
+  padding: 14px;
+  margin-top: 6px;
+  border-radius: 10px;
+  border: 1px solid #ddd;
+  background: #f9f9f9;
+  font-size: 16px;
+  resize: vertical;
+}
+</style>
+
+</head>
+
+<body>
+
+<div class="form-container" id="formArea">
+<div class="company-name">
+  <div class="sub">株式会社</div>
+  <div class="logo">RH</div>
+</div>
+  <h2>お客様入力フォーム</h2>
+
+  <form id="myForm">
+
+    <!-- 日付追加 -->
+   
+    <label>お名前（フリガナ）</label>
+    <input type="text" name="name" required>
+
+    <label>年齢</label>
+    <input type="number" name="age">
+
+    <label>電話番号</label>
+    <input type="tel" name="phone" required>
+
+    <label>メールアドレス</label>
+    <input type="email" name="email">
+
+    <label>住所</label>
+    <input type="text" name="address">
+
+    <label>勤務先名・学校名</label>
+    <input type="text" name="work">
+
+    <label>ご職業</label>
+    <select name="job">
+      <option value="">選択してください</option>
+      <option>会社員</option>
+      <option>会社役員</option>
+      <option>会社経営</option>
+      <option>自営業</option>
+      <option>公務員</option>
+      <option>契約社員</option>
+      <option>派遣社員</option>
+      <option>学生</option>
+      <option>アルバイト</option>
+      <option>その他</option>
+    </select>
+
+  <label>契約名義</label>
+<select name="contract" required>
+  <option value="">選択してください</option>
+  <option>個人</option>
+  <option>法人（総務の方）</option>
+  <option>法人（社宅代行）</option>
+  <option>未定</option>
+</select>
+
+<label>不動産の購入や売却を検討されていますか（任意）</label>
+<select name="realestate">
+  <option value="">選択してください</option>
+  <option>検討している</option>
+  <option>検討していない</option>
+  <option>将来的に検討するかも</option>
+    </select>
+
+<label>引越理由</label>
+<input type="text" name="reason">
+
+<label>引越時期</label>
+<select name="timing">
+  <option value="">選択してください</option>
+  <option>すぐ</option>
+  <option>1ヶ月以内</option>
+  <option>3ヶ月以内</option>
+  <option>半年以内</option>
+  <option>いい物があれば</option>
+</select>
+
+<label>希望家賃</label>
+<input type="text" name="rent" placeholder="例：10万円">
+
+<label>希望間取り（複数選択可）</label>
+
+<div>
+  <label><input type="checkbox" name="layout" value="1R"> 1R</label>
+  <label><input type="checkbox" name="layout" value="1K"> 1K</label>
+  <label><input type="checkbox" name="layout" value="1DK"> 1DK</label>
+  <label><input type="checkbox" name="layout" value="1LDK"> 1LDK</label>
+  <label><input type="checkbox" name="layout" value="2DK"> 2DK</label>
+  <label><input type="checkbox" name="layout" value="2LDK"> 2LDK</label>
+  <label><input type="checkbox" name="layout" value="3LDK以上"> 3LDK以上</label>
+</div>
+
+<label>希望の広さ</label>
+<input type="text" name="size" placeholder="例：30㎡以上">
+
+<label>築年数</label>
+<select name="buildingage">
+  <option value="">選択してください</option>
+  <option>新築</option>
+  <option>5年以内</option>
+  <option>10年以内</option>
+  <option>15年以内</option> <!-- 追加 -->
+  <option>20年以内</option>
+  <option>こだわらない</option>
+</select>
+
+<label>希望エリア</label>
+<input type="text" name="area">
+
+<label>駅から徒歩</label>
+<select name="station">
+  <option value="">選択してください</option>
+  <option>5分以内</option>
+  <option>10分以内</option>
+  <option>15分以内</option>
+  <option>こだわらない</option>
+</select>
+
+<label>階数</label>
+<select name="floor">
+  <option value="">選択してください</option>
+  <option>1階OK</option>
+  <option>2階以上</option>
+  <option>こだわらない</option>
+</select>
+
+<label>日当たり</label>
+<select name="sun">
+  <option value="">選択してください</option>
+  <option>良い方がいい</option>
+  <option>普通でOK</option>
+  <option>こだわらない</option>
+</select>
+
+<label>音（防音・静かさ）</label>
+<select name="noise">
+  <option value="">選択してください</option>
+  <option>静かな環境がいい</option>
+  <option>ある程度はOK</option>
+  <option>気にしない</option>
+</select>
+
+<label>駐車場</label>
+<select name="parking">
+  <option value="">選択してください</option>
+  <option>必要</option>
+  <option>不要</option>
+</select>
+
+<label>インターネット環境</label>
+<select name="net">
+  <option value="">選択してください</option>
+  <option>無料がいい</option>
+  <option>あればOK</option>
+  <option>こだわらない</option>
+</select>
+
+<label>その他ご要望</label>
+<textarea name="request" rows="4" placeholder="ご希望や気になる点をご記入ください"></textarea>
+
+    <button type="submit">送信する</button>
+
+  </form>
+</div>
+
+<div id="thankYou">
+  <h2>送信ありがとうございました。</h2>
+  <p>内容を確認させていただきます。</p>
+</div>
+
+<script>
+const form = document.getElementById("myForm");
+
+form.addEventListener("submit", function(e) {
+  e.preventDefault();
+
+  const data = new FormData(form);
+
+  fetch("https://script.google.com/macros/s/AKfycbzvQbjt2_LGr_iTw1ssi2w8LNvyY21o9r6U4_5oELfotGrOr8twfpFNGGfPwyQYCrwr/exec", {
+    method: "POST",
+    body: data
+  })
+  .then(res => res.text())
+  .then(() => {
+    document.getElementById("formArea").style.display = "none";
+    document.getElementById("thankYou").style.display = "block";
+  })
+  .catch(() => {
+    alert("送信に失敗しました");
+  });
+
+}); // ← ★これが無いとダメ
+</script>
