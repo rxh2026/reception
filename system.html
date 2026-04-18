@@ -3,45 +3,43 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>物件情報流通の仕組み | 株式会社RH</title>
+<title>物件流通の仕組み | 株式会社RH</title>
 
 <style>
-body { margin:0; font-family:sans-serif; background:#0f0f10; color:#fff; }
-.back { padding:20px; display:inline-block; color:#aaa; text-decoration:none; }
-.header { text-align:center; padding:20px; }
-.card { margin:15px; padding:20px; background:#1c1c1f; border-radius:10px; }
-.cta { position:fixed; bottom:0; width:100%; background:#d4af37; text-align:center; padding:15px; }
-.cta a { color:#000; font-weight:bold; text-decoration:none; }
+body{margin:0;font-family:sans-serif;background:linear-gradient(135deg,#1c1c2e,#2a2f4f,#3b3f6b);}
+.container{display:flex;justify-content:center;padding:30px 0;}
+.card{background:#f7f7f7;width:90%;max-width:420px;padding:25px;border-radius:20px;}
+.back{color:#555;text-decoration:none;}
+.title{text-align:center;margin:10px 0 20px;font-weight:bold;}
+
+.box{background:#fff;padding:14px;margin-bottom:10px;border-radius:10px;transition:.3s;}
+.box:hover{transform:translateY(-3px);}
+.box:active{transform:scale(.97);}
+
+.fade{opacity:0;transform:translateY(20px);animation:fadeUp .6s forwards;}
+.box:nth-of-type(1){animation-delay:.1s;}
+.box:nth-of-type(2){animation-delay:.2s;}
+.box:nth-of-type(3){animation-delay:.3s;}
+.box:nth-of-type(4){animation-delay:.4s;}
+
+@keyframes fadeUp{to{opacity:1;transform:translateY(0);}}
 </style>
 </head>
 
 <body>
+<div class="container">
+<div class="card">
 
 <a href="index2.html" class="back">← 戻る</a>
 
-<div class="header">
-  <h1>📊 物件情報流通の仕組み</h1>
-  <p>不動産情報はこうやって共有されています</p>
-</div>
+<div class="title fade">📊 物件情報流通の仕組み</div>
 
-<div class="card">
-  <h3>元付会社</h3>
-  <p>物件を管理している不動産会社が情報の元になります。</p>
-</div>
+<div class="box fade">物件はレインズで共有されています</div>
+<div class="box fade">どの不動産会社でも同じ物件を扱えます</div>
+<div class="box fade">違いは提案力と対応スピードです</div>
+<div class="box fade">つまり会社選びが重要です</div>
 
-<div class="card">
-  <h3>レインズ登録</h3>
-  <p>業者専用のデータベースに登録され、全国の不動産会社が閲覧可能になります。</p>
 </div>
-
-<div class="card">
-  <h3>客付会社</h3>
-  <p>お客様に物件を紹介する会社（＝弊社）です。</p>
 </div>
-
-<div class="cta">
-  <a href="https://lin.ee/あなたのURL">LINEで相談する</a>
-</div>
-
 </body>
 </html>
