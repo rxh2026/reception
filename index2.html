@@ -9,87 +9,53 @@
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, sans-serif;
-  background: #f5f6f8; /* ← ここが統一ポイント */
-  color: #1a1a1a;
+  background: linear-gradient(135deg,#1c1c2e,#2a2f4f,#3b3f6b);
 }
 
-/* ヘッダー */
-.header {
-  padding: 20px;
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.card {
+  background: #f7f7f7;
+  width: 90%;
+  max-width: 400px;
+  padding: 30px;
+  border-radius: 20px;
   text-align: center;
-  background: #ffffff;
-  border-bottom: 1px solid #e5e5e5;
 }
 
 .logo {
   font-size: 22px;
   font-weight: bold;
+  margin-bottom: 20px;
 }
 
-.sub {
-  font-size: 12px;
-  color: #777;
-}
-
-/* メニュー */
 .menu {
-  padding: 20px;
-}
-
-.card {
   display: block;
-  background: #ffffff;
-  padding: 18px;
-  margin-bottom: 12px;
-  border-radius: 12px;
+  margin-top: 15px;
+  padding: 14px;
+  background: #fff;
+  border-radius: 10px;
   text-decoration: none;
-  color: #1a1a1a;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.05);
-}
-
-.card-title {
-  font-size: 16px;
-  font-weight: bold;
-}
-
-.card-sub {
-  font-size: 12px;
-  color: #777;
-  margin-top: 5px;
+  color: #000;
 }
 </style>
 </head>
 
 <body>
+<div class="container">
+  <div class="card">
+    <div class="logo">株式会社RH</div>
 
-<div class="header">
-  <div class="logo">株式会社RH</div>
-  <div class="sub">Real Estate Solution</div>
+    <a href="flow.html" class="menu">🏠 申込から入居までの流れ</a>
+    <a href="guarantee.html" class="menu">💳 保証会社とは</a>
+    <a href="system.html" class="menu">📊 物件情報流通の仕組み</a>
+    <a href="listing.html" class="menu">🌐 掲載までの流れ</a>
+  </div>
 </div>
-
-<div class="menu">
-
-  <a href="flow.html" class="card">
-    <div class="card-title">🏠 申込から入居までの流れ</div>
-    <div class="card-sub">初めてでも分かるステップ形式</div>
-  </a>
-
-  <a href="guarantee.html" class="card">
-    <div class="card-title">💳 保証会社とは</div>
-    <div class="card-sub">仕組みと必要性を解説</div>
-  </a>
-
-  <a href="system.html" class="card">
-    <div class="card-title">📊 物件情報流通の仕組み</div>
-    <div class="card-sub">不動産の裏側を理解</div>
-  </a>
-
-  <a href="listing.html" class="card">
-    <div class="card-title">🌐 掲載までの流れ</div>
-    <div class="card-sub">ネット掲載の流れ</div>
-  </a>
-
-</div>
-
 </body>
 </html>
