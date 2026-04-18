@@ -6,42 +6,40 @@
 <title>掲載までの流れ | 株式会社RH</title>
 
 <style>
-body { margin:0; font-family:sans-serif; background:#0f0f10; color:#fff; }
-.back { padding:20px; display:inline-block; color:#aaa; text-decoration:none; }
-.header { text-align:center; padding:20px; }
-.card { margin:15px; padding:20px; background:#1c1c1f; border-radius:10px; }
-.cta { position:fixed; bottom:0; width:100%; background:#d4af37; text-align:center; padding:15px; }
-.cta a { color:#000; font-weight:bold; text-decoration:none; }
+body{margin:0;font-family:sans-serif;background:linear-gradient(135deg,#1c1c2e,#2a2f4f,#3b3f6b);}
+.container{display:flex;justify-content:center;padding:30px 0;}
+.card{background:#f7f7f7;width:90%;max-width:420px;padding:25px;border-radius:20px;}
+.back{color:#555;text-decoration:none;}
+.title{text-align:center;margin:10px 0 20px;font-weight:bold;}
+
+.box{background:#fff;padding:14px;margin-bottom:10px;border-radius:10px;transition:.3s;}
+.box:hover{transform:translateY(-3px);}
+.box:active{transform:scale(.97);}
+
+.fade{opacity:0;transform:translateY(20px);animation:fadeUp .6s forwards;}
+.box:nth-of-type(1){animation-delay:.1s;}
+.box:nth-of-type(2){animation-delay:.2s;}
+.box:nth-of-type(3){animation-delay:.3s;}
+.box:nth-of-type(4){animation-delay:.4s;}
+
+@keyframes fadeUp{to{opacity:1;transform:translateY(0);}}
 </style>
 </head>
 
 <body>
+<div class="container">
+<div class="card">
 
 <a href="index2.html" class="back">← 戻る</a>
 
-<div class="header">
-  <h1>🌐 物件掲載までの流れ</h1>
-  <p>ネットに出るまでの裏側</p>
-</div>
+<div class="title fade">🌐 掲載までの流れ</div>
 
-<div class="card">
-  <h3>① オーナー依頼</h3>
-  <p>オーナーが管理会社へ募集依頼を行います。</p>
-</div>
+<div class="box fade">オーナーが管理会社に依頼</div>
+<div class="box fade">条件設定して募集開始</div>
+<div class="box fade">レインズに登録</div>
+<div class="box fade">ポータルサイトに掲載</div>
 
-<div class="card">
-  <h3>② 情報登録</h3>
-  <p>レインズや自社システムへ登録されます。</p>
 </div>
-
-<div class="card">
-  <h3>③ ポータル掲載</h3>
-  <p>SUUMO・HOME'Sなどに掲載されます。</p>
 </div>
-
-<div class="cta">
-  <a href="https://lin.ee/あなたのURL">LINEで相談する</a>
-</div>
-
 </body>
 </html>
