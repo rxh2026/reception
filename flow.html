@@ -33,22 +33,48 @@ body {
 
 .title {
   text-align: center;
-  margin: 10px 0 20px;
+  margin: 10px 0 10px;
   font-size: 18px;
   font-weight: bold;
+}
+
+.desc {
+  font-size: 13px;
+  color: #666;
+  margin-bottom: 20px;
+  text-align: center;
 }
 
 /* ボックス */
 .box {
   background: #fff;
   padding: 14px;
-  margin-bottom: 10px;
   border-radius: 10px;
+  margin-bottom: 8px;
   transition: 0.3s;
 }
 
 .box:hover { transform: translateY(-3px); }
 .box:active { transform: scale(0.97); }
+
+.box h3 {
+  margin: 0 0 6px;
+  font-size: 15px;
+}
+
+.box p {
+  margin: 0;
+  font-size: 12px;
+  color: #555;
+}
+
+/* 矢印 */
+.arrow {
+  text-align: center;
+  font-size: 18px;
+  color: #888;
+  margin: 6px 0;
+}
 
 /* アニメーション */
 .fade {
@@ -57,12 +83,12 @@ body {
   animation: fadeUp 0.6s ease forwards;
 }
 
-.box:nth-of-type(1){animation-delay:0.1s;}
-.box:nth-of-type(2){animation-delay:0.2s;}
-.box:nth-of-type(3){animation-delay:0.3s;}
-.box:nth-of-type(4){animation-delay:0.4s;}
-.box:nth-of-type(5){animation-delay:0.5s;}
-.box:nth-of-type(6){animation-delay:0.6s;}
+.step1 {animation-delay:0.1s;}
+.step2 {animation-delay:0.2s;}
+.step3 {animation-delay:0.3s;}
+.step4 {animation-delay:0.4s;}
+.step5 {animation-delay:0.5s;}
+.step6 {animation-delay:0.6s;}
 
 @keyframes fadeUp {
   to { opacity:1; transform:translateY(0);}
@@ -77,13 +103,49 @@ body {
 <a href="index2.html" class="back">← 戻る</a>
 
 <div class="title fade">🏠 申込から入居までの流れ</div>
+<div class="desc fade">
+物件の申込から契約開始日（家賃発生日）は2週間前後が多いです。
+</div>
 
-<div class="box fade"><h3>① お問い合わせ</h3><p>LINEまたはフォームよりご相談ください</p></div>
-<div class="box fade"><h3>② 物件紹介</h3><p>条件に合う物件をご提案</p></div>
-<div class="box fade"><h3>③ 内見・申込</h3><p>気に入った物件に申込</p></div>
-<div class="box fade"><h3>④ 審査</h3><p>保証会社の審査あり</p></div>
-<div class="box fade"><h3>⑤ 契約・入金</h3><p>契約と初期費用支払い</p></div>
-<div class="box fade"><h3>⑥ 入居</h3><p>鍵渡し後スタート</p></div>
+<div class="box fade step1">
+<h3>① 物件に申込</h3>
+<p>申込は先着順がほとんどです。気に入った物件を見つけたら内見前に申込がおすすめ。</p>
+</div>
+
+<div class="arrow fade step1">↓</div>
+
+<div class="box fade step2">
+<h3>② 審査</h3>
+<p>管理会社さん、オーナー様の審査を行います。ご本人様確認や緊急連絡先様への連絡が入ることがあります。</p>
+</div>
+
+<div class="arrow fade step2">↓</div>
+
+<div class="box fade step3">
+<h3>③ 承認</h3>
+<p>審査の承認後、契約開始日（家賃発生日）の設定を行います。現在賃貸マンションを借りている場合はこの時に退去予告を出すのが良いです。</p>
+</div>
+
+<div class="arrow fade step3">↓</div>
+
+<div class="box fade step4">
+<h3>④ 契約の準備・ご入金</h3>
+<p>契約の締結に向けて必要書類の準備と、契約金の入金を行います。必要書類には印鑑や住民票のご用意が必要になることが多いです。</p>
+</div>
+
+<div class="arrow fade step4">↓</div>
+
+<div class="box fade step5">
+<h3>⑤ 契約締結</h3>
+<p>契約書類の署名・捺印を行います。最近では電子契約も増えており、遠方の方は郵送＋オンライン対応も可能です。</p>
+</div>
+
+<div class="arrow fade step5">↓</div>
+
+<div class="box fade step6">
+<h3>⑥ 入居</h3>
+<p>契約開始日＝家賃発生日＝入居可能日です。鍵のお渡し後、当日から入室可能。ライフラインや引越手配もお忘れなく。</p>
+</div>
 
 </div>
 </div>
