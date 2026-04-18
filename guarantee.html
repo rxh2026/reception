@@ -6,23 +6,90 @@
 <title>保証会社とは | 株式会社RH</title>
 
 <style>
-body {margin:0;font-family:sans-serif;background:linear-gradient(135deg,#1c1c2e,#2a2f4f,#3b3f6b);}
-.container{display:flex;justify-content:center;padding:30px 0;}
-.card{background:#f7f7f7;width:90%;max-width:420px;padding:25px;border-radius:20px;}
-.back{text-decoration:none;color:#555;}
-.title{text-align:center;margin:10px 0 20px;font-weight:bold;}
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+  background: linear-gradient(135deg,#1c1c2e,#2a2f4f,#3b3f6b);
+}
 
-.box{background:#fff;padding:14px;margin-bottom:10px;border-radius:10px;transition:.3s;}
-.box:hover{transform:translateY(-3px);}
-.box:active{transform:scale(.97);}
+.container {
+  display: flex;
+  justify-content: center;
+  padding: 30px 0;
+}
 
-.fade{opacity:0;transform:translateY(20px);animation:fadeUp .6s forwards;}
-.box:nth-of-type(1){animation-delay:.1s;}
-.box:nth-of-type(2){animation-delay:.2s;}
-.box:nth-of-type(3){animation-delay:.3s;}
-.box:nth-of-type(4){animation-delay:.4s;}
+.card {
+  background: #f7f7f7;
+  width: 90%;
+  max-width: 420px;
+  padding: 25px;
+  border-radius: 20px;
+}
 
-@keyframes fadeUp{to{opacity:1;transform:translateY(0);}}
+.back {
+  text-decoration: none;
+  color: #555;
+}
+
+.title {
+  text-align: center;
+  margin: 10px 0 10px;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.desc {
+  font-size: 13px;
+  color: #666;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+/* ボックス */
+.box {
+  background: #fff;
+  padding: 14px;
+  margin-bottom: 12px;
+  border-radius: 10px;
+  transition: 0.3s;
+}
+
+.box:hover { transform: translateY(-3px); }
+.box:active { transform: scale(0.97); }
+
+.box h3 {
+  margin: 0 0 6px;
+  font-size: 15px;
+}
+
+.box p {
+  margin: 0;
+  font-size: 13px;
+  color: #555;
+}
+
+/* リスト */
+.list {
+  font-size: 13px;
+  color: #555;
+  line-height: 1.6;
+}
+
+/* アニメーション */
+.fade {
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeUp 0.6s ease forwards;
+}
+
+.step1 {animation-delay:0.1s;}
+.step2 {animation-delay:0.2s;}
+.step3 {animation-delay:0.3s;}
+.step4 {animation-delay:0.4s;}
+
+@keyframes fadeUp {
+  to { opacity:1; transform:translateY(0);}
+}
 </style>
 </head>
 
@@ -34,10 +101,34 @@ body {margin:0;font-family:sans-serif;background:linear-gradient(135deg,#1c1c2e,
 
 <div class="title fade">💳 保証会社とは</div>
 
-<div class="box fade">家賃保証会社は、家賃を立て替える会社です</div>
-<div class="box fade">現在はほぼ必須になっています</div>
-<div class="box fade">保証人不要で契約可能になるメリットがあります</div>
-<div class="box fade">審査は収入や勤務先などが見られます</div>
+<div class="desc fade">
+保証会社とは“保証人に代わり”になってくれる会社です。
+</div>
+
+<div class="box fade step1">
+<div class="list">
+● 保証人が立てられない方でも保証会社を利用することでお部屋の契約が可能。<br>
+● 中小企業様の法人契約の際には代表者様に保証人になっていただくケースが多い。
+</div>
+</div>
+
+<div class="box fade step2">
+<h3>⭐ 保証会社の利用料</h3>
+<p>
+一般的には<br>
+初回分：賃料＋管理費合計の30％～100％（40％～50％が多い）<br><br>
+継続分：1年ごと10,000円前後 または 毎月賃料等の1％～5％<br><br>
+※初回分・継続分ともに保証会社様によって異なります。
+</p>
+</div>
+
+<div class="box fade step3">
+<h3>⭐ 保証会社利用必須</h3>
+<p>
+保証人様を設定することが可能なお客様でも、保証会社の利用が必須となっております。<br><br>
+物件によっては保証人様を立てての契約ができるものもありますが、割合は1％あるかないかです。
+</p>
+</div>
 
 </div>
 </div>
