@@ -3,77 +3,140 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>株式会社RH</title>
+<title>株式会社RH | 不動産サポート</title>
 
 <style>
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, sans-serif;
-  background: #0f0f10;
-  color: #fff;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 100vh;
-  text-align: center;
+  background: #f5f6f8;
+  color: #1a1a1a;
 }
 
-/* ロゴ風タイトル */
-.title {
-  font-size: 36px;
-  letter-spacing: 3px;
-  margin-bottom: 10px;
+/* ヘッダー */
+.header {
+  padding: 20px;
+  text-align: center;
+  background: #ffffff;
+  border-bottom: 1px solid #e5e5e5;
+}
+
+.logo {
+  font-size: 22px;
+  font-weight: bold;
+  letter-spacing: 1px;
 }
 
 .sub {
-  font-size: 14px;
-  opacity: 0.6;
-  margin-bottom: 40px;
+  font-size: 12px;
+  color: #777;
 }
 
-/* セレクトボックス */
-select {
-  padding: 14px 20px;
-  border-radius: 30px;
-  border: none;
-  font-size: 16px;
-  width: 260px;
-  background: #1c1c1f;
-  color: #fff;
+/* メイン */
+.hero {
+  padding: 40px 20px;
   text-align: center;
 }
 
-/* スマホ */
-@media(max-width:600px){
-  .title {
-    font-size: 28px;
-  }
+.hero h1 {
+  font-size: 22px;
+  margin-bottom: 10px;
+}
+
+.hero p {
+  font-size: 14px;
+  color: #555;
+}
+
+/* ボタン */
+.menu {
+  padding: 20px;
+}
+
+.card {
+  display: block;
+  background: #ffffff;
+  padding: 18px;
+  margin-bottom: 12px;
+  border-radius: 12px;
+  text-decoration: none;
+  color: #1a1a1a;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+  transition: 0.2s;
+}
+
+.card:hover {
+  transform: translateY(-2px);
+}
+
+.card-title {
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.card-sub {
+  font-size: 12px;
+  color: #777;
+  margin-top: 5px;
+}
+
+/* CTA */
+.cta {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  background: #2f3a4a;
+  text-align: center;
+  padding: 15px;
+}
+
+.cta a {
+  color: #fff;
+  font-weight: bold;
+  text-decoration: none;
 }
 </style>
 </head>
 
 <body>
 
-<div>
-  <div class="title">株式会社RH</div>
+<div class="header">
+  <div class="logo">株式会社RH</div>
   <div class="sub">Real Estate Solution</div>
-
-  <select onchange="movePage(this)">
-    <option value="">コンテンツを選択</option>
-    <option value="flow.html">申込から入居までの流れ</option>
-    <option value="guarantee.html">保証会社とは</option>
-    <option value="system.html">物件情報流通の仕組み</option>
-    <option value="listing.html">物件情報が掲載されるまで</option>
-  </select>
 </div>
 
-<script>
-function movePage(select){
-  if(select.value){
-    window.location.href = select.value;
-  }
-}
-</script>
+<div class="hero">
+  <h1>最短1週間で入居可能</h1>
+  <p>初めての方でも安心してご利用いただけます</p>
+</div>
+
+<div class="menu">
+
+  <a href="flow.html" class="card">
+    <div class="card-title">🏠 申込から入居までの流れ</div>
+    <div class="card-sub">初めてでも分かるステップ形式</div>
+  </a>
+
+  <a href="guarantee.html" class="card">
+    <div class="card-title">💳 保証会社とは</div>
+    <div class="card-sub">必須になる理由を解説</div>
+  </a>
+
+  <a href="system.html" class="card">
+    <div class="card-title">📊 物件情報流通の仕組み</div>
+    <div class="card-sub">不動産の裏側を理解</div>
+  </a>
+
+  <a href="listing.html" class="card">
+    <div class="card-title">🌐 掲載までの流れ</div>
+    <div class="card-sub">ネットに出るまでの仕組み</div>
+  </a>
+
+</div>
+
+<div class="cta">
+  <a href="https://lin.ee/あなたのURL">LINEで無料相談する</a>
+</div>
 
 </body>
 </html>
