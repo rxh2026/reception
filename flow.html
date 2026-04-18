@@ -3,37 +3,77 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ページ</title>
+<title>申込から入居までの流れ | 株式会社RH</title>
 
 <style>
 body {
   margin: 0;
-  font-family: sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, sans-serif;
   background: #0f0f10;
   color: #fff;
-  padding: 20px;
 }
 
-/* 戻るボタン */
+/* 戻る */
 .back {
   display: inline-block;
-  margin-bottom: 20px;
-  color: #d4af37;
+  padding: 20px;
+  color: #aaa;
   text-decoration: none;
-  font-size: 14px;
 }
 
 /* タイトル */
-h1 {
-  margin-top: 0;
+.header {
+  text-align: center;
+  padding: 20px;
+}
+.header h1 {
+  margin: 0;
+  font-size: 24px;
+}
+.header p {
+  font-size: 13px;
+  opacity: 0.6;
 }
 
-/* カード */
-.card {
-  background: #1c1c1f;
-  padding: 20px;
-  border-radius: 10px;
-  margin-bottom: 15px;
+/* ステップ */
+.step {
+  display: flex;
+  align-items: flex-start;
+  padding: 15px 20px;
+  border-bottom: 1px solid #222;
+}
+
+.num {
+  font-size: 18px;
+  font-weight: bold;
+  color: #d4af37;
+  margin-right: 12px;
+}
+
+.content h3 {
+  margin: 0;
+  font-size: 16px;
+}
+.content p {
+  margin: 5px 0 0;
+  font-size: 13px;
+  opacity: 0.7;
+}
+
+/* CTA */
+.cta {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  background: #d4af37;
+  text-align: center;
+  padding: 15px;
+}
+
+.cta a {
+  color: #000;
+  font-weight: bold;
+  text-decoration: none;
 }
 </style>
 </head>
@@ -42,9 +82,62 @@ h1 {
 
 <a href="index.html" class="back">← 戻る</a>
 
-<h1>ページタイトル</h1>
+<div class="header">
+  <h1>🏠 申込から入居までの流れ</h1>
+  <p>最短1週間でご入居可能です</p>
+</div>
 
-<div class="card">ここに内容を書く</div>
+<div class="step">
+  <div class="num">01</div>
+  <div class="content">
+    <h3>お問い合わせ</h3>
+    <p>LINEまたはフォームよりご相談ください</p>
+  </div>
+</div>
+
+<div class="step">
+  <div class="num">02</div>
+  <div class="content">
+    <h3>物件紹介</h3>
+    <p>ご希望条件に合わせてご提案します</p>
+  </div>
+</div>
+
+<div class="step">
+  <div class="num">03</div>
+  <div class="content">
+    <h3>内見・申込</h3>
+    <p>気に入った物件にお申し込み</p>
+  </div>
+</div>
+
+<div class="step">
+  <div class="num">04</div>
+  <div class="content">
+    <h3>審査</h3>
+    <p>保証会社・管理会社の審査があります</p>
+  </div>
+</div>
+
+<div class="step">
+  <div class="num">05</div>
+  <div class="content">
+    <h3>契約・入金</h3>
+    <p>初期費用のお支払い・契約手続き</p>
+  </div>
+</div>
+
+<div class="step">
+  <div class="num">06</div>
+  <div class="content">
+    <h3>鍵渡し・入居</h3>
+    <p>いよいよ新生活スタートです</p>
+  </div>
+</div>
+
+<div class="cta">
+  <a href="https://lin.ee/あなたのURL">LINEで相談する</a>
+</div>
 
 </body>
 </html>
