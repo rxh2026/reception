@@ -3,38 +3,34 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ページ</title>
+<title>保証会社とは | 株式会社RH</title>
 
 <style>
 body {
   margin: 0;
-  font-family: sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, sans-serif;
   background: #0f0f10;
   color: #fff;
-  padding: 20px;
 }
-
-/* 戻るボタン */
-.back {
-  display: inline-block;
-  margin-bottom: 20px;
-  color: #d4af37;
-  text-decoration: none;
-  font-size: 14px;
-}
-
-/* タイトル */
-h1 {
-  margin-top: 0;
-}
-
-/* カード */
+.back { padding:20px; display:inline-block; color:#aaa; text-decoration:none; }
+.header { text-align:center; padding:20px; }
+.header h1 { margin:0; font-size:24px; }
+.header p { font-size:13px; opacity:0.6; }
 .card {
-  background: #1c1c1f;
-  padding: 20px;
-  border-radius: 10px;
-  margin-bottom: 15px;
+  margin:15px;
+  padding:20px;
+  background:#1c1c1f;
+  border-radius:10px;
 }
+.cta {
+  position:fixed;
+  bottom:0;
+  width:100%;
+  background:#d4af37;
+  text-align:center;
+  padding:15px;
+}
+.cta a { color:#000; font-weight:bold; text-decoration:none; }
 </style>
 </head>
 
@@ -42,9 +38,29 @@ h1 {
 
 <a href="index.html" class="back">← 戻る</a>
 
-<h1>ページタイトル</h1>
+<div class="header">
+  <h1>💳 保証会社とは</h1>
+  <p>入居時に必要となる重要な仕組みです</p>
+</div>
 
-<div class="card">ここに内容を書く</div>
+<div class="card">
+  <h3>保証会社の役割</h3>
+  <p>家賃の支払いを保証する会社で、万が一の未払い時にオーナーへ立替を行います。</p>
+</div>
+
+<div class="card">
+  <h3>なぜ必要？</h3>
+  <p>連帯保証人の代わりとなるため、現在はほぼ全ての物件で必須となっています。</p>
+</div>
+
+<div class="card">
+  <h3>費用について</h3>
+  <p>初回保証料＋更新料が発生します（物件により異なります）。</p>
+</div>
+
+<div class="cta">
+  <a href="https://lin.ee/あなたのURL">LINEで相談する</a>
+</div>
 
 </body>
 </html>
