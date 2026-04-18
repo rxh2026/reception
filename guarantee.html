@@ -6,61 +6,40 @@
 <title>保証会社とは | 株式会社RH</title>
 
 <style>
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, sans-serif;
-  background: #0f0f10;
-  color: #fff;
-}
-.back { padding:20px; display:inline-block; color:#aaa; text-decoration:none; }
-.header { text-align:center; padding:20px; }
-.header h1 { margin:0; font-size:24px; }
-.header p { font-size:13px; opacity:0.6; }
-.card {
-  margin:15px;
-  padding:20px;
-  background:#1c1c1f;
-  border-radius:10px;
-}
-.cta {
-  position:fixed;
-  bottom:0;
-  width:100%;
-  background:#d4af37;
-  text-align:center;
-  padding:15px;
-}
-.cta a { color:#000; font-weight:bold; text-decoration:none; }
+body {margin:0;font-family:sans-serif;background:linear-gradient(135deg,#1c1c2e,#2a2f4f,#3b3f6b);}
+.container{display:flex;justify-content:center;padding:30px 0;}
+.card{background:#f7f7f7;width:90%;max-width:420px;padding:25px;border-radius:20px;}
+.back{text-decoration:none;color:#555;}
+.title{text-align:center;margin:10px 0 20px;font-weight:bold;}
+
+.box{background:#fff;padding:14px;margin-bottom:10px;border-radius:10px;transition:.3s;}
+.box:hover{transform:translateY(-3px);}
+.box:active{transform:scale(.97);}
+
+.fade{opacity:0;transform:translateY(20px);animation:fadeUp .6s forwards;}
+.box:nth-of-type(1){animation-delay:.1s;}
+.box:nth-of-type(2){animation-delay:.2s;}
+.box:nth-of-type(3){animation-delay:.3s;}
+.box:nth-of-type(4){animation-delay:.4s;}
+
+@keyframes fadeUp{to{opacity:1;transform:translateY(0);}}
 </style>
 </head>
 
 <body>
+<div class="container">
+<div class="card">
 
 <a href="index2.html" class="back">← 戻る</a>
 
-<div class="header">
-  <h1>💳 保証会社とは</h1>
-  <p>入居時に必要となる重要な仕組みです</p>
-</div>
+<div class="title fade">💳 保証会社とは</div>
 
-<div class="card">
-  <h3>保証会社の役割</h3>
-  <p>家賃の支払いを保証する会社で、万が一の未払い時にオーナーへ立替を行います。</p>
-</div>
+<div class="box fade">家賃保証会社は、家賃を立て替える会社です</div>
+<div class="box fade">現在はほぼ必須になっています</div>
+<div class="box fade">保証人不要で契約可能になるメリットがあります</div>
+<div class="box fade">審査は収入や勤務先などが見られます</div>
 
-<div class="card">
-  <h3>なぜ必要？</h3>
-  <p>連帯保証人の代わりとなるため、現在はほぼ全ての物件で必須となっています。</p>
 </div>
-
-<div class="card">
-  <h3>費用について</h3>
-  <p>初回保証料＋更新料が発生します（物件により異なります）。</p>
 </div>
-
-<div class="cta">
-  <a href="https://lin.ee/あなたのURL">LINEで相談する</a>
-</div>
-
 </body>
 </html>
