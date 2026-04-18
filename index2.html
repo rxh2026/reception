@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>株式会社RH｜最短1週間で入居</title>
+<title>株式会社RH</title>
 
 <style>
 body {
@@ -11,188 +11,68 @@ body {
   font-family: -apple-system, BlinkMacSystemFont, sans-serif;
   background: #0f0f10;
   color: #fff;
-  scroll-behavior: smooth;
-}
-
-/* ===== アニメーション ===== */
-.fade {
-  opacity: 0;
-  transform: translateY(30px);
-  transition: all 0.8s ease;
-}
-.fade.show {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-/* ===== ヒーロー ===== */
-.hero {
-  padding: 90px 20px;
-  text-align: center;
-  background: linear-gradient(135deg, #0f0f10, #1a1a1d);
-}
-.hero h1 {
-  font-size: 28px;
-}
-.hero p {
-  opacity: 0.7;
-}
-.btn {
-  display: inline-block;
-  margin-top: 20px;
-  padding: 14px 28px;
-  background: #d4af37;
-  color: #000;
-  font-weight: bold;
-  border-radius: 30px;
-  text-decoration: none;
-}
-
-/* ===== セクション ===== */
-.section {
-  padding: 60px 20px;
-  max-width: 900px;
-  margin: auto;
-}
-.section h2 {
-  text-align: center;
-  margin-bottom: 30px;
-}
-
-/* ===== ステップ ===== */
-.steps {
   display: flex;
-  flex-direction: column;
-  gap: 15px;
-}
-.step {
-  background: #1c1c1f;
-  padding: 18px;
-  border-radius: 12px;
-}
-.step h3 {
-  color: #d4af37;
-  margin: 0;
-}
-
-/* ===== カード ===== */
-.card {
-  background: #1c1c1f;
-  padding: 20px;
-  border-radius: 12px;
-  margin-bottom: 15px;
-}
-
-/* ===== 固定CTA ===== */
-.fixed-btn {
-  position: fixed;
-  bottom: 15px;
-  left: 50%;
-  transform: translateX(-50%);
-  background: #d4af37;
-  color: #000;
-  padding: 14px 30px;
-  border-radius: 30px;
-  font-weight: bold;
-  text-decoration: none;
-  z-index: 999;
-}
-
-/* ===== フッター ===== */
-footer {
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
   text-align: center;
-  padding: 40px;
-  font-size: 12px;
-  opacity: 0.5;
+}
+
+/* ロゴ風タイトル */
+.title {
+  font-size: 36px;
+  letter-spacing: 3px;
+  margin-bottom: 10px;
+}
+
+.sub {
+  font-size: 14px;
+  opacity: 0.6;
+  margin-bottom: 40px;
+}
+
+/* セレクトボックス */
+select {
+  padding: 14px 20px;
+  border-radius: 30px;
+  border: none;
+  font-size: 16px;
+  width: 260px;
+  background: #1c1c1f;
+  color: #fff;
+  text-align: center;
+}
+
+/* スマホ */
+@media(max-width:600px){
+  .title {
+    font-size: 28px;
+  }
 }
 </style>
 </head>
 
 <body>
 
-<!-- ヒーロー -->
-<section class="hero fade">
-  <h1>最短1週間で入居可能</h1>
-  <p>スピード × 安心の賃貸サポート</p>
-  <a href="#" class="btn">LINEで相談する</a>
-</section>
+<div>
+  <div class="title">株式会社RH</div>
+  <div class="sub">Real Estate Solution</div>
 
-<!-- 流れ -->
-<section class="section fade">
-  <h2>ご契約までの流れ</h2>
-  <div class="steps">
-    <div class="step">
-      <h3>STEP1 申込</h3>
-      <p>人気物件は先着順</p>
-    </div>
-    <div class="step">
-      <h3>STEP2 審査</h3>
-      <p>1〜3日で結果</p>
-    </div>
-    <div class="step">
-      <h3>STEP3 契約</h3>
-      <p>オンライン対応可</p>
-    </div>
-    <div class="step">
-      <h3>STEP4 入金</h3>
-      <p>入金確認で確定</p>
-    </div>
-    <div class="step">
-      <h3>STEP5 入居</h3>
-      <p>最短1週間</p>
-    </div>
-  </div>
-</section>
-
-<!-- 不動産 -->
-<section class="section fade">
-  <h2>不動産の仕組み</h2>
-  <div class="card">
-    物件は業者間で共有されているため、どの会社でも同じ物件をご紹介可能です。
-  </div>
-  <div class="card">
-    未公開物件のご提案も可能です。
-  </div>
-</section>
-
-<!-- 審査 -->
-<section class="section fade">
-  <h2>審査・必要書類</h2>
-  <div class="card">
-    身分証明書 / 収入証明 / 住民票
-  </div>
-  <div class="card">
-    保証人がいなくてもOK（保証会社利用）
-  </div>
-</section>
-
-<!-- 強み -->
-<section class="section fade">
-  <h2>選ばれる理由</h2>
-  <div class="card">✔ オンライン契約</div>
-  <div class="card">✔ ライフライン代行</div>
-  <div class="card">✔ 引越しサポート</div>
-</section>
-
-<footer>
-  © 株式会社RH
-</footer>
-
-<!-- 固定ボタン -->
-<a href="#" class="fixed-btn">LINEで問い合わせ</a>
+  <select onchange="movePage(this)">
+    <option value="">コンテンツを選択</option>
+    <option value="flow.html">申込から入居までの流れ</option>
+    <option value="guarantee.html">保証会社とは</option>
+    <option value="system.html">物件情報流通の仕組み</option>
+    <option value="listing.html">物件情報が掲載されるまで</option>
+  </select>
+</div>
 
 <script>
-const fades = document.querySelectorAll('.fade');
-
-const observer = new IntersectionObserver(entries => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      entry.target.classList.add('show');
-    }
-  });
-});
-
-fades.forEach(el => observer.observe(el));
+function movePage(select){
+  if(select.value){
+    window.location.href = select.value;
+  }
+}
 </script>
 
 </body>
