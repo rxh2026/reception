@@ -9,78 +9,66 @@
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, sans-serif;
-  background: #0f0f10;
-  color: #fff;
+  background: #f5f6f8; /* ← トップと統一 */
+  color: #1a1a1a;
 }
 
 /* 戻る */
 .back {
   display: inline-block;
   padding: 20px;
-  color: #aaa;
   text-decoration: none;
+  color: #555;
 }
 
 /* タイトル */
 .header {
   text-align: center;
-  padding: 20px;
-}
-.header h1 {
-  margin: 0;
-  font-size: 24px;
-}
-.header p {
-  font-size: 13px;
-  opacity: 0.6;
+  padding: 10px 20px;
 }
 
-/* ステップ */
+.header h1 {
+  margin: 0;
+  font-size: 20px;
+}
+
+.header p {
+  font-size: 13px;
+  color: #666;
+}
+
+/* カード */
 .step {
+  background: #ffffff;
+  margin: 12px 15px;
+  padding: 16px;
+  border-radius: 12px;
   display: flex;
-  align-items: flex-start;
-  padding: 15px 20px;
-  border-bottom: 1px solid #222;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.06);
 }
 
 .num {
-  font-size: 18px;
   font-weight: bold;
-  color: #d4af37;
-  margin-right: 12px;
+  margin-right: 10px;
+  color: #2f3a4a;
 }
 
 .content h3 {
   margin: 0;
-  font-size: 16px;
+  font-size: 15px;
 }
+
 .content p {
   margin: 5px 0 0;
   font-size: 13px;
-  opacity: 0.7;
-}
-
-/* CTA */
-.cta {
-  position: fixed;
-  bottom: 0;
-  width: 100%;
-  background: #d4af37;
-  text-align: center;
-  padding: 15px;
-}
-
-.cta a {
-  color: #000;
-  font-weight: bold;
-  text-decoration: none;
+  color: #666;
 }
 </style>
 </head>
 
 <body>
 
-<a href="index2.html" class="back">← 戻る</a>
+<a href="./index2.html" class="back">← 戻る</a>
 
 <div class="header">
   <h1>🏠 申込から入居までの流れ</h1>
@@ -133,10 +121,6 @@ body {
     <h3>鍵渡し・入居</h3>
     <p>いよいよ新生活スタートです</p>
   </div>
-</div>
-
-<div class="cta">
-  <a href="https://lin.ee/あなたのURL">LINEで相談する</a>
 </div>
 
 </body>
