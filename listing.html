@@ -3,43 +3,224 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>掲載までの流れ | 株式会社RH</title>
+<title>物件が掲載されるまで〜された後 | 株式会社RH</title>
 
 <style>
-body{margin:0;font-family:sans-serif;background:linear-gradient(135deg,#1c1c2e,#2a2f4f,#3b3f6b);}
-.container{display:flex;justify-content:center;padding:30px 0;}
-.card{background:#f7f7f7;width:90%;max-width:420px;padding:25px;border-radius:20px;}
-.back{color:#555;text-decoration:none;}
-.title{text-align:center;margin:10px 0 20px;font-weight:bold;}
+body{
+ margin:0;
+ font-family:-apple-system,BlinkMacSystemFont,sans-serif;
+ background:linear-gradient(135deg,#1c1c2e,#2a2f4f,#3b3f6b);
+}
 
-.box{background:#fff;padding:14px;margin-bottom:10px;border-radius:10px;transition:.3s;}
-.box:hover{transform:translateY(-3px);}
-.box:active{transform:scale(.97);}
+.container{
+ display:flex;
+ justify-content:center;
+ padding:30px 0;
+}
 
-.fade{opacity:0;transform:translateY(20px);animation:fadeUp .6s forwards;}
-.box:nth-of-type(1){animation-delay:.1s;}
-.box:nth-of-type(2){animation-delay:.2s;}
-.box:nth-of-type(3){animation-delay:.3s;}
-.box:nth-of-type(4){animation-delay:.4s;}
+.card{
+ background:#f7f7f7;
+ width:90%;
+ max-width:440px;
+ padding:24px;
+ border-radius:20px;
+}
 
-@keyframes fadeUp{to{opacity:1;transform:translateY(0);}}
+.back{
+ text-decoration:none;
+ color:#555;
+}
+
+.title{
+ text-align:center;
+ font-size:18px;
+ font-weight:bold;
+ margin:10px 0 18px;
+}
+
+.lead{
+ font-size:12px;
+ line-height:1.7;
+ color:#555;
+ margin-bottom:16px;
+}
+
+/* ボックス */
+.box{
+ background:#fff;
+ padding:14px;
+ border-radius:12px;
+ margin-bottom:10px;
+ transition:.3s;
+}
+
+.box:hover{
+ transform:translateY(-3px);
+}
+
+.box h3{
+ margin:0 0 8px;
+ font-size:15px;
+}
+
+.box p{
+ margin:0;
+ font-size:12px;
+ line-height:1.65;
+ color:#555;
+}
+
+/* チェックリスト */
+.check{
+ background:#fff;
+ border:1px solid #e5e5e5;
+ border-radius:12px;
+ padding:14px;
+ margin-bottom:14px;
+}
+
+.check div{
+ font-size:12px;
+ margin-bottom:8px;
+ line-height:1.6;
+}
+
+/* 強調 */
+.alert{
+ background:#fff5e9;
+ border-left:4px solid #e5a43a;
+ padding:12px;
+ border-radius:10px;
+ font-size:12px;
+ line-height:1.6;
+ margin-bottom:14px;
+}
+
+/* 結論 */
+.conclusion{
+ background:#eef2ff;
+ border-left:4px solid #5562d9;
+ padding:14px;
+ border-radius:12px;
+ margin-top:18px;
+}
+
+.conclusion h3{
+ margin:0 0 8px;
+ font-size:15px;
+}
+
+.conclusion p{
+ margin:0;
+ font-size:12px;
+ line-height:1.7;
+}
+
+/* アニメーション */
+.fade{
+ opacity:0;
+ transform:translateY(20px);
+ animation:fadeUp .6s ease forwards;
+}
+
+.s1{animation-delay:.1s;}
+.s2{animation-delay:.2s;}
+.s3{animation-delay:.3s;}
+.s4{animation-delay:.4s;}
+.s5{animation-delay:.5s;}
+.s6{animation-delay:.6s;}
+
+@keyframes fadeUp{
+ to{
+   opacity:1;
+   transform:translateY(0);
+ }
+}
 </style>
 </head>
 
 <body>
+
 <div class="container">
 <div class="card">
 
 <a href="index2.html" class="back">← 戻る</a>
 
-<div class="title fade">🌐 掲載までの流れ</div>
+<div class="title fade">
+🌐 物件が掲載されるまで〜された後
+</div>
 
-<div class="box fade">オーナーが管理会社に依頼</div>
-<div class="box fade">条件設定して募集開始</div>
-<div class="box fade">レインズに登録</div>
-<div class="box fade">ポータルサイトに掲載</div>
+<div class="lead fade s1">
+情報流通の仕組みに記載の通り、<br>
+オーナー様 → 管理会社さん → 不動産流通機構 → 株式会社RH → SUUMOなど情報サイト
+という順番で物件は掲載されます。<br><br>
+
+ただし、仲介会社がネット掲載するにはいくつかの確認工程があります。
+</div>
+
+
+<div class="check fade s2">
+
+<div>✔ インターネットへの掲載確認（掲載できない物件もあります）</div>
+
+<div>✔ 賃貸条件の確認（お家賃・初期費用など）</div>
+
+<div>✔ 写真撮影（お部屋の写真は私たちが撮りに行っています）</div>
+
+<div>✔ 情報の入力（築年数・㎡数など）</div>
+
+</div>
+
+
+<div class="alert fade s3">
+これらの確認・編集・入力作業を行ってからインターネット掲載されます。<br><br>
+
+物件によっては、空室情報が出てからお客様の手元に届くまで
+最長1週間かかることもあります。
+</div>
+
+
+<div class="box fade s4">
+<h3>⚠ SUUMO掲載後が一番の問題</h3>
+<p>
+SUUMOには、お申込が入ったら物件情報が自動で消える仕組みがありません。<br><br>
+
+不動産会社が週1回、1件ずつ募集状況を確認し、
+終了していれば情報を落とすルールになっています。
+</p>
+</div>
+
+
+<div class="box fade s5">
+<h3>⏳ タイムラグは2回あります</h3>
+<p>
+① 空室情報が出てからネット掲載されるまでのタイムラグ<br><br>
+
+② 募集終了後もSUUMOに情報が残るタイムラグ
+</p>
+</div>
+
+
+<div class="conclusion fade s6">
+<h3>⭐ 結論</h3>
+
+<p>
+物件がインターネットに掲載されるまでにタイムラグが発生します。<br>
+さらに掲載後も更新が即時ではなく、情報が残っているケースがあります。<br><br>
+
+また、SUUMOは広告媒体のため、デメリット情報はあまり載っていません。<br>
+事故物件・線路沿いなども含め、ネットだけでは判断できない情報があります。<br><br>
+
+参考までにSUUMOを見ることは良いですが、
+実際のお部屋探しは私たちにお任せいただければ、
+メリット・デメリット含め全てお伝えしますので
+安心してお探しいただけます。
+</p>
+
+</div>
 
 </div>
 </div>
+
 </body>
 </html>
