@@ -1,74 +1,363 @@
 <!DOCTYPE html>
-        <label>表面</label>
-        <div class="upload">
-          <input id="front" type="file" accept="image/*,.pdf" capture="environment" required>
-          <small>スマートフォンでは撮影してそのまま提出できます。</small>
-        </div>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>本人確認情報の提出</title>
 
-        <label>裏面（任意）</label>
-        <div class="upload">
-          <input id="back" type="file" accept="image/*,.pdf" capture="environment">
-        </div>
-      </div>
-
-      <label class="check">
-        <input type="checkbox" required>
-        <span>本人確認目的での提出および一時保管に同意します。</span>
-      </label>
-
-      <button type="submit">送信する</button>
-      <div id="status"></div>
-
-    </form>
-
-    <div class="note">
-      ※ ご提出後、確認が必要な場合のみ別途ご連絡する場合があります。<br>
-      ※ 画像が不鮮明な場合は再提出をお願いする場合があります。
-    </div>
-  </div>
-</div>
-
-<script>
-const GAS_URL = "YOUR_GAS_WEBAPP_URL";
-
-function fileToBase64(file){
- return new Promise((resolve,reject)=>{
-   const reader = new FileReader();
-   reader.onload = ()=> resolve(reader.result.split(',')[1]);
-   reader.onerror = reject;
-   reader.readAsDataURL(file);
- });
+<style>
+:root{
+ --line:#e5e7eb;
+ --text:#111827;
+ --muted:#6b7280;
 }
 
-document.getElementById('form').addEventListener('submit', async(e)=>{
- e.preventDefault();
- const status=document.getElementById('status');
- status.innerText='送信中...';
+*{
+box-sizing:border-box;
+}
 
- const frontFile=document.getElementById('front').files[0];
- const backFile=document.getElementById('back').files[0];
+body{
+margin:0;
+background:#fff;
+color:var(--text);
+font-family:-apple-system,BlinkMacSystemFont,sans-serif;
+}
 
- const payload={
-   name:document.getElementById('name').value,
-   dob:document.getElementById('dob').value,
-   address:document.getElementById('address').value,
-   phone:document.getElementById('phone').value,
-   idType:document.getElementById('idType').value,
-   frontName: frontFile?.name || '',
-   frontMime: frontFile?.type || '',
-   frontData: await fileToBase64(frontFile),
-   backName: backFile?.name || '',
-   backMime: backFile?.type || '',
-   backData: backFile ? await fileToBase64(backFile) : ''
- };
+.wrap{
+max-width:720px;
+margin:0 auto;
+padding:48px 22px 80px;
+}
 
- try{
-   await fetch(GAS_URL,{method:'POST', body:JSON.stringify(payload)});
-   status.innerText='送信完了しました。ありがとうございました。';
-   document.getElementById('form').reset();
- }catch(err){
-   status.innerText='送信エラーが発生しました。';
- }
+.badge{
+display:inline-block;
+border:1px solid var(--line);
+border-radius:999px;
+padding:7px 12px;
+font-size:12px;
+}
+
+h1{
+font-size:34px;
+margin:18px 0 10px;
+}
+
+.lead{
+color:var(--muted);
+line-height:1.8;
+}
+
+.card{
+margin-top:30px;
+padding-top:25px;
+border-top:1px solid var(--line);
+}
+
+.section{
+margin-top:30px;
+}
+
+.section-title{
+font-size:18px;
+font-weight:700;
+margin-bottom:15px;
+}
+
+label{
+display:block;
+margin-top:18px;
+font-weight:600;
+}
+
+input,select{
+width:100%;
+padding:14px;
+margin-top:8px;
+border:1px solid var(--line);
+border-radius:12px;
+font-size:16px;
+}
+
+.upload{
+margin-top:10px;
+border:1px dashed #ccc;
+padding:18px;
+border-radius:14px;
+}
+
+.upload small{
+display:block;
+margin-top:10px;
+color:var(--muted);
+}
+
+.check{
+display:flex;
+gap:10px;
+margin-top:26px;
+align-items:flex-start;
+}
+
+.check input{
+width:auto;
+margin-top:4px;
+}
+
+button{
+width:100%;
+margin-top:30px;
+padding:16px;
+border:none;
+border-radius:14px;
+background:#111;
+color:#fff;
+font-size:16px;
+cursor:pointer;
+}
+
+#status{
+margin-top:20px;
+font-weight:600;
+}
+
+.note{
+margin-top:34px;
+padding-top:20px;
+border-top:1px solid var(--line);
+font-size:13px;
+color:var(--muted);
+line-height:1.8;
+}
+</style>
+</head>
+
+<body>
+
+<div class="wrap">
+
+<span class="badge">IDENTITY CHECK</span>
+
+<h1>本人確認情報の提出</h1>
+
+<p class="lead">
+必要情報と身分証画像をご提出ください。
+提出内容は確認目的のみに利用し、一定期間後削除します。
+</p>
+
+<div class="card">
+
+<form id="form">
+
+<div class="section">
+<div class="section-title">
+基本情報
+</div>
+
+<label>氏名</label>
+<input id="name" required>
+
+<label>生年月日</label>
+<input id="dob" type="date" required>
+
+<label>住所</label>
+<input id="address" required>
+
+<label>電話番号</label>
+<input id="phone">
+
+</div>
+
+<div class="section">
+<div class="section-title">
+本人確認書類
+</div>
+
+<label>書類種類</label>
+<select id="idType" required>
+<option value="">選択してください</option>
+<option>運転免許証</option>
+<option>マイナンバーカード</option>
+<option>パスポート</option>
+<option>在留カード</option>
+</select>
+
+
+<label>表面</label>
+<div class="upload">
+<input
+id="front"
+type="file"
+accept="image/*,.pdf"
+capture="environment"
+required
+>
+<small>
+スマートフォンでは撮影してそのまま提出できます。
+</small>
+</div>
+
+
+<label>裏面（任意）</label>
+<div class="upload">
+<input
+id="back"
+type="file"
+accept="image/*,.pdf"
+capture="environment"
+>
+</div>
+
+</div>
+
+
+<label class="check">
+<input type="checkbox" required>
+<span>
+本人確認目的での提出および一時保管に同意します。
+</span>
+</label>
+
+
+<button type="submit">
+送信する
+</button>
+
+<div id="status"></div>
+
+</form>
+
+
+<div class="note">
+※ ご提出後、確認が必要な場合のみ別途ご連絡する場合があります。<br>
+※ 画像が不鮮明な場合は再提出をお願いする場合があります。
+</div>
+
+</div>
+</div>
+
+
+<script>
+const GAS_URL="YOUR_GAS_WEBAPP_URL";
+
+
+function fileToBase64(file){
+return new Promise((resolve,reject)=>{
+const reader=new FileReader();
+
+reader.onload=()=>{
+resolve(
+reader.result.split(',')[1]
+);
+};
+
+reader.onerror=reject;
+
+reader.readAsDataURL(file);
+
+});
+}
+
+
+document
+.getElementById('form')
+.addEventListener(
+'submit',
+async(e)=>{
+
+e.preventDefault();
+
+const status=
+document.getElementById('status');
+
+status.innerText='送信中...';
+
+
+const frontFile=
+document
+.getElementById('front')
+.files[0];
+
+
+const backFile=
+document
+.getElementById('back')
+.files[0];
+
+
+const payload={
+
+name:
+document
+.getElementById('name')
+.value,
+
+dob:
+document
+.getElementById('dob')
+.value,
+
+address:
+document
+.getElementById('address')
+.value,
+
+phone:
+document
+.getElementById('phone')
+.value,
+
+idType:
+document
+.getElementById('idType')
+.value,
+
+frontName:
+frontFile?.name || "",
+
+frontMime:
+frontFile?.type || "",
+
+frontData:
+await fileToBase64(frontFile),
+
+backName:
+backFile?.name || "",
+
+backMime:
+backFile?.type || "",
+
+backData:
+backFile
+? await fileToBase64(backFile)
+: ""
+
+};
+
+
+try{
+
+await fetch(
+GAS_URL,
+{
+method:"POST",
+body:JSON.stringify(payload)
+}
+);
+
+status.innerText=
+"送信完了しました。";
+
+document
+.getElementById('form')
+.reset();
+
+}catch(err){
+
+status.innerText=
+"送信エラーが発生しました。";
+
+}
+
 });
 </script>
 
