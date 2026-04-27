@@ -6,12 +6,21 @@
 <title>本人確認フォーム</title>
 
 <style>
-*{box-sizing:border-box;margin:0;padding:0}
+*{
+box-sizing:border-box;
+margin:0;
+padding:0;
+}
 
 body{
 font-family:"Yu Gothic",sans-serif;
-background:linear-gradient(135deg,#ede7ff,#d9c8ff,#c8b3ff);
-padding:30px;
+background:linear-gradient(
+135deg,
+#d7cbff 0%,
+#c3b1ff 45%,
+#b39af5 100%
+);
+padding:55px 18px 40px;
 color:#222;
 }
 
@@ -22,33 +31,37 @@ margin:auto;
 
 .card{
 background:#fff;
-border-radius:18px;
-padding:35px;
-margin-bottom:28px;
-box-shadow:0 8px 24px rgba(73,33,145,.12);
+border-radius:24px;
+padding:38px;
+margin-bottom:30px;
+box-shadow:0 10px 28px rgba(78,37,150,.15);
 }
 
 .topline{
-height:8px;
+height:9px;
 background:#6d3cc8;
-border-radius:10px 10px 0 0;
-margin:-35px -35px 30px;
+border-radius:14px 14px 0 0;
+margin:-38px -38px 34px;
 }
 
 h1{
 font-size:42px;
+line-height:1.35;
 margin-bottom:18px;
-}
-
-.note{
-line-height:1.8;
-font-size:18px;
+word-break:keep-all;
 }
 
 h2{
-font-size:32px;
-margin-bottom:18px;
-color:#5d30b4;
+font-size:30px;
+margin-bottom:20px;
+color:#5b33b2;
+line-height:1.35;
+word-break:keep-all;
+}
+
+.note{
+line-height:1.9;
+font-size:18px;
 }
 
 label{
@@ -63,14 +76,17 @@ input,select,textarea{
 width:100%;
 padding:16px;
 border:1px solid #ddd;
-border-radius:10px;
+border-radius:12px;
 font-size:16px;
+background:#fff;
 }
 
-textarea{min-height:120px}
+textarea{
+min-height:120px;
+}
 
 .radio-group{
-margin-top:10px;
+margin-top:8px;
 }
 
 .radio-group label{
@@ -84,13 +100,10 @@ color:#fff;
 border:none;
 padding:18px 40px;
 font-size:20px;
-border-radius:12px;
+border-radius:14px;
 cursor:pointer;
 margin-top:35px;
-}
-
-button:hover{
-opacity:.9;
+width:100%;
 }
 
 .small{
@@ -98,28 +111,87 @@ font-size:14px;
 color:#666;
 margin-top:8px;
 }
+
+/* スマホ最適化 */
+@media(max-width:768px){
+
+body{
+padding-top:72px;
+padding-left:16px;
+padding-right:16px;
+}
+
+.card{
+padding:28px;
+border-radius:22px;
+}
+
+.topline{
+margin:-28px -28px 26px;
+}
+
+h1{
+font-size:28px;
+line-height:1.5;
+white-space:normal;
+}
+
+h2{
+font-size:24px;
+line-height:1.45;
+}
+
+.note{
+font-size:16px;
+}
+
+label{
+font-size:16px;
+}
+
+input,select,textarea{
+padding:14px;
+font-size:16px;
+}
+
+button{
+font-size:18px;
+padding:16px;
+}
+
+}
+
 </style>
+
 
 <script>
 async function searchAddress(){
+
 let zip=document.getElementById("zipcode").value.replace("-","");
+
 if(zip.length!==7) return;
 
 try{
+
 const res=await fetch(
 "https://zipcloud.ibsnet.co.jp/api/search?zipcode="+zip
 );
+
 const data=await res.json();
 
 if(data.results){
+
 document.getElementById("pref").value=
 data.results[0].address1;
 
 document.getElementById("city").value=
-data.results[0].address2+
+data.results[0].address2 +
 data.results[0].address3;
+
 }
+
 }catch(e){}
+
 }
 </script>
 
@@ -130,29 +202,37 @@ data.results[0].address3;
 
 <div class="card">
 <div class="topline"></div>
+
 <h1>本人確認フォーム</h1>
 
 <p class="note">
 以下の内容をご入力ください。<br>
 内容確認後、担当者よりご連絡いたします。
 </p>
+
 </div>
+
 
 
 <form>
 
 <div class="card">
+
 <h2>個人情報の取り扱い</h2>
 
 <label>
-<input type="checkbox" required style="width:auto;margin-right:10px;">
+<input type="checkbox"
+required
+style="width:auto;margin-right:10px;">
 同意する
 </label>
+
 </div>
 
 
 
 <div class="card">
+
 <h2>賃貸条件</h2>
 
 <label>入居希望日</label>
@@ -187,49 +267,7 @@ data.results[0].address3;
 
 
 <div class="card">
-<h2>契約者情報</h2>
 
-<label>姓</label>
-<input type="text">
-
-<label>名</label>
-<input type="text">
-
-<label>フリガナ（姓）</label>
-<input type="text">
-
-<label>フリガナ（名）</label>
-<input type="text">
-
-<label>性別</label>
-<select>
-<option>男性</option>
-<option>女性</option>
-</select>
-
-<label>生年月日</label>
-<input type="date">
-
-<label>電話番号</label>
-<input type="tel">
-
-<label>メールアドレス</label>
-<input type="email">
-
-<label>配偶者</label>
-<select>
-<option>あり</option>
-<option>なし</option>
-</select>
-
-<label>家族構成</label>
-<input type="text">
-
-</div>
-
-
-
-<div class="card">
 <h2>現住所</h2>
 
 <label>郵便番号</label>
@@ -252,55 +290,15 @@ onkeyup="searchAddress()"
 <label>建物・部屋番号</label>
 <input type="text">
 
-<label>現住居形態</label>
-<select>
-<option>賃貸</option>
-<option>持家</option>
-<option>社宅</option>
-<option>実家</option>
-</select>
-
-<label>現在の家賃</label>
-<input type="text">
-
-<label>居住年数</label>
-<input type="text">
-
-<label>転居理由</label>
-<textarea></textarea>
-
 </div>
 
 
 
 <div class="card">
+
 <h2>勤務先情報</h2>
 
 <label>勤務先名</label>
-<input type="text">
-
-<label>フリガナ</label>
-<input type="text">
-
-<label>勤務先住所</label>
-<input type="text">
-
-<label>電話番号</label>
-<input type="text">
-
-<label>従業員数</label>
-<input type="text">
-
-<label>年収</label>
-<input type="text">
-
-<label>勤続年数</label>
-<input type="text">
-
-<label>職業</label>
-<input type="text">
-
-<label>業種</label>
 <input type="text">
 
 <label>所属部署</label>
@@ -311,6 +309,7 @@ onkeyup="searchAddress()"
 
 
 <div class="card">
+
 <h2>緊急連絡先</h2>
 
 <label>氏名</label>
@@ -325,21 +324,19 @@ onkeyup="searchAddress()"
 <label>電話番号</label>
 <input type="text">
 
-<label>住所</label>
-<input type="text">
-
 </div>
 
 
 
 <div class="card">
+
 <h2>本人確認書類提出</h2>
 
 <label>本人確認書類アップロード</label>
 <input type="file">
 
 <p class="small">
-運転免許証・マイナンバー（表面）・パスポート等
+運転免許証・マイナンバー・パスポート等
 </p>
 
 <button type="submit">
