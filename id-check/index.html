@@ -16,11 +16,11 @@ body{
 font-family:"Yu Gothic",sans-serif;
 background:linear-gradient(
 135deg,
-#d7cbff 0%,
-#c3b1ff 45%,
-#b39af5 100%
+#d2c3ff 0%,
+#bea8ff 45%,
+#a789f0 100%
 );
-padding:55px 18px 40px;
+padding:60px 18px 40px;
 color:#222;
 }
 
@@ -34,40 +34,47 @@ background:#fff;
 border-radius:24px;
 padding:38px;
 margin-bottom:30px;
-box-shadow:0 10px 28px rgba(78,37,150,.15);
+box-shadow:0 10px 30px rgba(76,32,155,.15);
 }
 
 .topline{
 height:9px;
 background:#6d3cc8;
 border-radius:14px 14px 0 0;
-margin:-38px -38px 34px;
+margin:-38px -38px 32px;
 }
 
 h1{
 font-size:42px;
 line-height:1.35;
-margin-bottom:18px;
+margin-bottom:20px;
 word-break:keep-all;
 }
 
 h2{
 font-size:30px;
-margin-bottom:20px;
-color:#5b33b2;
+margin-bottom:18px;
 line-height:1.35;
-word-break:keep-all;
+color:#5b33b2;
 }
 
 .note{
-line-height:1.9;
 font-size:18px;
+line-height:1.9;
+margin-bottom:18px;
+}
+
+.notice{
+margin-top:18px;
+font-size:16px;
+line-height:1.8;
+color:#555;
 }
 
 label{
 display:block;
 font-weight:bold;
-margin-top:26px;
+margin-top:24px;
 margin-bottom:10px;
 font-size:18px;
 }
@@ -78,7 +85,6 @@ padding:16px;
 border:1px solid #ddd;
 border-radius:12px;
 font-size:16px;
-background:#fff;
 }
 
 textarea{
@@ -86,7 +92,7 @@ min-height:120px;
 }
 
 .radio-group{
-margin-top:8px;
+margin-top:10px;
 }
 
 .radio-group label{
@@ -112,28 +118,26 @@ color:#666;
 margin-top:8px;
 }
 
-/* スマホ最適化 */
+/* スマホ */
 @media(max-width:768px){
 
 body{
-padding-top:72px;
+padding-top:78px;
 padding-left:16px;
 padding-right:16px;
 }
 
 .card{
 padding:28px;
-border-radius:22px;
 }
 
 .topline{
-margin:-28px -28px 26px;
+margin:-28px -28px 24px;
 }
 
 h1{
 font-size:28px;
 line-height:1.5;
-white-space:normal;
 }
 
 h2{
@@ -145,24 +149,17 @@ line-height:1.45;
 font-size:16px;
 }
 
+.notice{
+font-size:14px;
+}
+
 label{
 font-size:16px;
-}
-
-input,select,textarea{
-padding:14px;
-font-size:16px;
-}
-
-button{
-font-size:18px;
-padding:16px;
 }
 
 }
 
 </style>
-
 
 <script>
 async function searchAddress(){
@@ -185,7 +182,7 @@ document.getElementById("pref").value=
 data.results[0].address1;
 
 document.getElementById("city").value=
-data.results[0].address2 +
+data.results[0].address2+
 data.results[0].address3;
 
 }
@@ -201,6 +198,7 @@ data.results[0].address3;
 <div class="container">
 
 <div class="card">
+
 <div class="topline"></div>
 
 <h1>本人確認フォーム</h1>
@@ -210,24 +208,37 @@ data.results[0].address3;
 内容確認後、担当者よりご連絡いたします。
 </p>
 
+<div class="notice">
+※入力内容に不備がある場合は審査が遅れる場合があります。<br>
+※別で追加書類のご案内をさせていただく場合もございますので、ご了承ください。
+</div>
+
 </div>
 
 
 
 <form>
 
+
 <div class="card">
 
 <h2>個人情報の取り扱い</h2>
 
+<p class="note">
+ご入力いただいた個人情報は、賃貸契約に関する審査・連絡の目的のみに使用いたします。
+</p>
+
 <label>
-<input type="checkbox"
+<input
+type="checkbox"
 required
-style="width:auto;margin-right:10px;">
+style="width:auto;margin-right:10px;"
+>
 同意する
 </label>
 
 </div>
+
 
 
 
@@ -266,6 +277,7 @@ style="width:auto;margin-right:10px;">
 
 
 
+
 <div class="card">
 
 <h2>現住所</h2>
@@ -294,6 +306,7 @@ onkeyup="searchAddress()"
 
 
 
+
 <div class="card">
 
 <h2>勤務先情報</h2>
@@ -305,6 +318,7 @@ onkeyup="searchAddress()"
 <input type="text">
 
 </div>
+
 
 
 
@@ -324,7 +338,11 @@ onkeyup="searchAddress()"
 <label>電話番号</label>
 <input type="text">
 
+<label>住所</label>
+<input type="text">
+
 </div>
+
 
 
 
@@ -346,6 +364,7 @@ onkeyup="searchAddress()"
 </div>
 
 </form>
+
 </div>
 
 </body>
