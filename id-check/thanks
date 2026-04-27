@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>送信完了</title>
+
+<style>
+body{
+font-family:"Yu Gothic",sans-serif;
+background:linear-gradient(135deg,#d2c3ff 0%,#bea8ff 45%,#a789f0 100%);
+display:flex;
+justify-content:center;
+align-items:center;
+height:100vh;
+margin:0;
+}
+
+.box{
+background:#fff;
+padding:50px;
+border-radius:24px;
+max-width:700px;
+text-align:center;
+box-shadow:0 8px 25px rgba(76,32,155,.15);
+}
+
+h1{
+color:#5b33b2;
+font-size:34px;
+margin-bottom:25px;
+}
+
+p{
+font-size:20px;
+line-height:1.8;
+}
+</style>
+</head>
+<body>
+
+<div class="box">
+<h1>回答ありがとうございました。</h1>
+
+<p>
+送信完了した旨を担当者までご連絡ください。
+</p>
+
+</div>
+
+</body>
+</html>
