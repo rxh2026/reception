@@ -6,190 +6,193 @@
 <title>本人確認フォーム</title>
 
 <style>
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-}
+*{box-sizing:border-box;margin:0;padding:0}
 
 body{
 font-family:"Yu Gothic",sans-serif;
-background:#ede7f6;
-padding:40px 20px;
+background:linear-gradient(135deg,#ede7ff,#d9c8ff,#c8b3ff);
+padding:30px;
 color:#222;
 }
 
-.wrap{
-max-width:960px;
+.container{
+max-width:900px;
 margin:auto;
 }
 
 .card{
 background:#fff;
-border-radius:14px;
-padding:38px;
-margin-bottom:26px;
-box-shadow:0 2px 6px rgba(0,0,0,.08);
+border-radius:18px;
+padding:35px;
+margin-bottom:28px;
+box-shadow:0 8px 24px rgba(73,33,145,.12);
 }
 
 .topline{
-height:10px;
-background:#673ab7;
-border-radius:14px 14px 0 0;
-margin:-38px -38px 30px;
+height:8px;
+background:#6d3cc8;
+border-radius:10px 10px 0 0;
+margin:-35px -35px 30px;
 }
 
 h1{
-font-size:56px;
-font-weight:400;
-margin-bottom:25px;
-}
-
-h2{
-font-size:24px;
+font-size:42px;
 margin-bottom:18px;
 }
 
-p{
+.note{
 line-height:1.8;
 font-size:18px;
 }
 
+h2{
+font-size:32px;
+margin-bottom:18px;
+color:#5d30b4;
+}
+
 label{
 display:block;
-margin-top:24px;
+font-weight:bold;
+margin-top:26px;
 margin-bottom:10px;
 font-size:18px;
-font-weight:600;
 }
 
-input[type=text],
-input[type=email],
-input[type=tel],
-input[type=date],
-select,
-textarea{
+input,select,textarea{
 width:100%;
-border:none;
-border-bottom:2px solid #ddd;
-padding:15px 5px;
-font-size:18px;
-background:transparent;
-}
-
-textarea{
-min-height:100px;
-}
-
-.radio{
-margin-top:14px;
-}
-
-.radio label{
-font-weight:400;
-margin:16px 0;
-}
-
-input[type=radio],
-input[type=checkbox]{
-width:auto;
-margin-right:10px;
-transform:scale(1.2);
-}
-
-.filebox{
-border:2px dashed #ccc;
-padding:25px;
+padding:16px;
+border:1px solid #ddd;
 border-radius:10px;
-margin-top:18px;
+font-size:16px;
+}
+
+textarea{min-height:120px}
+
+.radio-group{
+margin-top:10px;
+}
+
+.radio-group label{
+font-weight:normal;
+margin:12px 0;
 }
 
 button{
-background:#673ab7;
+background:#6d3cc8;
 color:#fff;
 border:none;
-padding:18px 44px;
-font-size:22px;
-border-radius:10px;
-margin-top:30px;
+padding:18px 40px;
+font-size:20px;
+border-radius:12px;
 cursor:pointer;
+margin-top:35px;
 }
 
 button:hover{
-opacity:.92;
+opacity:.9;
 }
 
-.note{
+.small{
 font-size:14px;
-margin-top:12px;
 color:#666;
+margin-top:8px;
 }
 </style>
+
+<script>
+async function searchAddress(){
+let zip=document.getElementById("zipcode").value.replace("-","");
+if(zip.length!==7) return;
+
+try{
+const res=await fetch(
+"https://zipcloud.ibsnet.co.jp/api/search?zipcode="+zip
+);
+const data=await res.json();
+
+if(data.results){
+document.getElementById("pref").value=
+data.results[0].address1;
+
+document.getElementById("city").value=
+data.results[0].address2+
+data.results[0].address3;
+}
+}catch(e){}
+}
+</script>
+
 </head>
 <body>
 
-<div class="wrap">
+<div class="container">
 
 <div class="card">
 <div class="topline"></div>
+<h1>本人確認フォーム</h1>
 
-<h1>申し込みフォーム（個人）</h1>
-
-<p>
-以下の内容をご入力ください。内容確認後、担当者よりご連絡いたします。<br>
-入力内容に不備がある場合は審査が遅れる場合があります。<br>
-追加書類をご案内する場合があります。
+<p class="note">
+以下の内容をご入力ください。<br>
+内容確認後、担当者よりご連絡いたします。
 </p>
-
 </div>
+
 
 <form>
 
 <div class="card">
 <h2>個人情報の取り扱い</h2>
-<p>ご入力いただいた個人情報は、審査・連絡目的のみに使用します。</p>
 
-<div class="radio">
 <label>
-<input type="checkbox">
+<input type="checkbox" required style="width:auto;margin-right:10px;">
 同意する
 </label>
 </div>
-</div>
+
+
 
 <div class="card">
-<h2>賃貸条件に関して</h2>
+<h2>賃貸条件</h2>
 
 <label>入居希望日</label>
 <input type="date">
 
 <label>駐車場</label>
-<div class="radio">
-<label><input type="radio" name="p">希望する</label>
-<label><input type="radio" name="p">希望しない</label>
+<div class="radio-group">
+<label><input type="radio" name="parking"> 希望する</label>
+<label><input type="radio" name="parking"> 希望しない</label>
+</div>
+
+<label>駐輪場</label>
+<div class="radio-group">
+<label><input type="radio" name="cycle"> 希望する</label>
+<label><input type="radio" name="cycle"> 希望しない</label>
 </div>
 
 <label>バイク置き場</label>
-<div class="radio">
-<label><input type="radio" name="b">希望する</label>
-<label><input type="radio" name="b">希望しない</label>
+<div class="radio-group">
+<label><input type="radio" name="bike"> 希望する</label>
+<label><input type="radio" name="bike"> 希望しない</label>
 </div>
 
-<label>ペット飼育</label>
-<div class="radio">
-<label><input type="radio" name="pet">あり</label>
-<label><input type="radio" name="pet">なし</label>
+<label>ペット</label>
+<div class="radio-group">
+<label><input type="radio" name="pet"> あり</label>
+<label><input type="radio" name="pet"> なし</label>
 </div>
 
 </div>
+
+
 
 <div class="card">
-<h2>契約者様情報</h2>
+<h2>契約者情報</h2>
 
-<label>氏名（姓）</label>
+<label>姓</label>
 <input type="text">
 
-<label>氏名（名）</label>
+<label>名</label>
 <input type="text">
 
 <label>フリガナ（姓）</label>
@@ -224,17 +227,24 @@ color:#666;
 
 </div>
 
+
+
 <div class="card">
 <h2>現住所</h2>
 
 <label>郵便番号</label>
-<input type="text">
+<input
+id="zipcode"
+type="text"
+placeholder="1234567"
+onkeyup="searchAddress()"
+>
 
 <label>都道府県</label>
-<input type="text">
+<input id="pref" type="text">
 
 <label>市区町村</label>
-<input type="text">
+<input id="city" type="text">
 
 <label>番地</label>
 <input type="text">
@@ -261,10 +271,15 @@ color:#666;
 
 </div>
 
+
+
 <div class="card">
 <h2>勤務先情報</h2>
 
 <label>勤務先名</label>
+<input type="text">
+
+<label>フリガナ</label>
 <input type="text">
 
 <label>勤務先住所</label>
@@ -273,21 +288,35 @@ color:#666;
 <label>電話番号</label>
 <input type="text">
 
+<label>従業員数</label>
+<input type="text">
+
 <label>年収</label>
 <input type="text">
 
 <label>勤続年数</label>
 <input type="text">
 
+<label>職業</label>
+<input type="text">
+
 <label>業種</label>
 <input type="text">
 
+<label>所属部署</label>
+<input type="text">
+
 </div>
+
+
 
 <div class="card">
 <h2>緊急連絡先</h2>
 
 <label>氏名</label>
+<input type="text">
+
+<label>フリガナ</label>
 <input type="text">
 
 <label>続柄</label>
@@ -301,15 +330,17 @@ color:#666;
 
 </div>
 
+
+
 <div class="card">
 <h2>本人確認書類提出</h2>
 
-<div class="filebox">
+<label>本人確認書類アップロード</label>
 <input type="file">
-<div class="note">
+
+<p class="small">
 運転免許証・マイナンバー（表面）・パスポート等
-</div>
-</div>
+</p>
 
 <button type="submit">
 送信する
@@ -318,7 +349,6 @@ color:#666;
 </div>
 
 </form>
-
 </div>
 
 </body>
