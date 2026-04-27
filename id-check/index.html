@@ -1,12 +1,3 @@
-# id-check 用 完全版（GitHub Pages サブフォルダ対応）
-
-現在の公開先が
-**[https://rxh2026.github.io/reception/id-check/](https://rxh2026.github.io/reception/id-check/)**
-なので、前回版から修正すべきポイントは **パス（リンク先）をすべて `/reception/id-check/` 基準にすること** です。
-
-以下を **id-check の index.html** として丸ごと置き換えてください。
-
-```html
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -199,4 +190,80 @@ margin-top:8px;
 <label>現在の家賃</label>
 <input type="text">
 <label>居住年数</label>
-```
+<input type="text">
+<label>転居理由</label>
+<textarea></textarea>
+</div>
+
+<div class="card">
+<h2>勤務先情報</h2>
+<label>勤務先名</label>
+<input type="text">
+<label>フリガナ</label>
+<input type="text">
+<label>勤務先住所</label>
+<input type="text">
+<label>電話番号</label>
+<input type="text">
+<label>従業員数</label>
+<input type="text">
+<label>年収</label>
+<input type="text">
+<label>勤続年数</label>
+<input type="text">
+<label>職業</label>
+<input type="text">
+<label>業種</label>
+<input type="text">
+<label>所属部署</label>
+<input type="text">
+</div>
+
+<div class="card">
+<h2>入居者様情報（同居人）</h2>
+<label>氏名</label>
+<input type="text">
+<label>フリガナ</label>
+<input type="text">
+<label>性別</label>
+<select>
+<option>男性</option>
+<option>女性</option>
+</select>
+<label>生年月日</label>
+<input type="date">
+<label>電話番号</label>
+<input type="text">
+<label>現住所</label>
+<input type="text">
+</div>
+
+<div class="card">
+<h2>緊急連絡先</h2>
+<label>氏名</label>
+<input type="text">
+<label>フリガナ</label>
+<input type="text">
+<label>続柄</label>
+<input type="text">
+<label>電話番号</label>
+<input type="text">
+<label>住所</label>
+<input type="text">
+</div>
+
+<div class="card">
+<h2>本人確認書類提出</h2>
+<label>本人確認書類アップロード</label>
+<input type="file">
+<p class="small">運転免許証・マイナンバー（表面）・パスポート等</p>
+
+<button type="submit">送信する</button>
+</div>
+
+</form>
+
+</div>
+
+</body>
+</html>
