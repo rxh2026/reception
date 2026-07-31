@@ -3,114 +3,359 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>申込から入居までの流れ | 株式会社RH</title>
+
+<title>申込から入居までの流れ｜株式会社RH</title>
 
 <style>
-body{
- margin:0;
- font-family:-apple-system,BlinkMacSystemFont,sans-serif;
- background:linear-gradient(135deg,#1c1c2e,#2a2f4f,#3b3f6b);
+:root {
+  --navy: #10244a;
+  --navy-dark: #07152f;
+  --gold: #c78b19;
+  --gold-light: #e1b85d;
+  --text: #2c2c2c;
+  --sub-text: #6d6d6d;
+  --border: #e2e5eb;
+  --card-bg: #ffffff;
+  --section-bg: #f5f6f8;
+  --note-bg: #eef2ff;
+  --note-border: #cfd8ff;
 }
 
-.container{
- display:flex;
- justify-content:center;
- padding:30px 0;
+* {
+  box-sizing: border-box;
 }
 
-.card{
- background:#f7f7f7;
- width:90%;
- max-width:430px;
- padding:25px;
- border-radius:20px;
+html {
+  scroll-behavior: smooth;
 }
 
-.back{
- text-decoration:none;
- color:#555;
+body {
+  margin: 0;
+  min-height: 100vh;
+  padding: 28px 16px;
+
+  font-family:
+    -apple-system,
+    BlinkMacSystemFont,
+    "Helvetica Neue",
+    "Yu Gothic",
+    "Hiragino Kaku Gothic ProN",
+    Meiryo,
+    sans-serif;
+
+  color: var(--text);
+
+  background:
+    radial-gradient(circle at top, rgba(255,255,255,0.12), transparent 35%),
+    linear-gradient(145deg, #111827 0%, #17264b 48%, #090f1d 100%);
 }
 
-.title{
- text-align:center;
- margin:10px 0 10px;
- font-size:18px;
- font-weight:bold;
+.container {
+  width: 100%;
+  max-width: 560px;
+  margin: 0 auto;
+
+  background: var(--card-bg);
+  border-radius: 22px;
+  overflow: hidden;
+
+  box-shadow:
+    0 24px 60px rgba(0,0,0,0.32),
+    0 2px 8px rgba(0,0,0,0.12);
 }
 
-.desc{
- font-size:13px;
- color:#666;
- margin-bottom:20px;
- text-align:center;
- line-height:1.6;
+.header {
+  position: relative;
+  padding: 28px 24px 25px;
+  text-align: center;
+
+  background: linear-gradient(180deg, #ffffff 0%, #fafafa 100%);
+  border-bottom: 1px solid #eceef2;
 }
 
-.box{
- background:#fff;
- padding:14px;
- border-radius:12px;
- margin-bottom:8px;
- transition:.3s;
+.header::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+
+  width: 72px;
+  height: 3px;
+
+  transform: translateX(-50%);
+  border-radius: 99px;
+
+  background: linear-gradient(90deg, var(--gold), var(--gold-light));
 }
 
-.box:hover{
- transform:translateY(-3px);
+.company-logo {
+  margin: 0 auto 23px;
 }
 
-.box:active{
- transform:scale(.98);
+.company-logo img {
+  display: block;
+  width: 100%;
+  max-width: 410px;
+  height: auto;
+  margin: 0 auto;
 }
 
-.box h3{
- margin:0 0 8px;
- font-size:15px;
+.page-title {
+  margin: 0;
+
+  color: var(--navy);
+
+  font-family:
+    "Yu Mincho",
+    "Hiragino Mincho ProN",
+    "Times New Roman",
+    serif;
+
+  font-size: 25px;
+  font-weight: 700;
+  letter-spacing: 0.07em;
 }
 
-.box p{
- margin:0;
- font-size:12px;
- line-height:1.65;
- color:#555;
+.page-description {
+  margin: 13px 0 0;
+
+  color: var(--sub-text);
+  font-size: 13px;
+  line-height: 1.9;
 }
 
-.arrow{
- text-align:center;
- font-size:20px;
- color:#888;
- margin:6px 0;
+.content {
+  padding: 24px;
 }
 
-/* 審査期間メモ */
-.note{
- margin-top:8px;
- padding:10px;
- background:#eef2ff;
- border-radius:8px;
- font-size:12px;
- line-height:1.5;
- color:#445;
+.guide-box {
+  margin-bottom: 22px;
+  padding: 17px 18px;
+
+  border: 1px solid #e8eaf0;
+  border-radius: 14px;
+  background: var(--section-bg);
+
+  color: #656a73;
+  font-size: 12px;
+  line-height: 1.85;
 }
 
-/* アニメーション */
-.fade{
- opacity:0;
- transform:translateY(20px);
- animation:fadeUp .6s ease forwards;
+.flow-list {
+  display: grid;
+  gap: 0;
 }
 
-.step1{animation-delay:.1s;}
-.step2{animation-delay:.2s;}
-.step3{animation-delay:.3s;}
-.step4{animation-delay:.4s;}
-.step5{animation-delay:.5s;}
-.step6{animation-delay:.6s;}
+.flow-step {
+  position: relative;
+  padding: 19px 18px;
 
-@keyframes fadeUp{
- to{
-   opacity:1;
-   transform:translateY(0);
- }
+  border: 1px solid var(--border);
+  border-radius: 15px;
+  background: #ffffff;
+
+  box-shadow: 0 5px 15px rgba(16,36,74,0.05);
+}
+
+.step-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 10px;
+}
+
+.step-number {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 38px;
+  height: 38px;
+  flex-shrink: 0;
+
+  border-radius: 50%;
+
+  color: #ffffff;
+  background: linear-gradient(135deg, var(--navy), var(--navy-dark));
+
+  font-size: 15px;
+  font-weight: 700;
+}
+
+.step-title {
+  margin: 0;
+  color: var(--navy);
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.step-text {
+  margin: 0;
+  color: #555b64;
+  font-size: 13px;
+  line-height: 1.9;
+}
+
+.note {
+  margin-top: 13px;
+  padding: 12px 13px;
+
+  border: 1px solid var(--note-border);
+  border-radius: 10px;
+  background: var(--note-bg);
+
+  color: #4d5876;
+  font-size: 11.5px;
+  line-height: 1.75;
+}
+
+.flow-arrow {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  height: 34px;
+
+  color: var(--gold);
+  font-size: 24px;
+  font-weight: 300;
+}
+
+.back-area {
+  margin-top: 24px;
+  text-align: center;
+}
+
+.back-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  min-height: 48px;
+  padding: 0 22px;
+
+  border: 1px solid var(--navy);
+  border-radius: 12px;
+
+  color: var(--navy);
+  background: #ffffff;
+
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: 700;
+
+  transition:
+    background 0.2s,
+    color 0.2s,
+    transform 0.2s;
+}
+
+.back-button:hover {
+  color: #ffffff;
+  background: var(--navy);
+  transform: translateY(-1px);
+}
+
+.footer-message {
+  margin-top: 24px;
+  padding-top: 20px;
+
+  border-top: 1px solid #eceef2;
+
+  color: #888d96;
+  text-align: center;
+  font-size: 11px;
+  line-height: 1.9;
+}
+
+.brand-message {
+  margin: 10px 0 0;
+
+  color: var(--navy);
+  font-family:
+    "Yu Mincho",
+    "Hiragino Mincho ProN",
+    serif;
+
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.fade {
+  opacity: 0;
+  transform: translateY(14px);
+  animation: fadeUp 0.55s ease forwards;
+}
+
+.step1 { animation-delay: 0.05s; }
+.step2 { animation-delay: 0.10s; }
+.step3 { animation-delay: 0.15s; }
+.step4 { animation-delay: 0.20s; }
+.step5 { animation-delay: 0.25s; }
+.step6 { animation-delay: 0.30s; }
+
+@keyframes fadeUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 520px) {
+  body {
+    padding: 12px 9px 22px;
+  }
+
+  .container {
+    border-radius: 16px;
+  }
+
+  .header {
+    padding: 24px 16px 22px;
+  }
+
+  .company-logo img {
+    max-width: 360px;
+  }
+
+  .page-title {
+    font-size: 22px;
+  }
+
+  .page-description {
+    font-size: 12px;
+  }
+
+  .content {
+    padding: 18px 14px 22px;
+  }
+
+  .flow-step {
+    padding: 17px 14px;
+    border-radius: 13px;
+  }
+
+  .step-title {
+    font-size: 15px;
+  }
+
+  .step-text {
+    font-size: 12.5px;
+  }
+}
+
+@media (max-width: 360px) {
+  .company-logo img {
+    max-width: 315px;
+  }
+
+  .page-title {
+    font-size: 20px;
+  }
+
+  .flow-step {
+    padding: 15px 12px;
+  }
 }
 </style>
 </head>
@@ -118,82 +363,152 @@ body{
 <body>
 
 <div class="container">
-<div class="card">
 
-<a href="index2.html" class="back">← 戻る</a>
+  <header class="header">
 
-<div class="title fade">🏠 申込から入居までの流れ</div>
+    <div class="company-logo">
+      <img src="./logo.png" alt="株式会社RH Rich Happiness">
+    </div>
 
-<div class="desc fade">
-物件の申込から契約開始日（家賃発生日）は2週間前後が多いです。
-</div>
+    <h1 class="page-title">申込から入居までの流れ</h1>
 
-<div class="box fade step1">
-<h3>① 物件に申込</h3>
-<p>
-申込は先着順がほとんどです。<br>
-気に入った物件を見つけたら内見前に申込がおすすめ。
-</p>
-</div>
+    <p class="page-description">
+      お申込みからご契約・鍵のお渡しまでの<br>
+      一般的な流れをご案内します。
+    </p>
 
-<div class="arrow fade step1">↓</div>
+  </header>
 
-<div class="box fade step2">
-<h3>② 審査</h3>
-<p>
-管理会社さん、オーナー様の審査を行います。<br>
-ご本人様確認や緊急連絡先様への連絡が入ることがあります。
-</p>
+  <main class="content">
 
-<div class="note">
-※審査期間は1日〜1週間ほどが多いです。<br>
-管理会社さんによってはさらに延びるケースもあります。
-</div>
+    <div class="guide-box">
+      物件のお申込みから契約開始日（家賃発生日）までは、
+      一般的に2週間前後となるケースが多いです。
+      物件や管理会社によって流れや期間が異なる場合があります。
+    </div>
 
-</div>
+    <div class="flow-list">
 
-<div class="arrow fade step2">↓</div>
+      <section class="flow-step fade step1">
 
-<div class="box fade step3">
-<h3>③ 承認</h3>
-<p>
-審査の承認後、契約開始日（家賃発生日）の設定を行います。<br>
-現在賃貸マンションを借りている場合はこの時に退去予告を出すのが良いです。
-</p>
-</div>
+        <div class="step-header">
+          <span class="step-number">1</span>
+          <h2 class="step-title">物件にお申込み</h2>
+        </div>
 
-<div class="arrow fade step3">↓</div>
+        <p class="step-text">
+          お申込みは先着順となるケースがほとんどです。<br>
+          気に入った物件が見つかった場合は、内見前でもお申込みを検討されることがあります。
+        </p>
 
-<div class="box fade step4">
-<h3>④ 契約の準備・ご入金</h3>
-<p>
-契約締結に向けて必要書類の準備と、契約金の入金を行います。<br>
-印鑑や住民票のご用意が必要になることが多いです。
-</p>
-</div>
+      </section>
 
-<div class="arrow fade step4">↓</div>
+      <div class="flow-arrow">↓</div>
 
-<div class="box fade step5">
-<h3>⑤ 契約締結</h3>
-<p>
-契約書類の署名・捺印を行います。<br>
-最近では電子契約も増えており、遠方の方は郵送＋オンライン対応も可能です。
-</p>
-</div>
+      <section class="flow-step fade step2">
 
-<div class="arrow fade step5">↓</div>
+        <div class="step-header">
+          <span class="step-number">2</span>
+          <h2 class="step-title">入居審査</h2>
+        </div>
 
-<div class="box fade step6">
-<h3>⑥ 入居</h3>
-<p>
-契約開始日＝家賃発生日＝入居可能日となります。<br>
-鍵のお渡し後、当日から入室可能。<br>
-ライフラインのお手続きや引越業者の手配もお忘れなく。
-</p>
-</div>
+        <p class="step-text">
+          管理会社・保証会社・オーナー様による審査が行われます。<br>
+          ご本人様確認や、緊急連絡先様へ確認のご連絡が入る場合があります。
+        </p>
 
-</div>
+        <div class="note">
+          審査期間は1日〜1週間程度となるケースが多いですが、
+          管理会社や確認内容によって、さらに日数を要する場合があります。
+        </div>
+
+      </section>
+
+      <div class="flow-arrow">↓</div>
+
+      <section class="flow-step fade step3">
+
+        <div class="step-header">
+          <span class="step-number">3</span>
+          <h2 class="step-title">審査承認・契約開始日の決定</h2>
+        </div>
+
+        <p class="step-text">
+          審査承認後、契約開始日（家賃発生日）を決定します。<br>
+          現在のお住まいが賃貸の場合は、審査承認後に退去予告を出すと安心です。
+        </p>
+
+      </section>
+
+      <div class="flow-arrow">↓</div>
+
+      <section class="flow-step fade step4">
+
+        <div class="step-header">
+          <span class="step-number">4</span>
+          <h2 class="step-title">契約準備・契約金のお支払い</h2>
+        </div>
+
+        <p class="step-text">
+          契約締結に向けて必要書類をご用意いただき、
+          指定された期日までに契約金をお支払いいただきます。<br>
+          印鑑や住民票などが必要になるケースがあります。
+        </p>
+
+      </section>
+
+      <div class="flow-arrow">↓</div>
+
+      <section class="flow-step fade step5">
+
+        <div class="step-header">
+          <span class="step-number">5</span>
+          <h2 class="step-title">契約締結</h2>
+        </div>
+
+        <p class="step-text">
+          重要事項説明を受け、契約書類への署名・捺印を行います。<br>
+          電子契約や、郵送・オンラインで対応できる場合もあります。
+        </p>
+
+      </section>
+
+      <div class="flow-arrow">↓</div>
+
+      <section class="flow-step fade step6">
+
+        <div class="step-header">
+          <span class="step-number">6</span>
+          <h2 class="step-title">鍵のお渡し・ご入居</h2>
+        </div>
+
+        <p class="step-text">
+          原則として、契約開始日からご入居いただけます。<br>
+          鍵のお渡し後、電気・ガス・水道などのライフラインをご確認のうえ、
+          お引越しを開始します。
+        </p>
+
+      </section>
+
+    </div>
+
+    <div class="back-area">
+      <a href="index2.html" class="back-button">← お役立ち情報へ戻る</a>
+    </div>
+
+    <footer class="footer-message">
+      <p>
+        お申込みやご契約の流れについてご不明な点がございましたら、<br>
+        担当スタッフまでお気軽にご確認ください。
+      </p>
+
+      <p class="brand-message">
+        Rich Happiness ― 豊かで幸せな暮らしのお手伝い
+      </p>
+    </footer>
+
+  </main>
+
 </div>
 
 </body>
