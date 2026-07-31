@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>よくある質問｜株式会社RH</title>
+
+<style>
+:root {
+  --navy: #10244a;
+  --navy-dark: #07152f;
+  --gold: #c78b19;
+  --gold-light: #e1b85d;
+  --text: #2c2c2c;
+  --sub-text: #6d6d6d;
+  --border: #e2e5eb;
+  --card-bg: #ffffff;
+  --section-bg: #f5f6f8;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  padding: 28px 16px;
+
+  font-family:
+    -apple-system,
+    BlinkMacSystemFont,
+    "Helvetica Neue",
+    "Yu Gothic",
+    "Hiragino Kaku Gothic ProN",
+    Meiryo,
+    sans-serif;
+
+  color: var(--text);
+
+  background:
+    radial-gradient(circle at top, rgba(255,255,255,0.12), transparent 35%),
+    linear-gradient(145deg, #111827 0%, #17264b 48%, #090f1d 100%);
+}
+
+.container {
+  width: 100%;
+  max-width: 560px;
+  margin: 0 auto;
+
+  background: var(--card-bg);
+  border-radius: 22px;
+  overflow: hidden;
+
+  box-shadow:
+    0 24px 60px rgba(0,0,0,0.32),
+    0 2px 8px rgba(0,0,0,0.12);
+}
+
+.header {
+  position: relative;
+  padding: 28px 24px 25px;
+  text-align: center;
+
+  background: linear-gradient(180deg, #ffffff 0%, #fafafa 100%);
+  border-bottom: 1px solid #eceef2;
+}
+
+.header::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+
+  width: 72px;
+  height: 3px;
+
+  transform: translateX(-50%);
+  border-radius: 99px;
+
+  background: linear-gradient(90deg, var(--gold), var(--gold-light));
+}
+
+.company-logo {
+  margin: 0 auto 23px;
+}
+
+.company-logo img {
+  display: block;
+  width: 100%;
+  max-width: 410px;
+  height: auto;
+  margin: 0 auto;
+}
+
+.page-title {
+  margin: 0;
+  color: var(--navy);
+
+  font-family:
+    "Yu Mincho",
+    "Hiragino Mincho ProN",
+    "Times New Roman",
+    serif;
+
+  font-size: 25px;
+  font-weight: 700;
+  letter-spacing: 0.07em;
+}
+
+.page-description {
+  margin: 13px 0 0;
+  color: var(--sub-text);
+  font-size: 13px;
+  line-height: 1.9;
+}
+
+.content {
+  padding: 24px;
+}
+
+.intro-box {
+  margin-bottom: 22px;
+  padding: 17px 18px;
+
+  border: 1px solid #e8eaf0;
+  border-radius: 14px;
+  background: var(--section-bg);
+
+  color: #656a73;
+  font-size: 12px;
+  line-height: 1.85;
+}
+
+.faq-list {
+  display: grid;
+  gap: 12px;
+}
+
+.faq-item {
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  overflow: hidden;
+  background: #ffffff;
+
+  box-shadow: 0 5px 15px rgba(16,36,74,0.05);
+}
+
+.faq-question {
+  width: 100%;
+  min-height: 66px;
+  padding: 16px 48px 16px 16px;
+
+  border: none;
+  background: #ffffff;
+
+  color: var(--navy);
+  text-align: left;
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 1.65;
+
+  cursor: pointer;
+  position: relative;
+
+  transition:
+    background 0.2s,
+    color 0.2s;
+}
+
+.faq-question:hover {
+  background: #fbfaf7;
+}
+
+.faq-question::before {
+  content: "Q";
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 28px;
+  height: 28px;
+  margin-right: 10px;
+
+  border-radius: 50%;
+
+  color: #ffffff;
+  background: var(--navy);
+
+  font-size: 13px;
+  font-weight: 700;
+  vertical-align: middle;
+}
+
+.faq-question::after {
+  content: "+";
+  position: absolute;
+  right: 17px;
+  top: 50%;
+
+  transform: translateY(-50%);
+
+  color: var(--gold);
+  font-size: 24px;
+  font-weight: 300;
+
+  transition: transform 0.25s;
+}
+
+.faq-item.open .faq-question {
+  background: #fbfaf7;
+}
+
+.faq-item.open .faq-question::after {
+  transform: translateY(-50%) rotate(45deg);
+}
+
+.faq-answer {
+  display: none;
+  padding: 0 17px 17px;
+
+  color: #555b64;
+  font-size: 13px;
+  line-height: 1.9;
+}
+
+.faq-item.open .faq-answer {
+  display: block;
+}
+
+.answer-label {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 28px;
+  height: 28px;
+  margin: 0 10px 8px 0;
+
+  border-radius: 50%;
+
+  color: #ffffff;
+  background: linear-gradient(135deg, var(--gold-light), var(--gold));
+
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.answer-text {
+  margin: 0;
+}
+
+.answer-text strong {
+  color: var(--navy);
+}
+
+.back-area {
+  margin-top: 24px;
+  text-align: center;
+}
+
+.back-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  min-height: 48px;
+  padding: 0 22px;
+
+  border: 1px solid var(--navy);
+  border-radius: 12px;
+
+  color: var(--navy);
+  background: #ffffff;
+
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: 700;
+
+  transition:
+    background 0.2s,
+    color 0.2s,
+    transform 0.2s;
+}
+
+.back-button:hover {
+  color: #ffffff;
+  background: var(--navy);
+  transform: translateY(-1px);
+}
+
+.footer-message {
+  margin-top: 24px;
+  padding-top: 20px;
+
+  border-top: 1px solid #eceef2;
+
+  color: #888d96;
+  text-align: center;
+  font-size: 11px;
+  line-height: 1.9;
+}
+
+.brand-message {
+  margin: 10px 0 0;
+
+  color: var(--navy);
+  font-family:
+    "Yu Mincho",
+    "Hiragino Mincho ProN",
+    serif;
+
+  font-size: 12px;
+  font-weight: 600;
+}
+
+@media (max-width: 520px) {
+  body {
+    padding: 12px 9px 22px;
+  }
+
+  .container {
+    border-radius: 16px;
+  }
+
+  .header {
+    padding: 24px 16px 22px;
+  }
+
+  .company-logo img {
+    max-width: 360px;
+  }
+
+  .page-title {
+    font-size: 22px;
+  }
+
+  .page-description {
+    font-size: 12px;
+  }
+
+  .content {
+    padding: 18px 14px 22px;
+  }
+
+  .faq-question {
+    padding: 15px 43px 15px 13px;
+    font-size: 13px;
+  }
+
+  .faq-question::before {
+    width: 26px;
+    height: 26px;
+    margin-right: 8px;
+  }
+
+  .faq-answer {
+    padding: 0 14px 15px;
+    font-size: 12.5px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+  <header class="header">
+
+    <div class="company-logo">
+      <img src="./logo.png" alt="株式会社RH Rich Happiness">
+    </div>
+
+    <h1 class="page-title">よくある質問</h1>
+
+    <p class="page-description">
+      お部屋探しでよくいただくご質問を<br>
+      分かりやすくまとめています。
+    </p>
+
+  </header>
+
+  <main class="content">
+
+    <div class="intro-box">
+      質問をタップすると回答が表示されます。
+      掲載のない内容につきましては、担当スタッフまでお気軽にご確認ください。
+    </div>
+
+    <div class="faq-list">
+
+      <section class="faq-item">
+        <button class="faq-question" type="button">
+          お問い合わせした物件が終了していることはありますか？
+        </button>
+        <div class="faq-answer">
+          <span class="answer-label">A</span>
+          <p class="answer-text">
+            はい。<strong>実際には、お問い合わせいただいた物件は募集が終了しているケースの方が多い</strong>です。
+            SUUMOなどの掲載サイトは、実際の募集状況が反映されるまでに時間差があるため、
+            お問い合わせ時にはすでにお申込みが入っていることも少なくありません。
+            その場合でも、ご希望条件に近い物件をあわせてお探しし、ご紹介いたします。
+          </p>
+        </div>
+      </section>
+
+      <section class="faq-item">
+        <button class="faq-question" type="button">
+          他社に掲載されている物件も紹介できますか？
+        </button>
+        <div class="faq-answer">
+          <span class="answer-label">A</span>
+          <p class="answer-text">
+            はい、ほとんどの賃貸物件をご紹介可能です。
+            SUUMO・HOME'S・アットホームなどで気になる物件がございましたら、
+            URLやスクリーンショットをお送りいただければ、まとめて空室状況を確認いたします。
+          </p>
+        </div>
+      </section>
+
+      <section class="faq-item">
+        <button class="faq-question" type="button">
+          初期費用はどれくらいかかりますか？
+        </button>
+        <div class="faq-answer">
+          <span class="answer-label">A</span>
+          <p class="answer-text">
+            物件によって異なりますが、<strong>一般的には家賃の5〜6か月分程度</strong>が目安となります。
+            敷金・礼金・仲介手数料・保証会社利用料・火災保険料・鍵交換費用などが含まれます。
+          </p>
+        </div>
+      </section>
+
+      <section class="faq-item">
+        <button class="faq-question" type="button">
+          入居審査が不安ですが、申し込みできますか？
+        </button>
+        <div class="faq-answer">
+          <span class="answer-label">A</span>
+          <p class="answer-text">
+            もちろん可能です。
+            収入・勤務先・雇用形態などをお伺いし、お客様の状況に合った物件をご提案いたします。
+            ご不安な点がございましたら、お申込み前にご相談ください。
+          </p>
+        </div>
+      </section>
+
+      <section class="faq-item">
+        <button class="faq-question" type="button">
+          来店しなくても契約できますか？
+        </button>
+        <div class="faq-answer">
+          <span class="answer-label">A</span>
+          <p class="answer-text">
+            遠方にお住まいの方や、ご来店が難しい方は、
+            物件や管理会社の対応状況によりオンラインでのご案内・ご契約が可能な場合があります。
+            詳細は担当スタッフへご確認ください。
+          </p>
+        </div>
+      </section>
+
+      <section class="faq-item">
+        <button class="faq-question" type="button">
+          内見にはどれくらい時間がかかりますか？
+        </button>
+        <div class="faq-answer">
+          <span class="answer-label">A</span>
+          <p class="answer-text">
+            ご案内するエリアや物件間の移動時間にもよりますが、
+            <strong>一般的には2〜3件程度のご見学で約2〜3時間</strong>が目安です。
+            お客様のご希望やご都合に合わせて、効率よくご案内できるよう調整いたします。
+          </p>
+        </div>
+      </section>
+
+      <section class="faq-item">
+        <button class="faq-question" type="button">
+          契約金の支払い方法を教えてください。
+        </button>
+        <div class="faq-answer">
+          <span class="answer-label">A</span>
+          <p class="answer-text">
+            管理会社によって異なりますが、銀行振込が一般的です。
+            物件によってはクレジットカード決済に対応している場合もございます。
+          </p>
+        </div>
+      </section>
+
+      <section class="faq-item">
+        <button class="faq-question" type="button">
+          ペットと一緒に住める物件はありますか？
+        </button>
+        <div class="faq-answer">
+          <span class="answer-label">A</span>
+          <p class="answer-text">
+            ございます。
+            犬・猫などの種類、頭数、大きさによって条件が異なりますので、
+            ペットの詳細とあわせてご希望をお聞かせください。
+          </p>
+        </div>
+      </section>
+
+      <section class="faq-item">
+        <button class="faq-question" type="button">
+          最短でいつから入居できますか？
+        </button>
+        <div class="faq-answer">
+          <span class="answer-label">A</span>
+          <p class="answer-text">
+            物件や審査・契約手続きの進み具合によって異なりますが、
+            最短で数日〜1週間程度でご入居いただける場合もございます。
+            お急ぎの場合は、入居可能時期を確認しながら物件をご提案いたします。
+          </p>
+        </div>
+      </section>
+
+      <section class="faq-item">
+        <button class="faq-question" type="button">
+          まだ引越し時期が決まっていなくても相談できますか？
+        </button>
+        <div class="faq-answer">
+          <span class="answer-label">A</span>
+          <p class="answer-text">
+            もちろんです。
+            「良い物件があれば」「まずは相場を知りたい」といった段階でも問題ございません。
+            ご予定やご希望を伺いながら、お部屋探しの進め方をご案内いたします。
+          </p>
+        </div>
+      </section>
+
+    </div>
+
+    <div class="back-area">
+      <a href="index2.html" class="back-button">← お役立ち情報へ戻る</a>
+    </div>
+
+    <footer class="footer-message">
+      <p>
+        ご不明な点がございましたら、<br>
+        担当スタッフまでお気軽にご確認ください。
+      </p>
+
+      <p class="brand-message">
+        Rich Happiness ― 豊かで幸せな暮らしのお手伝い
+      </p>
+    </footer>
+
+  </main>
+
+</div>
+
+<script>
+const faqItems = document.querySelectorAll(".faq-item");
+
+faqItems.forEach(function (item) {
+  const button = item.querySelector(".faq-question");
+
+  button.addEventListener("click", function () {
+    item.classList.toggle("open");
+  });
+});
+</script>
+
+</body>
+</html>
