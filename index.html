@@ -7,189 +7,522 @@
 <title>お客様受付フォーム｜株式会社RH</title>
 
 <style>
+:root {
+  --navy: #10244a;
+  --navy-dark: #07152f;
+  --gold: #c78b19;
+  --gold-light: #e1b85d;
+  --text: #2c2c2c;
+  --sub-text: #6d6d6d;
+  --border: #dfe3e9;
+  --background: #f4f5f8;
+  --card: #ffffff;
+  --input-bg: #fbfbfc;
+  --error: #b83232;
+}
+
 * {
   box-sizing: border-box;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
+  margin: 0;
+  min-height: 100vh;
+  padding: 28px 16px;
+
   font-family:
     -apple-system,
     BlinkMacSystemFont,
     "Helvetica Neue",
     "Yu Gothic",
-    "Meiryo",
+    "Hiragino Kaku Gothic ProN",
+    Meiryo,
     sans-serif;
+
+  color: var(--text);
+
+  background:
+    radial-gradient(
+      circle at top,
+      rgba(255,255,255,0.12),
+      transparent 35%
+    ),
+    linear-gradient(
+      145deg,
+      #111827 0%,
+      #17264b 48%,
+      #090f1d 100%
+    );
+}
+
+/* フォーム全体 */
+.form-container,
+.thank-you-container {
+  width: 100%;
+  max-width: 480px;
+  margin: 0 auto;
+
+  background: var(--card);
+  border-radius: 22px;
+  overflow: hidden;
+
+  box-shadow:
+    0 24px 60px rgba(0,0,0,0.32),
+    0 2px 8px rgba(0,0,0,0.12);
+}
+
+/* 上部ヘッダー */
+.form-header {
+  padding: 28px 24px 24px;
+  text-align: center;
+  position: relative;
 
   background:
     linear-gradient(
-      135deg,
-      #151820,
-      #20294b,
-      #292c35
+      180deg,
+      #ffffff 0%,
+      #fafafa 100%
     );
 
-  display: flex;
-  justify-content: center;
-  align-items: flex-start;
-
-  min-height: 100vh;
-  padding: 24px 16px;
-  margin: 0;
+  border-bottom: 1px solid #eceef2;
 }
 
-/* フォーム本体 */
-.form-container {
-  background: #ffffff;
-  width: 100%;
-  max-width: 420px;
-  padding: 28px 24px 32px;
-  border-radius: 18px;
-  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.35);
+.form-header::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+
+  width: 72px;
+  height: 3px;
+
+  transform: translateX(-50%);
+
+  border-radius: 99px;
+  background:
+    linear-gradient(
+      90deg,
+      var(--gold),
+      var(--gold-light)
+    );
 }
 
 /* ロゴ */
 .company-logo {
-  text-align: center;
-  margin: 0 auto 22px;
+  margin: 0 auto 24px;
 }
 
 .company-logo img {
   display: block;
   width: 100%;
-  max-width: 320px;
+  max-width: 390px;
   height: auto;
   margin: 0 auto;
 }
 
 /* タイトル */
-h2 {
-  text-align: center;
-  margin: 0 0 10px;
-  color: #15254b;
-  font-size: 23px;
+.form-title {
+  margin: 0;
+  color: var(--navy);
+  font-family:
+    "Yu Mincho",
+    "Hiragino Mincho ProN",
+    "Times New Roman",
+    serif;
+  font-size: 25px;
   font-weight: 700;
-  letter-spacing: 1px;
+  letter-spacing: 0.08em;
 }
 
-.introduction {
-  margin: 0 0 28px;
-  text-align: center;
-  color: #666666;
+.form-subtitle {
+  margin: 12px 0 0;
+  color: var(--sub-text);
   font-size: 13px;
-  line-height: 1.8;
+  line-height: 1.9;
 }
 
-/* ラベル */
-label {
+/* フォーム本文 */
+.form-body {
+  padding: 24px;
+}
+
+/* セクション */
+.form-section {
+  margin-bottom: 22px;
+  padding: 20px 18px;
+
+  background: var(--background);
+  border: 1px solid #e8eaf0;
+  border-radius: 16px;
+}
+
+.form-section:last-of-type {
+  margin-bottom: 0;
+}
+
+.section-title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  margin: 0 0 18px;
+
+  color: var(--navy);
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+}
+
+.section-title::before {
+  content: "";
   display: block;
-  margin-top: 19px;
-  color: #4d4d4d;
+
+  width: 5px;
+  height: 22px;
+
+  border-radius: 99px;
+
+  background:
+    linear-gradient(
+      180deg,
+      var(--gold-light),
+      var(--gold)
+    );
+}
+
+/* 入力項目 */
+.field {
+  margin-top: 18px;
+}
+
+.field:first-of-type {
+  margin-top: 0;
+}
+
+.field-label {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 7px;
+
+  margin-bottom: 7px;
+
+  color: #3f4652;
   font-size: 14px;
-  font-weight: 600;
+  font-weight: 700;
+}
+
+/* 必須・任意 */
+.required-badge,
+.optional-badge {
+  display: inline-flex;
+  align-items: center;
+
+  padding: 3px 7px;
+
+  border-radius: 999px;
+
+  font-size: 10px;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.required-badge {
+  color: #ffffff;
+  background: var(--navy);
+}
+
+.optional-badge {
+  color: #6a6f78;
+  background: #e7e9ed;
 }
 
 /* 入力欄 */
-input[type="text"],
-input[type="number"],
-input[type="tel"],
-input[type="email"],
+input,
 select {
   width: 100%;
-  margin-top: 7px;
-  padding: 14px;
-  border: 1px solid #d8d8d8;
-  border-radius: 10px;
-  background: #fafafa;
+  min-height: 52px;
+
+  padding: 13px 14px;
+
+  border: 1px solid var(--border);
+  border-radius: 11px;
+
   color: #222222;
+  background: var(--input-bg);
+
   font-size: 16px;
-  transition: 0.2s;
+  font-family: inherit;
+
+  transition:
+    border-color 0.2s,
+    background 0.2s,
+    box-shadow 0.2s;
+}
+
+input::placeholder {
+  color: #a2a6ad;
 }
 
 input:focus,
 select:focus {
-  border-color: #21355f;
-  background: #ffffff;
   outline: none;
-  box-shadow: 0 0 0 3px rgba(33, 53, 95, 0.1);
+  background: #ffffff;
+  border-color: var(--navy);
+
+  box-shadow:
+    0 0 0 4px rgba(16,36,74,0.09);
 }
 
-/* 送信ボタン */
-button {
+/* セレクトの見た目 */
+select {
+  appearance: none;
+  cursor: pointer;
+
+  background-image:
+    linear-gradient(45deg, transparent 50%, #747a84 50%),
+    linear-gradient(135deg, #747a84 50%, transparent 50%);
+
+  background-position:
+    calc(100% - 19px) 22px,
+    calc(100% - 14px) 22px;
+
+  background-size:
+    5px 5px,
+    5px 5px;
+
+  background-repeat: no-repeat;
+  padding-right: 40px;
+}
+
+/* 補足 */
+.field-note {
+  margin: 7px 2px 0;
+  color: #858a93;
+  font-size: 11px;
+  line-height: 1.6;
+}
+
+/* 送信エリア */
+.submit-area {
+  padding-top: 26px;
+}
+
+.submit-button {
   width: 100%;
-  margin-top: 32px;
-  padding: 16px;
+  min-height: 58px;
 
   border: none;
-  border-radius: 12px;
+  border-radius: 14px;
+
+  color: #ffffff;
 
   background:
     linear-gradient(
       135deg,
-      #172951,
-      #071226
+      #1a3567 0%,
+      #07142c 100%
     );
 
-  color: #ffffff;
   font-size: 16px;
-  font-weight: bold;
-  letter-spacing: 1px;
+  font-weight: 700;
+  font-family: inherit;
+  letter-spacing: 0.08em;
 
   cursor: pointer;
-  transition: 0.2s;
+
+  box-shadow:
+    0 10px 24px rgba(7,20,44,0.25);
+
+  transition:
+    transform 0.2s,
+    box-shadow 0.2s,
+    opacity 0.2s;
 }
 
-button:hover {
+.submit-button:hover {
   transform: translateY(-1px);
-  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.2);
+
+  box-shadow:
+    0 14px 28px rgba(7,20,44,0.3);
 }
 
-button:disabled {
+.submit-button:active {
+  transform: translateY(0);
+}
+
+.submit-button:disabled {
   opacity: 0.55;
   cursor: not-allowed;
   transform: none;
+  box-shadow: none;
 }
 
-/* 送信完了画面 */
+.privacy-note {
+  margin: 14px 0 0;
+
+  color: #878c95;
+  text-align: center;
+  font-size: 11px;
+  line-height: 1.7;
+}
+
+/* サンクス画面 */
 #thankYou {
   display: none;
-  width: 100%;
-  max-width: 420px;
-  padding: 40px 25px;
+}
 
-  border-radius: 18px;
-  background: #ffffff;
+.thank-you-container {
+  padding: 38px 26px;
   text-align: center;
-  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.35);
 }
 
-#thankYou h2 {
-  margin-bottom: 14px;
-  color: #15254b;
-  font-size: 23px;
+.thank-you-logo {
+  margin-bottom: 28px;
 }
 
-#thankYou p {
-  color: #666666;
+.thank-you-logo img {
+  display: block;
+  width: 100%;
+  max-width: 360px;
+  height: auto;
+  margin: 0 auto;
+}
+
+.thank-you-icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: 68px;
+  height: 68px;
+
+  margin: 0 auto 22px;
+
+  border-radius: 50%;
+
+  color: #ffffff;
+  background:
+    linear-gradient(
+      135deg,
+      var(--gold-light),
+      var(--gold)
+    );
+
+  font-size: 34px;
+  font-weight: bold;
+
+  box-shadow:
+    0 10px 25px rgba(199,139,25,0.25);
+}
+
+.thank-you-title {
+  margin: 0 0 14px;
+
+  color: var(--navy);
+
+  font-family:
+    "Yu Mincho",
+    "Hiragino Mincho ProN",
+    "Times New Roman",
+    serif;
+
+  font-size: 24px;
+  letter-spacing: 0.05em;
+}
+
+.thank-you-text {
+  margin: 0;
+
+  color: var(--sub-text);
+  font-size: 14px;
+  line-height: 1.9;
+}
+
+.thank-you-divider {
+  width: 64px;
+  height: 2px;
+  margin: 26px auto;
+
+  border-radius: 99px;
+
+  background:
+    linear-gradient(
+      90deg,
+      transparent,
+      var(--gold),
+      transparent
+    );
+}
+
+.company-message {
+  margin: 0;
+
+  color: #8b8f97;
+  font-size: 11px;
   line-height: 1.8;
 }
 
 /* スマホ用 */
-@media (max-width: 480px) {
+@media (max-width: 520px) {
   body {
-    padding: 14px 10px;
+    padding: 12px 9px 22px;
   }
 
-  .form-container {
-    padding: 24px 18px 28px;
-    border-radius: 14px;
+  .form-container,
+  .thank-you-container {
+    border-radius: 16px;
+  }
+
+  .form-header {
+    padding: 24px 16px 21px;
   }
 
   .company-logo img {
-    max-width: 290px;
+    max-width: 340px;
   }
 
-  h2 {
-    font-size: 21px;
+  .form-title {
+    font-size: 22px;
+  }
+
+  .form-subtitle {
+    font-size: 12px;
+  }
+
+  .form-body {
+    padding: 18px 14px 22px;
+  }
+
+  .form-section {
+    padding: 18px 14px;
+    border-radius: 13px;
+  }
+
+  .section-title {
+    font-size: 15px;
+  }
+
+  .thank-you-container {
+    padding: 32px 18px;
+  }
+}
+
+@media (max-width: 360px) {
+  .company-logo img {
+    max-width: 300px;
+  }
+
+  .form-title {
+    font-size: 20px;
+  }
+
+  .form-section {
+    padding: 16px 12px;
   }
 }
 </style>
@@ -199,130 +532,273 @@ button:disabled {
 
 <div class="form-container" id="formArea">
 
-  <div class="company-logo">
-    <img
-      src="./logo.png"
-      alt="株式会社RH Rich Happiness"
-    >
-  </div>
+  <header class="form-header">
 
-  <h2>お客様受付フォーム</h2>
+    <div class="company-logo">
+      <img
+        src="./logo.png"
+        alt="株式会社RH Rich Happiness"
+      >
+    </div>
 
-  <p class="introduction">
-    ご来店ありがとうございます。<br>
-    よりスムーズなご案内のため、ご入力をお願いいたします。
-  </p>
+    <h1 class="form-title">
+      お客様受付フォーム
+    </h1>
 
-  <form id="myForm">
+    <p class="form-subtitle">
+      ご来店いただきありがとうございます。<br>
+      スムーズなご案内のため、ご入力をお願いいたします。
+    </p>
 
-    <label for="name">お名前（フリガナ）</label>
-    <input
-      id="name"
-      type="text"
-      name="name"
-      required
-    >
+  </header>
 
-    <label for="age">年齢</label>
-    <input
-      id="age"
-      type="number"
-      name="age"
-      min="0"
-    >
+  <main class="form-body">
 
-    <label for="phone">電話番号</label>
-    <input
-      id="phone"
-      type="tel"
-      name="phone"
-      required
-    >
+    <form id="myForm">
 
-    <label for="email">メールアドレス</label>
-    <input
-      id="email"
-      type="email"
-      name="email"
-    >
+      <section class="form-section">
 
-    <label for="address">住所</label>
-    <input
-      id="address"
-      type="text"
-      name="address"
-    >
+        <h2 class="section-title">
+          お客様情報
+        </h2>
 
-    <label for="work">勤務先名・学校名</label>
-    <input
-      id="work"
-      type="text"
-      name="work"
-    >
+        <div class="field">
+          <label class="field-label" for="name">
+            お名前（フリガナ）
+            <span class="required-badge">必須</span>
+          </label>
 
-    <label for="job">ご職業</label>
-    <select id="job" name="job">
-      <option value="">選択してください</option>
-      <option>会社員</option>
-      <option>会社役員</option>
-      <option>会社経営</option>
-      <option>自営業</option>
-      <option>公務員</option>
-      <option>契約社員</option>
-      <option>派遣社員</option>
-      <option>学生</option>
-      <option>アルバイト</option>
-      <option>その他</option>
-    </select>
+          <input
+            id="name"
+            type="text"
+            name="name"
+            placeholder="例：アライ ユウマ"
+            autocomplete="name"
+            required
+          >
+        </div>
 
-    <label for="contract">契約名義</label>
-    <select id="contract" name="contract" required>
-      <option value="">選択してください</option>
-      <option>個人</option>
-      <option>法人（総務の方）</option>
-      <option>法人（社宅代行）</option>
-      <option>未定</option>
-    </select>
+        <div class="field">
+          <label class="field-label" for="age">
+            年齢
+            <span class="optional-badge">任意</span>
+          </label>
 
-    <label for="realestate">
-      不動産の購入や売却を検討されていますか（任意）
-    </label>
+          <input
+            id="age"
+            type="number"
+            name="age"
+            placeholder="例：30"
+            min="0"
+            max="120"
+            inputmode="numeric"
+          >
+        </div>
 
-    <select id="realestate" name="realestate">
-      <option value="">選択してください</option>
-      <option>検討している</option>
-      <option>検討していない</option>
-      <option>将来的に検討するかも</option>
-    </select>
+        <div class="field">
+          <label class="field-label" for="phone">
+            電話番号
+            <span class="required-badge">必須</span>
+          </label>
 
-    <button id="submitButton" type="submit">
-      送信する
-    </button>
+          <input
+            id="phone"
+            type="tel"
+            name="phone"
+            placeholder="例：09012345678"
+            autocomplete="tel"
+            inputmode="tel"
+            required
+          >
 
-  </form>
+          <p class="field-note">
+            ハイフンあり・なし、どちらでも入力できます。
+          </p>
+        </div>
+
+        <div class="field">
+          <label class="field-label" for="email">
+            メールアドレス
+            <span class="optional-badge">任意</span>
+          </label>
+
+          <input
+            id="email"
+            type="email"
+            name="email"
+            placeholder="例：example@email.com"
+            autocomplete="email"
+            inputmode="email"
+          >
+        </div>
+
+        <div class="field">
+          <label class="field-label" for="address">
+            住所
+            <span class="optional-badge">任意</span>
+          </label>
+
+          <input
+            id="address"
+            type="text"
+            name="address"
+            placeholder="現在お住まいの住所"
+            autocomplete="street-address"
+          >
+        </div>
+
+      </section>
+
+      <section class="form-section">
+
+        <h2 class="section-title">
+          ご勤務先・契約情報
+        </h2>
+
+        <div class="field">
+          <label class="field-label" for="work">
+            勤務先名・学校名
+            <span class="optional-badge">任意</span>
+          </label>
+
+          <input
+            id="work"
+            type="text"
+            name="work"
+            placeholder="例：株式会社〇〇"
+            autocomplete="organization"
+          >
+        </div>
+
+        <div class="field">
+          <label class="field-label" for="job">
+            ご職業
+            <span class="optional-badge">任意</span>
+          </label>
+
+          <select id="job" name="job">
+            <option value="">選択してください</option>
+            <option>会社員</option>
+            <option>会社役員</option>
+            <option>会社経営</option>
+            <option>自営業</option>
+            <option>公務員</option>
+            <option>契約社員</option>
+            <option>派遣社員</option>
+            <option>学生</option>
+            <option>アルバイト</option>
+            <option>その他</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <label class="field-label" for="contract">
+            契約名義
+            <span class="required-badge">必須</span>
+          </label>
+
+          <select
+            id="contract"
+            name="contract"
+            required
+          >
+            <option value="">選択してください</option>
+            <option>個人</option>
+            <option>法人（総務の方）</option>
+            <option>法人（社宅代行）</option>
+            <option>未定</option>
+          </select>
+        </div>
+
+      </section>
+
+      <section class="form-section">
+
+        <h2 class="section-title">
+          不動産に関するご予定
+        </h2>
+
+        <div class="field">
+          <label class="field-label" for="realestate">
+            不動産の購入や売却を検討されていますか
+            <span class="optional-badge">任意</span>
+          </label>
+
+          <select
+            id="realestate"
+            name="realestate"
+          >
+            <option value="">選択してください</option>
+            <option>検討している</option>
+            <option>検討していない</option>
+            <option>将来的に検討するかも</option>
+          </select>
+        </div>
+
+      </section>
+
+      <div class="submit-area">
+
+        <button
+          id="submitButton"
+          class="submit-button"
+          type="submit"
+        >
+          入力内容を送信する
+        </button>
+
+        <p class="privacy-note">
+          ご入力いただいた情報は、お部屋探しや各種ご案内のために利用いたします。
+        </p>
+
+      </div>
+
+    </form>
+
+  </main>
+
 </div>
 
 <div id="thankYou">
 
-  <div class="company-logo">
-    <img
-      src="./logo.png"
-      alt="株式会社RH Rich Happiness"
-    >
+  <div class="thank-you-container">
+
+    <div class="thank-you-logo">
+      <img
+        src="./logo.png"
+        alt="株式会社RH Rich Happiness"
+      >
+    </div>
+
+    <div class="thank-you-icon">
+      ✓
+    </div>
+
+    <h2 class="thank-you-title">
+      送信ありがとうございました
+    </h2>
+
+    <p class="thank-you-text">
+      ご入力いただいた内容を確認し、<br>
+      担当者よりご案内いたします。
+    </p>
+
+    <div class="thank-you-divider"></div>
+
+    <p class="company-message">
+      RHは「Rich Happiness」の想いを込め、<br>
+      住まいを通して豊かで幸せな暮らしをお手伝いいたします。
+    </p>
+
   </div>
-
-  <h2>送信ありがとうございました</h2>
-
-  <p>
-    ご入力いただいた内容を確認し、<br>
-    担当者よりご案内いたします。
-  </p>
 
 </div>
 
 <script>
 const form = document.getElementById("myForm");
 const submitButton = document.getElementById("submitButton");
+const formArea = document.getElementById("formArea");
+const thankYou = document.getElementById("thankYou");
 
 form.addEventListener("submit", async function (e) {
   e.preventDefault();
@@ -345,10 +821,13 @@ form.addEventListener("submit", async function (e) {
 
     if (
       response.ok &&
-      (text.includes("OK") || text.trim() === "")
+      (
+        text.includes("OK") ||
+        text.trim() === ""
+      )
     ) {
-      document.getElementById("formArea").style.display = "none";
-      document.getElementById("thankYou").style.display = "block";
+      formArea.style.display = "none";
+      thankYou.style.display = "block";
 
       window.scrollTo({
         top: 0,
@@ -356,7 +835,9 @@ form.addEventListener("submit", async function (e) {
       });
 
     } else {
-      throw new Error(text || "送信処理でエラーが発生しました");
+      throw new Error(
+        text || "送信処理でエラーが発生しました"
+      );
     }
 
   } catch (error) {
@@ -366,7 +847,7 @@ form.addEventListener("submit", async function (e) {
     );
 
     submitButton.disabled = false;
-    submitButton.textContent = "送信する";
+    submitButton.textContent = "入力内容を送信する";
 
     console.error(error);
   }
