@@ -1,0 +1,825 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>初期費用シミュレーター｜株式会社RH</title>
+
+<style>
+:root {
+  --navy: #10244a;
+  --navy-dark: #07152f;
+  --gold: #c78b19;
+  --gold-light: #e1b85d;
+  --text: #2c2c2c;
+  --sub-text: #6d6d6d;
+  --border: #e2e5eb;
+  --card-bg: #ffffff;
+  --section-bg: #f5f6f8;
+  --input-bg: #fbfbfc;
+  --result-bg: #fff9eb;
+  --result-border: #e6c977;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  padding: 28px 16px;
+
+  font-family:
+    -apple-system,
+    BlinkMacSystemFont,
+    "Helvetica Neue",
+    "Yu Gothic",
+    "Hiragino Kaku Gothic ProN",
+    Meiryo,
+    sans-serif;
+
+  color: var(--text);
+
+  background:
+    radial-gradient(circle at top, rgba(255,255,255,0.12), transparent 35%),
+    linear-gradient(145deg, #111827 0%, #17264b 48%, #090f1d 100%);
+}
+
+.container {
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
+
+  background: var(--card-bg);
+  border-radius: 22px;
+  overflow: hidden;
+
+  box-shadow:
+    0 24px 60px rgba(0,0,0,0.32),
+    0 2px 8px rgba(0,0,0,0.12);
+}
+
+.header {
+  position: relative;
+  padding: 28px 24px 25px;
+  text-align: center;
+
+  background: linear-gradient(180deg, #ffffff 0%, #fafafa 100%);
+  border-bottom: 1px solid #eceef2;
+}
+
+.header::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+
+  width: 72px;
+  height: 3px;
+
+  transform: translateX(-50%);
+  border-radius: 99px;
+
+  background: linear-gradient(90deg, var(--gold), var(--gold-light));
+}
+
+.company-logo {
+  margin: 0 auto 23px;
+}
+
+.company-logo img {
+  display: block;
+  width: 100%;
+  max-width: 410px;
+  height: auto;
+  margin: 0 auto;
+}
+
+.page-title {
+  margin: 0;
+  color: var(--navy);
+
+  font-family:
+    "Yu Mincho",
+    "Hiragino Mincho ProN",
+    "Times New Roman",
+    serif;
+
+  font-size: 25px;
+  font-weight: 700;
+  letter-spacing: 0.07em;
+}
+
+.page-description {
+  margin: 13px 0 0;
+  color: var(--sub-text);
+  font-size: 13px;
+  line-height: 1.9;
+}
+
+.content {
+  padding: 24px;
+}
+
+.notice {
+  margin-bottom: 22px;
+  padding: 17px 18px;
+
+  border: 1px solid #e8eaf0;
+  border-radius: 14px;
+  background: var(--section-bg);
+
+  color: #656a73;
+  font-size: 12px;
+  line-height: 1.85;
+}
+
+.section {
+  margin-bottom: 18px;
+  padding: 20px 18px;
+
+  border: 1px solid #e8eaf0;
+  border-radius: 16px;
+  background: var(--section-bg);
+}
+
+.section-title {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+
+  margin: 0 0 17px;
+
+  color: var(--navy);
+  font-size: 17px;
+  font-weight: 700;
+}
+
+.section-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 42px;
+  height: 42px;
+  flex-shrink: 0;
+
+  border-radius: 12px;
+  background: linear-gradient(145deg, #f4ead4, #fffaf0);
+
+  font-size: 22px;
+}
+
+.field-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+
+.field {
+  min-width: 0;
+}
+
+.field.full {
+  grid-column: 1 / -1;
+}
+
+.field-label {
+  display: block;
+  margin-bottom: 7px;
+
+  color: #3f4652;
+  font-size: 13px;
+  font-weight: 700;
+  line-height: 1.5;
+}
+
+.field-note {
+  display: block;
+  margin-top: 5px;
+
+  color: #858a93;
+  font-size: 10.5px;
+  line-height: 1.55;
+}
+
+.input-wrap {
+  position: relative;
+}
+
+input,
+select {
+  width: 100%;
+  min-height: 50px;
+
+  padding: 12px 42px 12px 13px;
+
+  border: 1px solid var(--border);
+  border-radius: 11px;
+
+  color: #222222;
+  background: var(--input-bg);
+
+  font-family: inherit;
+  font-size: 16px;
+
+  transition:
+    border-color 0.2s,
+    background 0.2s,
+    box-shadow 0.2s;
+}
+
+select {
+  padding-right: 34px;
+}
+
+input:focus,
+select:focus {
+  outline: none;
+  background: #ffffff;
+  border-color: var(--navy);
+  box-shadow: 0 0 0 4px rgba(16,36,74,0.09);
+}
+
+.unit {
+  position: absolute;
+  right: 13px;
+  top: 50%;
+  transform: translateY(-50%);
+
+  color: #777d86;
+  font-size: 12px;
+  pointer-events: none;
+}
+
+.result-box {
+  margin-top: 22px;
+  padding: 20px 18px;
+
+  border: 1px solid var(--result-border);
+  border-radius: 16px;
+  background: var(--result-bg);
+}
+
+.result-label {
+  margin: 0 0 8px;
+
+  color: #68551c;
+  text-align: center;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.result-amount {
+  margin: 0;
+
+  color: var(--navy);
+  text-align: center;
+
+  font-size: 34px;
+  font-weight: 800;
+  letter-spacing: 0.02em;
+}
+
+.result-sub {
+  margin: 9px 0 0;
+
+  color: #7c704d;
+  text-align: center;
+  font-size: 11px;
+  line-height: 1.7;
+}
+
+.breakdown {
+  margin-top: 18px;
+  padding-top: 16px;
+  border-top: 1px solid rgba(104,85,28,0.18);
+}
+
+.breakdown-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 18px;
+
+  padding: 7px 0;
+
+  color: #5f5a4b;
+  font-size: 12.5px;
+  line-height: 1.5;
+}
+
+.breakdown-row.total {
+  margin-top: 7px;
+  padding-top: 12px;
+  border-top: 1px solid rgba(104,85,28,0.18);
+
+  color: var(--navy);
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.breakdown-name {
+  min-width: 0;
+}
+
+.breakdown-value {
+  flex-shrink: 0;
+  font-weight: 700;
+}
+
+.action-area {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.reset-button {
+  min-height: 45px;
+  padding: 0 18px;
+
+  border: 1px solid #c8ccd2;
+  border-radius: 11px;
+
+  color: #6a7079;
+  background: #ffffff;
+
+  font-family: inherit;
+  font-size: 12px;
+  font-weight: 700;
+
+  cursor: pointer;
+}
+
+.reset-button:hover {
+  border-color: var(--navy);
+  color: var(--navy);
+}
+
+.caution {
+  margin-top: 21px;
+  padding: 16px 17px;
+
+  border-left: 4px solid var(--gold);
+  border-radius: 12px;
+  background: #faf8f3;
+
+  color: #62666e;
+  font-size: 11.5px;
+  line-height: 1.85;
+}
+
+.caution strong {
+  color: var(--navy);
+}
+
+.back-area {
+  margin-top: 24px;
+  text-align: center;
+}
+
+.back-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  min-height: 48px;
+  padding: 0 22px;
+
+  border: 1px solid var(--navy);
+  border-radius: 12px;
+
+  color: var(--navy);
+  background: #ffffff;
+
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.back-button:hover {
+  color: #ffffff;
+  background: var(--navy);
+}
+
+.footer-message {
+  margin-top: 24px;
+  padding-top: 20px;
+
+  border-top: 1px solid #eceef2;
+
+  color: #888d96;
+  text-align: center;
+  font-size: 11px;
+  line-height: 1.9;
+}
+
+.brand-message {
+  margin: 10px 0 0;
+
+  color: var(--navy);
+  font-family:
+    "Yu Mincho",
+    "Hiragino Mincho ProN",
+    serif;
+
+  font-size: 12px;
+  font-weight: 600;
+}
+
+@media (max-width: 560px) {
+  body {
+    padding: 12px 9px 22px;
+  }
+
+  .container {
+    border-radius: 16px;
+  }
+
+  .header {
+    padding: 24px 16px 22px;
+  }
+
+  .company-logo img {
+    max-width: 360px;
+  }
+
+  .page-title {
+    font-size: 22px;
+  }
+
+  .page-description {
+    font-size: 12px;
+  }
+
+  .content {
+    padding: 18px 14px 22px;
+  }
+
+  .section {
+    padding: 17px 14px;
+    border-radius: 13px;
+  }
+
+  .section-title {
+    font-size: 15px;
+  }
+
+  .field-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .field.full {
+    grid-column: auto;
+  }
+
+  .result-amount {
+    font-size: 30px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+  <header class="header">
+
+    <div class="company-logo">
+      <img src="./logo.png" alt="株式会社RH Rich Happiness">
+    </div>
+
+    <h1 class="page-title">初期費用シミュレーター</h1>
+
+    <p class="page-description">
+      家賃や条件を入力すると、<br>
+      契約時に必要な初期費用の概算を自動計算します。
+    </p>
+
+  </header>
+
+  <main class="content">
+
+    <div class="notice">
+      金額や月数は物件ごとに異なります。
+      各項目を実際の募集条件に合わせて変更してご利用ください。
+    </div>
+
+    <section class="section">
+
+      <h2 class="section-title">
+        <span class="section-icon">🏠</span>
+        毎月の賃料
+      </h2>
+
+      <div class="field-grid">
+
+        <div class="field">
+          <label class="field-label" for="rent">家賃</label>
+          <div class="input-wrap">
+            <input id="rent" type="number" min="0" step="1000" value="100000" inputmode="numeric">
+            <span class="unit">円</span>
+          </div>
+        </div>
+
+        <div class="field">
+          <label class="field-label" for="management">管理費・共益費</label>
+          <div class="input-wrap">
+            <input id="management" type="number" min="0" step="1000" value="5000" inputmode="numeric">
+            <span class="unit">円</span>
+          </div>
+        </div>
+
+        <div class="field">
+          <label class="field-label" for="advanceMonths">前家賃</label>
+          <div class="input-wrap">
+            <input id="advanceMonths" type="number" min="0" step="0.5" value="1" inputmode="decimal">
+            <span class="unit">か月</span>
+          </div>
+          <span class="field-note">家賃と管理費の合計額を基準に計算します。</span>
+        </div>
+
+        <div class="field">
+          <label class="field-label" for="proratedDays">日割り家賃の日数</label>
+          <div class="input-wrap">
+            <input id="proratedDays" type="number" min="0" max="31" step="1" value="0" inputmode="numeric">
+            <span class="unit">日</span>
+          </div>
+          <span class="field-note">30日で日割り計算します。不要な場合は0日です。</span>
+        </div>
+
+      </div>
+
+    </section>
+
+    <section class="section">
+
+      <h2 class="section-title">
+        <span class="section-icon">💰</span>
+        契約条件
+      </h2>
+
+      <div class="field-grid">
+
+        <div class="field">
+          <label class="field-label" for="depositMonths">敷金</label>
+          <div class="input-wrap">
+            <input id="depositMonths" type="number" min="0" step="0.5" value="1" inputmode="decimal">
+            <span class="unit">か月</span>
+          </div>
+        </div>
+
+        <div class="field">
+          <label class="field-label" for="keyMoneyMonths">礼金</label>
+          <div class="input-wrap">
+            <input id="keyMoneyMonths" type="number" min="0" step="0.5" value="1" inputmode="decimal">
+            <span class="unit">か月</span>
+          </div>
+        </div>
+
+        <div class="field">
+          <label class="field-label" for="brokerageMonths">仲介手数料</label>
+          <div class="input-wrap">
+            <input id="brokerageMonths" type="number" min="0" step="0.1" value="1.1" inputmode="decimal">
+            <span class="unit">か月</span>
+          </div>
+          <span class="field-note">税込1.1か月分の場合は「1.1」と入力します。</span>
+        </div>
+
+        <div class="field">
+          <label class="field-label" for="guaranteePercent">初回保証料</label>
+          <div class="input-wrap">
+            <input id="guaranteePercent" type="number" min="0" step="1" value="50" inputmode="numeric">
+            <span class="unit">％</span>
+          </div>
+          <span class="field-note">家賃と管理費の合計額を基準に計算します。</span>
+        </div>
+
+      </div>
+
+    </section>
+
+    <section class="section">
+
+      <h2 class="section-title">
+        <span class="section-icon">🧾</span>
+        その他の費用
+      </h2>
+
+      <div class="field-grid">
+
+        <div class="field">
+          <label class="field-label" for="insurance">火災保険料</label>
+          <div class="input-wrap">
+            <input id="insurance" type="number" min="0" step="1000" value="20000" inputmode="numeric">
+            <span class="unit">円</span>
+          </div>
+        </div>
+
+        <div class="field">
+          <label class="field-label" for="keyChange">鍵交換費用</label>
+          <div class="input-wrap">
+            <input id="keyChange" type="number" min="0" step="1000" value="25000" inputmode="numeric">
+            <span class="unit">円</span>
+          </div>
+        </div>
+
+        <div class="field">
+          <label class="field-label" for="support">24時間サポート等</label>
+          <div class="input-wrap">
+            <input id="support" type="number" min="0" step="1000" value="16500" inputmode="numeric">
+            <span class="unit">円</span>
+          </div>
+        </div>
+
+        <div class="field">
+          <label class="field-label" for="cleaning">室内清掃費等</label>
+          <div class="input-wrap">
+            <input id="cleaning" type="number" min="0" step="1000" value="0" inputmode="numeric">
+            <span class="unit">円</span>
+          </div>
+        </div>
+
+        <div class="field full">
+          <label class="field-label" for="other">その他費用</label>
+          <div class="input-wrap">
+            <input id="other" type="number" min="0" step="1000" value="0" inputmode="numeric">
+            <span class="unit">円</span>
+          </div>
+          <span class="field-note">
+            消毒料・事務手数料・町会費など、その他の費用がある場合に入力してください。
+          </span>
+        </div>
+
+      </div>
+
+    </section>
+
+    <section class="result-box">
+
+      <p class="result-label">初期費用の概算</p>
+      <p class="result-amount" id="resultAmount">¥0</p>
+
+      <p class="result-sub">
+        入力内容を変更すると、自動で再計算されます。
+      </p>
+
+      <div class="breakdown" id="breakdown"></div>
+
+    </section>
+
+    <div class="action-area">
+      <button class="reset-button" id="resetButton" type="button">
+        初期設定に戻す
+      </button>
+    </div>
+
+    <div class="caution">
+      <strong>ご注意</strong><br>
+      本シミュレーターは一般的な費用項目をもとにした概算です。
+      実際の契約金額は、日割り計算方法、保証会社、保険、鍵交換、
+      退去時清掃費、その他の特約などにより異なります。
+      正式な金額は、物件ごとの精算書・請求書をご確認ください。
+    </div>
+
+    <div class="back-area">
+      <a href="index2.html" class="back-button">← お役立ち情報へ戻る</a>
+    </div>
+
+    <footer class="footer-message">
+
+      <p>
+        初期費用についてご不明な点がございましたら、<br>
+        担当スタッフまでお気軽にご確認ください。
+      </p>
+
+      <p class="brand-message">
+        Rich Happiness ― 豊かで幸せな暮らしのお手伝い
+      </p>
+
+    </footer>
+
+  </main>
+
+</div>
+
+<script>
+const defaults = {
+  rent: 100000,
+  management: 5000,
+  advanceMonths: 1,
+  proratedDays: 0,
+  depositMonths: 1,
+  keyMoneyMonths: 1,
+  brokerageMonths: 1.1,
+  guaranteePercent: 50,
+  insurance: 20000,
+  keyChange: 25000,
+  support: 16500,
+  cleaning: 0,
+  other: 0
+};
+
+const ids = Object.keys(defaults);
+const fields = {};
+
+ids.forEach(function (id) {
+  fields[id] = document.getElementById(id);
+});
+
+const resultAmount = document.getElementById("resultAmount");
+const breakdown = document.getElementById("breakdown");
+const resetButton = document.getElementById("resetButton");
+
+function numberValue(id) {
+  const value = Number(fields[id].value);
+  return Number.isFinite(value) && value > 0 ? value : 0;
+}
+
+function yen(value) {
+  return "¥" + Math.round(value).toLocaleString("ja-JP");
+}
+
+function calculate() {
+  const rent = numberValue("rent");
+  const management = numberValue("management");
+  const monthlyTotal = rent + management;
+
+  const advanceRent = monthlyTotal * numberValue("advanceMonths");
+  const proratedRent = (monthlyTotal / 30) * numberValue("proratedDays");
+  const deposit = rent * numberValue("depositMonths");
+  const keyMoney = rent * numberValue("keyMoneyMonths");
+  const brokerage = rent * numberValue("brokerageMonths");
+  const guarantee = monthlyTotal * (numberValue("guaranteePercent") / 100);
+
+  const insurance = numberValue("insurance");
+  const keyChange = numberValue("keyChange");
+  const support = numberValue("support");
+  const cleaning = numberValue("cleaning");
+  const other = numberValue("other");
+
+  const rows = [
+    ["前家賃", advanceRent],
+    ["日割り家賃等", proratedRent],
+    ["敷金", deposit],
+    ["礼金", keyMoney],
+    ["仲介手数料", brokerage],
+    ["初回保証料", guarantee],
+    ["火災保険料", insurance],
+    ["鍵交換費用", keyChange],
+    ["24時間サポート等", support],
+    ["室内清掃費等", cleaning],
+    ["その他費用", other]
+  ];
+
+  const total = rows.reduce(function (sum, row) {
+    return sum + row[1];
+  }, 0);
+
+  resultAmount.textContent = yen(total);
+
+  breakdown.innerHTML = rows
+    .filter(function (row) {
+      return row[1] > 0;
+    })
+    .map(function (row) {
+      return `
+        <div class="breakdown-row">
+          <span class="breakdown-name">${row[0]}</span>
+          <span class="breakdown-value">${yen(row[1])}</span>
+        </div>
+      `;
+    })
+    .join("") +
+    `
+      <div class="breakdown-row total">
+        <span class="breakdown-name">合計</span>
+        <span class="breakdown-value">${yen(total)}</span>
+      </div>
+    `;
+}
+
+ids.forEach(function (id) {
+  fields[id].addEventListener("input", calculate);
+  fields[id].addEventListener("change", calculate);
+});
+
+resetButton.addEventListener("click", function () {
+  ids.forEach(function (id) {
+    fields[id].value = defaults[id];
+  });
+
+  calculate();
+});
+
+calculate();
+</script>
+
+</body>
+</html>
