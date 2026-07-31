@@ -3,138 +3,452 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>物件が掲載されるまで〜された後 | 株式会社RH</title>
+
+<title>物件が掲載されるまでの流れ｜株式会社RH</title>
 
 <style>
-body{
- margin:0;
- font-family:-apple-system,BlinkMacSystemFont,sans-serif;
- background:linear-gradient(135deg,#1c1c2e,#2a2f4f,#3b3f6b);
+:root {
+  --navy: #10244a;
+  --navy-dark: #07152f;
+  --gold: #c78b19;
+  --gold-light: #e1b85d;
+  --text: #2c2c2c;
+  --sub-text: #6d6d6d;
+  --border: #e2e5eb;
+  --card-bg: #ffffff;
+  --section-bg: #f5f6f8;
+  --note-bg: #fff9eb;
+  --note-border: #e6c977;
+  --alert-bg: #fff3f1;
+  --alert-border: #df8a7e;
 }
 
-.container{
- display:flex;
- justify-content:center;
- padding:30px 0;
+* {
+  box-sizing: border-box;
 }
 
-.card{
- background:#f7f7f7;
- width:90%;
- max-width:440px;
- padding:24px;
- border-radius:20px;
+html {
+  scroll-behavior: smooth;
 }
 
-.back{
- text-decoration:none;
- color:#555;
+body {
+  margin: 0;
+  min-height: 100vh;
+  padding: 28px 16px;
+
+  font-family:
+    -apple-system,
+    BlinkMacSystemFont,
+    "Helvetica Neue",
+    "Yu Gothic",
+    "Hiragino Kaku Gothic ProN",
+    Meiryo,
+    sans-serif;
+
+  color: var(--text);
+
+  background:
+    radial-gradient(circle at top, rgba(255,255,255,0.12), transparent 35%),
+    linear-gradient(145deg, #111827 0%, #17264b 48%, #090f1d 100%);
 }
 
-.title{
- text-align:center;
- font-size:18px;
- font-weight:bold;
- margin:10px 0 18px;
+.container {
+  width: 100%;
+  max-width: 560px;
+  margin: 0 auto;
+
+  background: var(--card-bg);
+  border-radius: 22px;
+  overflow: hidden;
+
+  box-shadow:
+    0 24px 60px rgba(0,0,0,0.32),
+    0 2px 8px rgba(0,0,0,0.12);
 }
 
-.lead{
- font-size:12px;
- line-height:1.7;
- color:#555;
- margin-bottom:16px;
+.header {
+  position: relative;
+  padding: 28px 24px 25px;
+  text-align: center;
+
+  background: linear-gradient(180deg, #ffffff 0%, #fafafa 100%);
+  border-bottom: 1px solid #eceef2;
 }
 
-/* ボックス */
-.box{
- background:#fff;
- padding:14px;
- border-radius:12px;
- margin-bottom:10px;
- transition:.3s;
+.header::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+
+  width: 72px;
+  height: 3px;
+
+  transform: translateX(-50%);
+  border-radius: 99px;
+
+  background: linear-gradient(90deg, var(--gold), var(--gold-light));
 }
 
-.box:hover{
- transform:translateY(-3px);
+.company-logo {
+  margin: 0 auto 23px;
 }
 
-.box h3{
- margin:0 0 8px;
- font-size:15px;
+.company-logo img {
+  display: block;
+  width: 100%;
+  max-width: 410px;
+  height: auto;
+  margin: 0 auto;
 }
 
-.box p{
- margin:0;
- font-size:12px;
- line-height:1.65;
- color:#555;
+.page-title {
+  margin: 0;
+
+  color: var(--navy);
+
+  font-family:
+    "Yu Mincho",
+    "Hiragino Mincho ProN",
+    "Times New Roman",
+    serif;
+
+  font-size: 25px;
+  font-weight: 700;
+  letter-spacing: 0.07em;
 }
 
-/* チェックリスト */
-.check{
- background:#fff;
- border:1px solid #e5e5e5;
- border-radius:12px;
- padding:14px;
- margin-bottom:14px;
+.page-description {
+  margin: 13px 0 0;
+
+  color: var(--sub-text);
+  font-size: 13px;
+  line-height: 1.9;
 }
 
-.check div{
- font-size:12px;
- margin-bottom:8px;
- line-height:1.6;
+.content {
+  padding: 24px;
 }
 
-/* 強調 */
-.alert{
- background:#fff5e9;
- border-left:4px solid #e5a43a;
- padding:12px;
- border-radius:10px;
- font-size:12px;
- line-height:1.6;
- margin-bottom:14px;
+.intro-box {
+  margin-bottom: 22px;
+  padding: 17px 18px;
+
+  border: 1px solid #e8eaf0;
+  border-radius: 14px;
+  background: var(--section-bg);
+
+  color: #656a73;
+  font-size: 12px;
+  line-height: 1.85;
 }
 
-/* 結論 */
-.conclusion{
- background:#eef2ff;
- border-left:4px solid #5562d9;
- padding:14px;
- border-radius:12px;
- margin-top:18px;
+.info-section {
+  margin-bottom: 18px;
+  padding: 20px 18px;
+
+  border: 1px solid #e8eaf0;
+  border-radius: 16px;
+  background: var(--section-bg);
 }
 
-.conclusion h3{
- margin:0 0 8px;
- font-size:15px;
+.section-title {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+
+  margin: 0 0 16px;
+
+  color: var(--navy);
+  font-size: 17px;
+  font-weight: 700;
 }
 
-.conclusion p{
- margin:0;
- font-size:12px;
- line-height:1.7;
+.section-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 42px;
+  height: 42px;
+  flex-shrink: 0;
+
+  border-radius: 12px;
+
+  background: linear-gradient(145deg, #f4ead4, #fffaf0);
+  font-size: 22px;
 }
 
-/* アニメーション */
-.fade{
- opacity:0;
- transform:translateY(20px);
- animation:fadeUp .6s ease forwards;
+.check-list {
+  display: grid;
+  gap: 10px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
 }
 
-.s1{animation-delay:.1s;}
-.s2{animation-delay:.2s;}
-.s3{animation-delay:.3s;}
-.s4{animation-delay:.4s;}
-.s5{animation-delay:.5s;}
-.s6{animation-delay:.6s;}
+.check-item {
+  position: relative;
+  padding: 13px 14px 13px 42px;
 
-@keyframes fadeUp{
- to{
-   opacity:1;
-   transform:translateY(0);
- }
+  border: 1px solid var(--border);
+  border-radius: 11px;
+  background: #ffffff;
+
+  color: #40454e;
+  font-size: 13px;
+  line-height: 1.8;
+}
+
+.check-item::before {
+  content: "✓";
+  position: absolute;
+  left: 14px;
+  top: 13px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 19px;
+  height: 19px;
+
+  border-radius: 50%;
+
+  color: #ffffff;
+  background: var(--navy);
+
+  font-size: 11px;
+  font-weight: bold;
+}
+
+.notice {
+  margin-bottom: 18px;
+  padding: 16px 17px;
+
+  border: 1px solid var(--note-border);
+  border-radius: 13px;
+  background: var(--note-bg);
+
+  color: #68551c;
+  font-size: 12px;
+  line-height: 1.85;
+}
+
+.warning {
+  margin-bottom: 18px;
+  padding: 18px;
+
+  border: 1px solid var(--alert-border);
+  border-radius: 14px;
+  background: var(--alert-bg);
+}
+
+.warning-title {
+  margin: 0 0 9px;
+
+  color: #8b4138;
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.warning-text {
+  margin: 0;
+
+  color: #6d4c47;
+  font-size: 13px;
+  line-height: 1.9;
+}
+
+.timeline {
+  display: grid;
+  gap: 12px;
+}
+
+.timeline-card {
+  padding: 16px;
+
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: #ffffff;
+}
+
+.timeline-label {
+  margin: 0 0 7px;
+  color: var(--navy);
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.timeline-text {
+  margin: 0;
+  color: #5f6570;
+  font-size: 12.5px;
+  line-height: 1.8;
+}
+
+.conclusion {
+  margin-top: 22px;
+  padding: 18px;
+
+  border: 1px solid var(--note-border);
+  border-radius: 14px;
+  background: var(--note-bg);
+}
+
+.conclusion-title {
+  margin: 0 0 10px;
+  color: var(--navy);
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.conclusion-text {
+  margin: 0;
+  color: #5e5435;
+  font-size: 13px;
+  line-height: 1.9;
+}
+
+.conclusion-text strong {
+  color: var(--navy);
+}
+
+.back-area {
+  margin-top: 24px;
+  text-align: center;
+}
+
+.back-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  min-height: 48px;
+  padding: 0 22px;
+
+  border: 1px solid var(--navy);
+  border-radius: 12px;
+
+  color: var(--navy);
+  background: #ffffff;
+
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: 700;
+
+  transition:
+    background 0.2s,
+    color 0.2s,
+    transform 0.2s;
+}
+
+.back-button:hover {
+  color: #ffffff;
+  background: var(--navy);
+  transform: translateY(-1px);
+}
+
+.footer-message {
+  margin-top: 24px;
+  padding-top: 20px;
+
+  border-top: 1px solid #eceef2;
+
+  color: #888d96;
+  text-align: center;
+  font-size: 11px;
+  line-height: 1.9;
+}
+
+.brand-message {
+  margin: 10px 0 0;
+
+  color: var(--navy);
+  font-family:
+    "Yu Mincho",
+    "Hiragino Mincho ProN",
+    serif;
+
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.fade {
+  opacity: 0;
+  transform: translateY(14px);
+  animation: fadeUp 0.55s ease forwards;
+}
+
+.step1 { animation-delay: 0.05s; }
+.step2 { animation-delay: 0.10s; }
+.step3 { animation-delay: 0.15s; }
+.step4 { animation-delay: 0.20s; }
+
+@keyframes fadeUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 520px) {
+  body {
+    padding: 12px 9px 22px;
+  }
+
+  .container {
+    border-radius: 16px;
+  }
+
+  .header {
+    padding: 24px 16px 22px;
+  }
+
+  .company-logo img {
+    max-width: 360px;
+  }
+
+  .page-title {
+    font-size: 22px;
+  }
+
+  .page-description {
+    font-size: 12px;
+  }
+
+  .content {
+    padding: 18px 14px 22px;
+  }
+
+  .info-section {
+    padding: 17px 14px;
+    border-radius: 13px;
+  }
+
+  .section-title {
+    font-size: 15px;
+  }
+
+  .check-item,
+  .warning-text,
+  .conclusion-text {
+    font-size: 12.5px;
+  }
+}
+
+@media (max-width: 360px) {
+  .company-logo img {
+    max-width: 315px;
+  }
+
+  .page-title {
+    font-size: 20px;
+  }
+
+  .info-section {
+    padding: 15px 12px;
+  }
 }
 </style>
 </head>
@@ -142,84 +456,139 @@ body{
 <body>
 
 <div class="container">
-<div class="card">
 
-<a href="index2.html" class="back">← 戻る</a>
+  <header class="header">
 
-<div class="title fade">
-🌐 物件が掲載されるまで〜された後
-</div>
+    <div class="company-logo">
+      <img src="./logo.png" alt="株式会社RH Rich Happiness">
+    </div>
 
-<div class="lead fade s1">
-情報流通の仕組みに記載の通り、<br>
-オーナー様 → 管理会社さん → 不動産流通機構 → 株式会社RH → SUUMOなど情報サイト
-という順番で物件は掲載されます。<br><br>
+    <h1 class="page-title">物件が掲載されるまでの流れ</h1>
 
-ただし、仲介会社がネット掲載するにはいくつかの確認工程があります。
-</div>
+    <p class="page-description">
+      空室情報が出てから掲載・募集終了までの<br>
+      一般的な流れをご案内します。
+    </p>
 
+  </header>
 
-<div class="check fade s2">
+  <main class="content">
 
-<div>✔ インターネットへの掲載確認（掲載できない物件もあります）</div>
+    <div class="intro-box">
+      物件情報は、オーナー様から管理会社へ募集依頼が入り、
+      不動産会社へ共有されたあと、内容を確認・編集してポータルサイトへ掲載されます。
+      そのため、空室情報が出てから掲載されるまでに時間差が生じることがあります。
+    </div>
 
-<div>✔ 賃貸条件の確認（お家賃・初期費用など）</div>
+    <section class="info-section fade step1">
 
-<div>✔ 写真撮影（お部屋の写真は私たちが撮りに行っています）</div>
+      <h2 class="section-title">
+        <span class="section-icon">📝</span>
+        掲載前に行う主な確認
+      </h2>
 
-<div>✔ 情報の入力（築年数・㎡数など）</div>
+      <ul class="check-list">
 
-</div>
+        <li class="check-item">
+          インターネットへ掲載できる物件かどうかの確認
+        </li>
 
+        <li class="check-item">
+          賃料・管理費・初期費用・入居条件などの確認
+        </li>
 
-<div class="alert fade s3">
-これらの確認・編集・入力作業を行ってからインターネット掲載されます。<br><br>
+        <li class="check-item">
+          外観・共用部・室内などの写真撮影
+        </li>
 
-物件によっては、空室情報が出てからお客様の手元に届くまで
-最長1週間かかることもあります。
-</div>
+        <li class="check-item">
+          築年数・間取り・専有面積・設備情報などの入力
+        </li>
 
+      </ul>
 
-<div class="box fade s4">
-<h3>⚠ SUUMO掲載後が一番の問題</h3>
-<p>
-SUUMOには、お申込が入ったら物件情報が自動で消える仕組みがありません。<br><br>
+    </section>
 
-不動産会社が週1回、1件ずつ募集状況を確認し、
-終了していれば情報を落とすルールになっています。
-</p>
-</div>
+    <div class="notice fade step2">
+      こうした確認や入力作業を行ったうえで掲載されるため、
+      物件によっては空室情報が出てからポータルサイトへ掲載されるまで、
+      数日から1週間程度かかる場合があります。
+    </div>
 
+    <section class="warning fade step3">
 
-<div class="box fade s5">
-<h3>⏳ タイムラグは2回あります</h3>
-<p>
-① 空室情報が出てからネット掲載されるまでのタイムラグ<br><br>
+      <h2 class="warning-title">⚠ 掲載中でも募集が終了している場合があります</h2>
 
-② 募集終了後もSUUMOに情報が残るタイムラグ
-</p>
-</div>
+      <p class="warning-text">
+        ポータルサイトの情報は、申込みが入った瞬間に自動で消えるとは限りません。
+        掲載している不動産会社が募集状況を確認し、終了している場合に情報を削除するため、
+        お問い合わせ時にはすでに募集が終了していることがあります。
+      </p>
 
+    </section>
 
-<div class="conclusion fade s6">
-<h3>⭐ 結論</h3>
+    <section class="info-section fade step4">
 
-<p>
-物件がインターネットに掲載されるまでにタイムラグが発生します。<br>
-さらに掲載後も更新が即時ではなく、情報が残っているケースがあります。<br><br>
+      <h2 class="section-title">
+        <span class="section-icon">⏳</span>
+        情報には2つのタイムラグがあります
+      </h2>
 
-また、SUUMOは広告媒体のため、デメリット情報はあまり載っていません。<br>
-事故物件・線路沿いなども含め、ネットだけでは判断できない情報があります。<br><br>
+      <div class="timeline">
 
-参考までにSUUMOを見ることは良いですが、
-実際のお部屋探しは私たちにお任せいただければ、
-メリット・デメリット含め全てお伝えしますので
-安心してお探しいただけます。
-</p>
+        <div class="timeline-card">
+          <p class="timeline-label">① 募集開始から掲載まで</p>
+          <p class="timeline-text">
+            空室情報が出てから、確認・写真撮影・入力作業を経て掲載されるまでの時間差です。
+          </p>
+        </div>
 
-</div>
+        <div class="timeline-card">
+          <p class="timeline-label">② 募集終了から掲載終了まで</p>
+          <p class="timeline-text">
+            お申込みが入ったあとも、掲載情報が削除されるまで一定の時間がかかる場合があります。
+          </p>
+        </div>
 
-</div>
+      </div>
+
+    </section>
+
+    <section class="conclusion">
+
+      <h2 class="conclusion-title">⭐ お部屋探しで大切なこと</h2>
+
+      <p class="conclusion-text">
+        ポータルサイトは物件を探すうえで便利ですが、
+        掲載情報だけでは最新の募集状況や、周辺環境・騒音・日当たりなどを
+        判断しにくい場合があります。<br><br>
+
+        <strong>気になる物件がございましたら、掲載情報だけで判断せず、
+        まずは空室状況をご確認ください。</strong><br><br>
+
+        株式会社RHでは、募集状況を確認したうえで、
+        物件のメリット・注意点も含めてご案内いたします。
+      </p>
+
+    </section>
+
+    <div class="back-area">
+      <a href="index2.html" class="back-button">← お役立ち情報へ戻る</a>
+    </div>
+
+    <footer class="footer-message">
+      <p>
+        掲載情報や空室状況についてご不明な点がございましたら、<br>
+        担当スタッフまでお気軽にご確認ください。
+      </p>
+
+      <p class="brand-message">
+        Rich Happiness ― 豊かで幸せな暮らしのお手伝い
+      </p>
+    </footer>
+
+  </main>
+
 </div>
 
 </body>
