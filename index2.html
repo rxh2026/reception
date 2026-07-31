@@ -3,79 +3,440 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>株式会社RH</title>
+
+<title>お部屋探しのお役立ち情報｜株式会社RH</title>
 
 <style>
+:root {
+  --navy: #10244a;
+  --navy-dark: #07152f;
+  --gold: #c78b19;
+  --gold-light: #e1b85d;
+  --text: #2c2c2c;
+  --sub-text: #6d6d6d;
+  --border: #e2e5eb;
+  --card-bg: #ffffff;
+  --section-bg: #f5f6f8;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, sans-serif;
-  background: linear-gradient(135deg,#1c1c2e,#2a2f4f,#3b3f6b);
+  min-height: 100vh;
+  padding: 28px 16px;
+
+  font-family:
+    -apple-system,
+    BlinkMacSystemFont,
+    "Helvetica Neue",
+    "Yu Gothic",
+    "Hiragino Kaku Gothic ProN",
+    Meiryo,
+    sans-serif;
+
+  color: var(--text);
+
+  background:
+    radial-gradient(
+      circle at top,
+      rgba(255,255,255,0.12),
+      transparent 35%
+    ),
+    linear-gradient(
+      145deg,
+      #111827 0%,
+      #17264b 48%,
+      #090f1d 100%
+    );
 }
 
-/* レイアウト */
+/* 全体カード */
 .container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
+  width: 100%;
+  max-width: 520px;
+  margin: 0 auto;
+
+  background: var(--card-bg);
+  border-radius: 22px;
+  overflow: hidden;
+
+  box-shadow:
+    0 24px 60px rgba(0,0,0,0.32),
+    0 2px 8px rgba(0,0,0,0.12);
 }
 
-/* カード */
-.card {
-  background: #f7f7f7;
-  width: 90%;
-  max-width: 400px;
-  padding: 30px;
-  border-radius: 20px;
+/* 上部 */
+.header {
+  position: relative;
+  padding: 28px 24px 25px;
   text-align: center;
+
+  background:
+    linear-gradient(
+      180deg,
+      #ffffff 0%,
+      #fafafa 100%
+    );
+
+  border-bottom: 1px solid #eceef2;
+}
+
+.header::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+
+  width: 72px;
+  height: 3px;
+
+  transform: translateX(-50%);
+  border-radius: 99px;
+
+  background:
+    linear-gradient(
+      90deg,
+      var(--gold),
+      var(--gold-light)
+    );
 }
 
 /* ロゴ */
-.logo {
-  font-size: 22px;
-  font-weight: bold;
-  margin-bottom: 20px;
+.company-logo {
+  margin: 0 auto 23px;
+}
+
+.company-logo img {
+  display: block;
+  width: 100%;
+  max-width: 410px;
+  height: auto;
+  margin: 0 auto;
+}
+
+/* 見出し */
+.page-title {
+  margin: 0;
+
+  color: var(--navy);
+
+  font-family:
+    "Yu Mincho",
+    "Hiragino Mincho ProN",
+    "Times New Roman",
+    serif;
+
+  font-size: 25px;
+  font-weight: 700;
+  letter-spacing: 0.07em;
+}
+
+.page-description {
+  margin: 13px 0 0;
+
+  color: var(--sub-text);
+  font-size: 13px;
+  line-height: 1.9;
+}
+
+/* 本文 */
+.content {
+  padding: 24px;
+}
+
+/* 説明エリア */
+.guide-box {
+  margin-bottom: 24px;
+  padding: 18px;
+
+  background: var(--section-bg);
+  border: 1px solid #e8eaf0;
+  border-radius: 15px;
+}
+
+.guide-title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  margin: 0 0 13px;
+
+  color: var(--navy);
+  font-size: 15px;
+  font-weight: 700;
+}
+
+.guide-title::before {
+  content: "";
+  display: block;
+
+  width: 5px;
+  height: 21px;
+
+  border-radius: 99px;
+
+  background:
+    linear-gradient(
+      180deg,
+      var(--gold-light),
+      var(--gold)
+    );
+}
+
+.guide-text {
+  margin: 0;
+
+  color: #656a73;
+  font-size: 12px;
+  line-height: 1.9;
 }
 
 /* メニュー */
-.menu {
-  display: block;
-  margin-top: 15px;
-  padding: 14px;
-  background: #fff;
-  border-radius: 10px;
+.menu-list {
+  display: grid;
+  gap: 14px;
+}
+
+/* カードリンク */
+.menu-card {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+
+  min-height: 92px;
+  padding: 17px 44px 17px 17px;
+
+  border: 1px solid var(--border);
+  border-radius: 15px;
+
+  color: var(--text);
+  background: #ffffff;
+
   text-decoration: none;
-  color: #000;
-  transition: 0.3s;
+
+  box-shadow:
+    0 5px 15px rgba(16,36,74,0.06);
+
+  transition:
+    transform 0.2s,
+    box-shadow 0.2s,
+    border-color 0.2s;
 }
 
-/* ホバー */
-.menu:hover {
-  transform: translateY(-3px);
+.menu-card:hover {
+  transform: translateY(-2px);
+  border-color: #c9a558;
+
+  box-shadow:
+    0 11px 22px rgba(16,36,74,0.12);
 }
 
-/* タップ */
-.menu:active {
-  transform: scale(0.97);
+.menu-card:active {
+  transform: scale(0.985);
+}
+
+/* アイコン */
+.menu-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+
+  width: 48px;
+  height: 48px;
+
+  border-radius: 13px;
+
+  background:
+    linear-gradient(
+      145deg,
+      #f4ead4,
+      #fffaf0
+    );
+
+  font-size: 25px;
+}
+
+/* カード本文 */
+.menu-content {
+  min-width: 0;
+  text-align: left;
+}
+
+.menu-title {
+  margin: 0 0 5px;
+
+  color: var(--navy);
+  font-size: 15px;
+  font-weight: 700;
+  line-height: 1.5;
+}
+
+.menu-description {
+  margin: 0;
+
+  color: #777c85;
+  font-size: 11px;
+  line-height: 1.7;
+}
+
+/* 矢印 */
+.menu-arrow {
+  position: absolute;
+  right: 18px;
+  top: 50%;
+
+  transform: translateY(-50%);
+
+  color: var(--gold);
+  font-size: 25px;
+  font-weight: 300;
+}
+
+/* 下部案内 */
+.footer-message {
+  margin-top: 25px;
+  padding-top: 22px;
+
+  border-top: 1px solid #eceef2;
+
+  color: #888d96;
+  text-align: center;
+  font-size: 11px;
+  line-height: 1.9;
+}
+
+.brand-message {
+  margin: 11px 0 0;
+
+  color: var(--navy);
+  font-family:
+    "Yu Mincho",
+    "Hiragino Mincho ProN",
+    serif;
+
+  font-size: 12px;
+  font-weight: 600;
 }
 
 /* フェードイン */
 .fade {
   opacity: 0;
-  transform: translateY(20px);
+  transform: translateY(16px);
   animation: fadeUp 0.6s ease forwards;
 }
 
-/* 順番に出る */
-.menu:nth-of-type(1) { animation-delay: 0.1s; }
-.menu:nth-of-type(2) { animation-delay: 0.2s; }
-.menu:nth-of-type(3) { animation-delay: 0.3s; }
-.menu:nth-of-type(4) { animation-delay: 0.4s; }
+.menu-card:nth-child(1) {
+  animation-delay: 0.08s;
+}
+
+.menu-card:nth-child(2) {
+  animation-delay: 0.16s;
+}
+
+.menu-card:nth-child(3) {
+  animation-delay: 0.24s;
+}
+
+.menu-card:nth-child(4) {
+  animation-delay: 0.32s;
+}
 
 @keyframes fadeUp {
   to {
     opacity: 1;
     transform: translateY(0);
+  }
+}
+
+/* スマホ */
+@media (max-width: 520px) {
+  body {
+    padding: 12px 9px 22px;
+  }
+
+  .container {
+    border-radius: 16px;
+  }
+
+  .header {
+    padding: 24px 16px 22px;
+  }
+
+  .company-logo img {
+    max-width: 360px;
+  }
+
+  .page-title {
+    font-size: 22px;
+  }
+
+  .page-description {
+    font-size: 12px;
+  }
+
+  .content {
+    padding: 18px 14px 22px;
+  }
+
+  .guide-box {
+    padding: 16px 14px;
+  }
+
+  .menu-card {
+    min-height: 90px;
+    padding:
+      15px 39px
+      15px 13px;
+
+    gap: 12px;
+    border-radius: 13px;
+  }
+
+  .menu-icon {
+    width: 45px;
+    height: 45px;
+    font-size: 23px;
+  }
+
+  .menu-title {
+    font-size: 14px;
+  }
+
+  .menu-description {
+    font-size: 10.5px;
+  }
+
+  .menu-arrow {
+    right: 14px;
+  }
+}
+
+@media (max-width: 360px) {
+  .company-logo img {
+    max-width: 315px;
+  }
+
+  .page-title {
+    font-size: 20px;
+  }
+
+  .menu-card {
+    padding-left: 11px;
+    gap: 10px;
+  }
+
+  .menu-icon {
+    width: 42px;
+    height: 42px;
   }
 }
 </style>
@@ -84,16 +445,173 @@ body {
 <body>
 
 <div class="container">
-  <div class="card">
 
-    <div class="logo fade">株式会社RH</div>
+  <header class="header">
 
-    <a href="flow.html" class="menu fade">🏠 申込から入居までの流れ</a>
-    <a href="guarantee.html" class="menu fade">💳 保証会社とは</a>
-    <a href="system.html" class="menu fade">📊 物件情報流通の仕組み</a>
-    <a href="listing.html" class="menu fade">🌐 掲載までの流れ</a>
+    <div class="company-logo">
+      <img
+        src="./logo.png"
+        alt="株式会社RH Rich Happiness"
+      >
+    </div>
 
-  </div>
+    <h1 class="page-title">
+      お部屋探しのお役立ち情報
+    </h1>
+
+    <p class="page-description">
+      お申込みからご入居までの流れや、<br>
+      お部屋探しの仕組みを分かりやすくまとめています。
+    </p>
+
+  </header>
+
+  <main class="content">
+
+    <section class="guide-box fade">
+
+      <h2 class="guide-title">
+        このページで分かること
+      </h2>
+
+      <p class="guide-text">
+        お申込み後の流れ、保証会社の役割、
+        不動産会社が物件をご紹介できる仕組みなど、
+        お部屋探しの際に知っておくと安心できる情報を掲載しています。
+      </p>
+
+    </section>
+
+    <nav
+      class="menu-list"
+      aria-label="お役立ち情報メニュー"
+    >
+
+      <a
+        href="flow.html"
+        class="menu-card fade"
+      >
+
+        <div class="menu-icon">
+          🏠
+        </div>
+
+        <div class="menu-content">
+
+          <h2 class="menu-title">
+            申込から入居までの流れ
+          </h2>
+
+          <p class="menu-description">
+            お申込み・入居審査・ご契約・鍵のお渡しまでをご案内します。
+          </p>
+
+        </div>
+
+        <span class="menu-arrow">
+          ›
+        </span>
+
+      </a>
+
+      <a
+        href="guarantee.html"
+        class="menu-card fade"
+      >
+
+        <div class="menu-icon">
+          💳
+        </div>
+
+        <div class="menu-content">
+
+          <h2 class="menu-title">
+            保証会社とは
+          </h2>
+
+          <p class="menu-description">
+            保証会社の役割や、初回保証料などについてご説明します。
+          </p>
+
+        </div>
+
+        <span class="menu-arrow">
+          ›
+        </span>
+
+      </a>
+
+      <a
+        href="system.html"
+        class="menu-card fade"
+      >
+
+        <div class="menu-icon">
+          📊
+        </div>
+
+        <div class="menu-content">
+
+          <h2 class="menu-title">
+            物件情報流通の仕組み
+          </h2>
+
+          <p class="menu-description">
+            他社掲載の物件もご紹介できる理由を分かりやすく解説します。
+          </p>
+
+        </div>
+
+        <span class="menu-arrow">
+          ›
+        </span>
+
+      </a>
+
+      <a
+        href="listing.html"
+        class="menu-card fade"
+      >
+
+        <div class="menu-icon">
+          🌐
+        </div>
+
+        <div class="menu-content">
+
+          <h2 class="menu-title">
+            物件が掲載されるまでの流れ
+          </h2>
+
+          <p class="menu-description">
+            募集開始からSUUMOなどへ掲載されるまでの仕組みをご案内します。
+          </p>
+
+        </div>
+
+        <span class="menu-arrow">
+          ›
+        </span>
+
+      </a>
+
+    </nav>
+
+    <footer class="footer-message">
+
+      <p>
+        ご不明な点がございましたら、<br>
+        担当スタッフまでお気軽にご相談ください。
+      </p>
+
+      <p class="brand-message">
+        Rich Happiness ― 豊かで幸せな暮らしのお手伝い
+      </p>
+
+    </footer>
+
+  </main>
+
 </div>
 
 </body>
