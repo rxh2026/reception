@@ -3,135 +3,410 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>物件情報流通の仕組み | 株式会社RH</title>
+
+<title>物件情報が共有される仕組み｜株式会社RH</title>
 
 <style>
-body{
- margin:0;
- font-family:-apple-system,BlinkMacSystemFont,sans-serif;
- background:linear-gradient(135deg,#1c1c2e,#2a2f4f,#3b3f6b);
+:root {
+  --navy: #10244a;
+  --navy-dark: #07152f;
+  --gold: #c78b19;
+  --gold-light: #e1b85d;
+  --text: #2c2c2c;
+  --sub-text: #6d6d6d;
+  --border: #e2e5eb;
+  --card-bg: #ffffff;
+  --section-bg: #f5f6f8;
+  --note-bg: #fff9eb;
+  --note-border: #e6c977;
 }
 
-.container{
- display:flex;
- justify-content:center;
- padding:30px 0;
+* {
+  box-sizing: border-box;
 }
 
-.card{
- background:#f7f7f7;
- width:90%;
- max-width:440px;
- padding:24px;
- border-radius:20px;
+html {
+  scroll-behavior: smooth;
 }
 
-.back{
- text-decoration:none;
- color:#555;
+body {
+  margin: 0;
+  min-height: 100vh;
+  padding: 28px 16px;
+
+  font-family:
+    -apple-system,
+    BlinkMacSystemFont,
+    "Helvetica Neue",
+    "Yu Gothic",
+    "Hiragino Kaku Gothic ProN",
+    Meiryo,
+    sans-serif;
+
+  color: var(--text);
+
+  background:
+    radial-gradient(circle at top, rgba(255,255,255,0.12), transparent 35%),
+    linear-gradient(145deg, #111827 0%, #17264b 48%, #090f1d 100%);
 }
 
-.title{
- text-align:center;
- font-size:18px;
- font-weight:bold;
- margin:10px 0 18px;
+.container {
+  width: 100%;
+  max-width: 560px;
+  margin: 0 auto;
+
+  background: var(--card-bg);
+  border-radius: 22px;
+  overflow: hidden;
+
+  box-shadow:
+    0 24px 60px rgba(0,0,0,0.32),
+    0 2px 8px rgba(0,0,0,0.12);
 }
 
-.box{
- background:#fff;
- padding:14px;
- border-radius:12px;
- margin-bottom:8px;
- transition:.3s;
+.header {
+  position: relative;
+  padding: 28px 24px 25px;
+  text-align: center;
+
+  background: linear-gradient(180deg, #ffffff 0%, #fafafa 100%);
+  border-bottom: 1px solid #eceef2;
 }
 
-.box:hover{
- transform:translateY(-3px);
+.header::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+
+  width: 72px;
+  height: 3px;
+
+  transform: translateX(-50%);
+  border-radius: 99px;
+
+  background: linear-gradient(90deg, var(--gold), var(--gold-light));
 }
 
-.box:active{
- transform:scale(.98);
+.company-logo {
+  margin: 0 auto 23px;
 }
 
-.box h3{
- margin:0 0 6px;
- font-size:15px;
+.company-logo img {
+  display: block;
+  width: 100%;
+  max-width: 410px;
+  height: auto;
+  margin: 0 auto;
 }
 
-.box p{
- margin:0;
- font-size:12px;
- line-height:1.65;
- color:#555;
+.page-title {
+  margin: 0;
+
+  color: var(--navy);
+
+  font-family:
+    "Yu Mincho",
+    "Hiragino Mincho ProN",
+    "Times New Roman",
+    serif;
+
+  font-size: 25px;
+  font-weight: 700;
+  letter-spacing: 0.07em;
 }
 
-.arrow{
- text-align:center;
- font-size:20px;
- color:#888;
- margin:6px 0;
+.page-description {
+  margin: 13px 0 0;
+
+  color: var(--sub-text);
+  font-size: 13px;
+  line-height: 1.9;
 }
 
-/* 分岐 */
-.split{
- display:grid;
- grid-template-columns:1fr 1fr;
- gap:10px;
- margin-top:8px;
+.content {
+  padding: 24px;
 }
 
-.mini{
- background:#fff;
- padding:12px;
- border-radius:10px;
+.intro-box {
+  margin-bottom: 22px;
+  padding: 17px 18px;
+
+  border: 1px solid #e8eaf0;
+  border-radius: 14px;
+  background: var(--section-bg);
+
+  color: #656a73;
+  font-size: 12px;
+  line-height: 1.85;
 }
 
-.mini h4{
- margin:0 0 6px;
- font-size:13px;
+.flow-list {
+  display: grid;
+  gap: 0;
 }
 
-.mini p{
- margin:0;
- font-size:12px;
- line-height:1.5;
- color:#555;
+.flow-step {
+  position: relative;
+  padding: 19px 18px;
+
+  border: 1px solid var(--border);
+  border-radius: 15px;
+  background: #ffffff;
+
+  box-shadow: 0 5px 15px rgba(16,36,74,0.05);
 }
 
-/* 結論 */
-.conclusion{
- margin-top:18px;
- background:#eef2ff;
- padding:14px;
- border-radius:12px;
- border-left:4px solid #5562d9;
+.step-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 10px;
 }
 
-.conclusion h3{
- margin:0 0 8px;
- font-size:15px;
+.step-number {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 38px;
+  height: 38px;
+  flex-shrink: 0;
+
+  border-radius: 50%;
+
+  color: #ffffff;
+  background: linear-gradient(135deg, var(--navy), var(--navy-dark));
+
+  font-size: 15px;
+  font-weight: 700;
 }
 
-/* アニメーション */
-.fade{
- opacity:0;
- transform:translateY(20px);
- animation:fadeUp .6s ease forwards;
+.step-title {
+  margin: 0;
+  color: var(--navy);
+  font-size: 16px;
+  font-weight: 700;
 }
 
-.s1{animation-delay:.1s;}
-.s2{animation-delay:.2s;}
-.s3{animation-delay:.3s;}
-.s4{animation-delay:.4s;}
-.s5{animation-delay:.5s;}
-.s6{animation-delay:.6s;}
+.step-text {
+  margin: 0;
+  color: #555b64;
+  font-size: 13px;
+  line-height: 1.9;
+}
 
-@keyframes fadeUp{
- to{
-   opacity:1;
-   transform:translateY(0);
- }
+.flow-arrow {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  height: 34px;
+
+  color: var(--gold);
+  font-size: 24px;
+  font-weight: 300;
+}
+
+.split-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 11px;
+  margin-top: 13px;
+}
+
+.split-card {
+  padding: 14px;
+
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: #fafafa;
+}
+
+.split-title {
+  margin: 0 0 7px;
+  color: var(--navy);
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.split-text {
+  margin: 0;
+  color: #626872;
+  font-size: 11.5px;
+  line-height: 1.75;
+}
+
+.conclusion {
+  margin-top: 22px;
+  padding: 18px;
+
+  border: 1px solid var(--note-border);
+  border-radius: 14px;
+  background: var(--note-bg);
+}
+
+.conclusion-title {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+
+  margin: 0 0 10px;
+
+  color: var(--navy);
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.conclusion-text {
+  margin: 0;
+  color: #5e5435;
+  font-size: 13px;
+  line-height: 1.9;
+}
+
+.conclusion-text strong {
+  color: var(--navy);
+}
+
+.back-area {
+  margin-top: 24px;
+  text-align: center;
+}
+
+.back-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  min-height: 48px;
+  padding: 0 22px;
+
+  border: 1px solid var(--navy);
+  border-radius: 12px;
+
+  color: var(--navy);
+  background: #ffffff;
+
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: 700;
+
+  transition:
+    background 0.2s,
+    color 0.2s,
+    transform 0.2s;
+}
+
+.back-button:hover {
+  color: #ffffff;
+  background: var(--navy);
+  transform: translateY(-1px);
+}
+
+.footer-message {
+  margin-top: 24px;
+  padding-top: 20px;
+
+  border-top: 1px solid #eceef2;
+
+  color: #888d96;
+  text-align: center;
+  font-size: 11px;
+  line-height: 1.9;
+}
+
+.brand-message {
+  margin: 10px 0 0;
+
+  color: var(--navy);
+  font-family:
+    "Yu Mincho",
+    "Hiragino Mincho ProN",
+    serif;
+
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.fade {
+  opacity: 0;
+  transform: translateY(14px);
+  animation: fadeUp 0.55s ease forwards;
+}
+
+.step1 { animation-delay: 0.05s; }
+.step2 { animation-delay: 0.10s; }
+.step3 { animation-delay: 0.15s; }
+.step4 { animation-delay: 0.20s; }
+.step5 { animation-delay: 0.25s; }
+
+@keyframes fadeUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 520px) {
+  body {
+    padding: 12px 9px 22px;
+  }
+
+  .container {
+    border-radius: 16px;
+  }
+
+  .header {
+    padding: 24px 16px 22px;
+  }
+
+  .company-logo img {
+    max-width: 360px;
+  }
+
+  .page-title {
+    font-size: 22px;
+  }
+
+  .page-description {
+    font-size: 12px;
+  }
+
+  .content {
+    padding: 18px 14px 22px;
+  }
+
+  .flow-step {
+    padding: 17px 14px;
+    border-radius: 13px;
+  }
+
+  .step-title {
+    font-size: 15px;
+  }
+
+  .step-text {
+    font-size: 12.5px;
+  }
+
+  .split-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 360px) {
+  .company-logo img {
+    max-width: 315px;
+  }
+
+  .page-title {
+    font-size: 20px;
+  }
+
+  .flow-step {
+    padding: 15px 12px;
+  }
 }
 </style>
 </head>
@@ -139,83 +414,158 @@ body{
 <body>
 
 <div class="container">
-<div class="card">
 
-<a href="index2.html" class="back">← 戻る</a>
+  <header class="header">
 
-<div class="title fade">📊 物件情報流通の仕組み</div>
+    <div class="company-logo">
+      <img src="./logo.png" alt="株式会社RH Rich Happiness">
+    </div>
 
-<div class="box fade s1">
-<h3>① オーナー様</h3>
-<p>
-物件の空室が出た際に、管理会社さんへ募集依頼をかけます。<br>
-オーナー様が直接入居者様を募ることはほぼありません。
-</p>
-</div>
+    <h1 class="page-title">物件情報が共有される仕組み</h1>
 
-<div class="arrow fade s1">↓</div>
+    <p class="page-description">
+      他社に掲載されている物件も<br>
+      ご紹介できる理由をご案内します。
+    </p>
 
-<div class="box fade s2">
-<h3>② 管理会社さん</h3>
-<p>
-お部屋や共用部などの管理を行う会社さんです。<br>
-大手だと三井不動産、東急さん、野村不動産さんなど。
-</p>
-</div>
+  </header>
 
-<div class="arrow fade s2">↓</div>
+  <main class="content">
 
-<div class="box fade s3">
-<h3>③ 不動産流通機構（REINS／レインズ）</h3>
-<p>
-世に出回っている物件情報の9割以上がこのサイトに集約されます。<br>
-登録された物件情報は各不動産会社さんで共有されます。
-</p>
-</div>
+    <div class="intro-box">
+      賃貸物件の情報は、管理会社から複数の不動産会社へ共有される仕組みになっています。
+      そのため、掲載している会社と実際にご案内する会社が異なることも珍しくありません。
+    </div>
 
-<div class="arrow fade s3">↓</div>
+    <div class="flow-list">
 
-<div class="box fade s4">
-<h3>④ 株式会社RH（不動産仲介会社）</h3>
-<p>
-お客様がスーモで検索するのと同じように、条件を入れて物件情報を検索します。
-</p>
-</div>
+      <section class="flow-step fade step1">
 
-<div class="arrow fade s4">↓</div>
+        <div class="step-header">
+          <span class="step-number">1</span>
+          <h2 class="step-title">オーナー様が募集を依頼</h2>
+        </div>
 
-<div class="box fade s5">
-<h3>⑤ 情報提供（分岐）</h3>
+        <p class="step-text">
+          お部屋に空きが出た際、オーナー様が管理会社へ入居者募集を依頼します。
+          オーナー様が直接お客様を募集するケースは多くありません。
+        </p>
 
-<div class="split">
+      </section>
 
-<div class="mini">
-<h4>👤 お客様</h4>
-<p>
-スーモ等に掲載せず、直接お客様へ物件をご紹介。
-</p>
-</div>
+      <div class="flow-arrow">↓</div>
 
-<div class="mini">
-<h4>🌐 SUUMOなど情報サイト</h4>
-<p>
-お客様がご覧になるネットに物件掲載。
-</p>
-</div>
+      <section class="flow-step fade step2">
 
-</div>
+        <div class="step-header">
+          <span class="step-number">2</span>
+          <h2 class="step-title">管理会社が募集情報を作成</h2>
+        </div>
 
-</div>
+        <p class="step-text">
+          管理会社が賃料・設備・入居条件・内見方法などを確認し、
+          不動産会社が紹介できるよう募集情報を整えます。
+        </p>
 
-<div class="conclusion fade s6">
-<h3>⭐ 結論</h3>
-<p>
-どこの不動産会社さんに行ってもご紹介できる物件は変わりません。<br><br>
-他社さんで気になっている物件もまとめてご紹介可能です。ぜひお任せください。
-</p>
-</div>
+      </section>
 
-</div>
+      <div class="flow-arrow">↓</div>
+
+      <section class="flow-step fade step3">
+
+        <div class="step-header">
+          <span class="step-number">3</span>
+          <h2 class="step-title">不動産会社間で情報を共有</h2>
+        </div>
+
+        <p class="step-text">
+          募集情報は、不動産会社が利用する物件情報システムなどを通じて共有されます。
+          株式会社RHでも、共有された情報から空室状況や募集条件を確認します。
+        </p>
+
+      </section>
+
+      <div class="flow-arrow">↓</div>
+
+      <section class="flow-step fade step4">
+
+        <div class="step-header">
+          <span class="step-number">4</span>
+          <h2 class="step-title">お客様のご希望に合わせて検索</h2>
+        </div>
+
+        <p class="step-text">
+          家賃・エリア・間取り・駅からの距離などのご希望をもとに、
+          条件に近い物件をお探しします。
+        </p>
+
+      </section>
+
+      <div class="flow-arrow">↓</div>
+
+      <section class="flow-step fade step5">
+
+        <div class="step-header">
+          <span class="step-number">5</span>
+          <h2 class="step-title">お客様へ物件をご紹介</h2>
+        </div>
+
+        <p class="step-text">
+          確認した物件情報は、次のような形でお客様へご案内されます。
+        </p>
+
+        <div class="split-grid">
+
+          <div class="split-card">
+            <h3 class="split-title">👤 担当者から直接ご紹介</h3>
+            <p class="split-text">
+              ご希望条件をもとに、掲載前の物件やサイトで見つけにくい物件を含めてご提案します。
+            </p>
+          </div>
+
+          <div class="split-card">
+            <h3 class="split-title">🌐 ポータルサイトへ掲載</h3>
+            <p class="split-text">
+              SUUMOなどのサイトへ掲載され、お客様ご自身で検索できる状態になります。
+            </p>
+          </div>
+
+        </div>
+
+      </section>
+
+    </div>
+
+    <section class="conclusion">
+
+      <h2 class="conclusion-title">⭐ この仕組みのポイント</h2>
+
+      <p class="conclusion-text">
+        不動産会社によって、取り扱える物件がすべて同じとは限りませんが、
+        <strong>他社に掲載されている物件でも株式会社RHからご紹介できるケースが多くあります。</strong><br><br>
+        気になる物件がございましたら、URLやスクリーンショットをお送りください。
+        空室状況を確認し、ほかの候補とあわせてご提案いたします。
+      </p>
+
+    </section>
+
+    <div class="back-area">
+      <a href="index2.html" class="back-button">← お役立ち情報へ戻る</a>
+    </div>
+
+    <footer class="footer-message">
+      <p>
+        物件情報の仕組みや空室確認についてご不明な点がございましたら、<br>
+        担当スタッフまでお気軽にご確認ください。
+      </p>
+
+      <p class="brand-message">
+        Rich Happiness ― 豊かで幸せな暮らしのお手伝い
+      </p>
+    </footer>
+
+  </main>
+
 </div>
 
 </body>
