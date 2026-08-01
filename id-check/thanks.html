@@ -3,50 +3,22 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>送信完了</title>
-
+<title>送信完了｜株式会社RH</title>
 <style>
-body{
-font-family:"Yu Gothic",sans-serif;
-background:linear-gradient(135deg,#d2c3ff 0%,#bea8ff 45%,#a789f0 100%);
-display:flex;
-justify-content:center;
-align-items:center;
-height:100vh;
-margin:0;
-}
-
-.box{
-background:#fff;
-padding:50px;
-border-radius:24px;
-max-width:700px;
-text-align:center;
-box-shadow:0 8px 25px rgba(76,32,155,.15);
-}
-
-h1{
-color:#5b33b2;
-font-size:34px;
-margin-bottom:25px;
-}
-
-p{
-font-size:20px;
-line-height:1.8;
-}
+:root{--navy:#10244a;--gold:#c78b19;--gold-light:#e1b85d;--sub:#6d6d6d}
+*{box-sizing:border-box}
+body{margin:0;min-height:100vh;padding:22px 14px;display:flex;align-items:center;justify-content:center;font-family:-apple-system,BlinkMacSystemFont,"Helvetica Neue","Yu Gothic","Hiragino Kaku Gothic ProN",Meiryo,sans-serif;background:radial-gradient(circle at top,rgba(255,255,255,.12),transparent 35%),linear-gradient(145deg,#111827 0%,#17264b 48%,#090f1d 100%)}
+.card{width:100%;max-width:620px;padding:32px 24px;text-align:center;background:#fff;border-radius:20px;box-shadow:0 24px 60px rgba(0,0,0,.34)}
+.logo img{display:block;width:100%;max-width:410px;height:auto;margin:0 auto 24px}
+.check{width:64px;height:64px;margin:0 auto 18px;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-size:32px;font-weight:900;background:linear-gradient(135deg,var(--gold),var(--gold-light))}
+h1{margin:0;color:var(--navy);font-family:"Yu Mincho","Hiragino Mincho ProN","Times New Roman",serif;font-size:29px}
+p{margin:15px 0 0;color:var(--sub);font-size:14px;line-height:1.9}
+.notice{margin-top:22px;padding:16px;border-radius:12px;background:#f5f6f8;color:#5d626b;font-size:12px;line-height:1.8}
+.brand{margin-top:22px;color:var(--navy);font-family:"Yu Mincho","Hiragino Mincho ProN",serif;font-size:12px;font-weight:700}
+@media(max-width:520px){.card{padding:26px 16px;border-radius:16px}.logo img{max-width:350px}h1{font-size:23px}}
 </style>
 </head>
 <body>
-
-<div class="box">
-<h1>回答ありがとうございました。</h1>
-
-<p>
-送信完了した旨を担当者までご連絡ください。
-</p>
-
-</div>
-
+<div class="card"><div class="logo"><img src="../logo.png" alt="株式会社RH Rich Happiness"></div><div class="check">✓</div><h1>送信ありがとうございました</h1><p>お申込み情報と本人確認書類を受け付けました。<br>内容を確認後、担当者よりご連絡いたします。</p><div class="notice">送信が完了した旨を、担当者までお知らせください。<br>入力内容に不足や確認事項がある場合は、追加書類等をご案内することがあります。</div><div class="brand">Rich Happiness ― 豊かで幸せな暮らしのお手伝い</div></div>
 </body>
 </html>
