@@ -5,179 +5,479 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>賃貸申込フォーム｜株式会社RH</title>
 <style>
-:root{--navy:#10244a;--navy-dark:#07152f;--gold:#c78b19;--gold-light:#e1b85d;--text:#2c2c2c;--sub:#6d6d6d;--border:#e2e5eb;--bg:#f5f6f8;--danger:#b42318;--ok:#267447}
+:root{
+  --navy:#10244a;--navy-dark:#07152f;--gold:#c78b19;--gold-light:#e1b85d;
+  --text:#2c2c2c;--sub:#6d6d6d;--border:#e2e5eb;--bg:#f5f6f8;
+  --danger:#b42318;--ok:#267447
+}
 *{box-sizing:border-box}html{scroll-behavior:smooth}
-body{margin:0;color:var(--text);font-family:-apple-system,BlinkMacSystemFont,"Helvetica Neue","Yu Gothic","Hiragino Kaku Gothic ProN",Meiryo,sans-serif;background:radial-gradient(circle at top,rgba(255,255,255,.12),transparent 35%),linear-gradient(145deg,#111827 0%,#17264b 48%,#090f1d 100%)}
+body{
+  margin:0;color:var(--text);
+  font-family:-apple-system,BlinkMacSystemFont,"Helvetica Neue","Yu Gothic","Hiragino Kaku Gothic ProN",Meiryo,sans-serif;
+  background:radial-gradient(circle at top,rgba(255,255,255,.12),transparent 35%),linear-gradient(145deg,#111827 0%,#17264b 48%,#090f1d 100%)
+}
 .progress-fixed{position:sticky;top:0;z-index:1000;padding:10px 14px;background:rgba(7,21,47,.96);box-shadow:0 4px 16px rgba(0,0,0,.2)}
-.progress-inner{max-width:760px;margin:auto}.progress-top{display:flex;justify-content:space-between;gap:10px;margin-bottom:7px;color:#fff;font-size:12px;font-weight:700}
-.progress-track{height:8px;border-radius:99px;background:rgba(255,255,255,.2);overflow:hidden}.progress-fill{width:0;height:100%;border-radius:inherit;background:linear-gradient(90deg,var(--gold),var(--gold-light));transition:width .25s ease}
+.progress-inner{max-width:760px;margin:auto}
+.progress-top{display:flex;justify-content:space-between;gap:10px;margin-bottom:7px;color:#fff;font-size:12px;font-weight:700}
+.progress-track{height:8px;border-radius:99px;background:rgba(255,255,255,.2);overflow:hidden}
+.progress-fill{width:0;height:100%;border-radius:inherit;background:linear-gradient(90deg,var(--gold),var(--gold-light));transition:width .25s ease}
 .page{width:100%;max-width:760px;margin:0 auto;padding:22px 14px 40px}
 .hero,.section-card{background:#fff;border-radius:20px;box-shadow:0 18px 48px rgba(0,0,0,.24)}
-.hero{padding:28px 24px;text-align:center;margin-bottom:18px;overflow:hidden;position:relative}.hero::after{content:"";position:absolute;left:50%;bottom:0;transform:translateX(-50%);width:78px;height:3px;border-radius:99px;background:linear-gradient(90deg,var(--gold),var(--gold-light))}
+.hero{padding:28px 24px;text-align:center;margin-bottom:18px;overflow:hidden;position:relative}
+.hero::after{content:"";position:absolute;left:50%;bottom:0;transform:translateX(-50%);width:78px;height:3px;border-radius:99px;background:linear-gradient(90deg,var(--gold),var(--gold-light))}
 .logo img{display:block;width:100%;max-width:430px;height:auto;margin:0 auto 22px}
 h1{margin:0;color:var(--navy);font-family:"Yu Mincho","Hiragino Mincho ProN","Times New Roman",serif;font-size:29px;letter-spacing:.06em}
 .hero p{margin:12px 0 0;color:var(--sub);font-size:13px;line-height:1.9}
-.section-card{padding:24px;margin-bottom:16px}.section-head{display:flex;align-items:center;gap:12px;margin-bottom:18px}
+.section-card{padding:24px;margin-bottom:16px}
+.section-head{display:flex;align-items:center;gap:12px;margin-bottom:18px}
 .section-number{width:38px;height:38px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;color:#fff;font-weight:800;background:linear-gradient(135deg,var(--navy),var(--navy-dark))}
-.section-title{margin:0;color:var(--navy);font-size:20px}.section-state{margin-left:auto;padding:5px 9px;border-radius:99px;color:#727780;background:#eef0f3;font-size:11px;font-weight:700}.section-state.complete{color:var(--ok);background:#e9f5ee}
+.section-title{margin:0;color:var(--navy);font-size:20px}
+.section-state{margin-left:auto;padding:5px 9px;border-radius:99px;color:#727780;background:#eef0f3;font-size:11px;font-weight:700}
+.section-state.complete{color:var(--ok);background:#e9f5ee}
 .guide{padding:14px 15px;border:1px solid #e7e9ed;border-radius:12px;background:var(--bg);color:#626872;font-size:12px;line-height:1.8;margin-bottom:18px}
-.grid{display:grid;grid-template-columns:1fr 1fr;gap:15px}.field.full{grid-column:1/-1}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:15px}
+.field.full{grid-column:1/-1}
 label.field-label{display:block;margin-bottom:7px;color:#3b424d;font-size:13px;font-weight:700}
-.badge{display:inline-block;margin-left:6px;padding:2px 6px;border-radius:5px;vertical-align:1px;font-size:10px;font-weight:800}.required{color:#fff;background:#b42318}.optional{color:#666;background:#eceef1}
+.badge{display:inline-block;margin-left:6px;padding:2px 6px;border-radius:5px;vertical-align:1px;font-size:10px;font-weight:800}
+.required{color:#fff;background:var(--danger)}.optional{color:#666;background:#eceef1}
 input,select,textarea{width:100%;max-width:100%;min-width:0;min-height:50px;padding:12px 13px;border:1px solid var(--border);border-radius:11px;color:#222;background:#fbfbfc;font:inherit;font-size:16px}
 textarea{min-height:105px;resize:vertical}
-input[type="date"]{-webkit-appearance:none;appearance:none;display:block;}input:focus,select:focus,textarea:focus{outline:none;background:#fff;border-color:var(--navy);box-shadow:0 0 0 4px rgba(16,36,74,.09)}
-.field-note{display:block;margin-top:6px;color:#838892;font-size:10.5px;line-height:1.6}.radio-row{display:flex;flex-wrap:wrap;gap:10px}
-.radio-card{display:flex;align-items:center;gap:8px;min-height:45px;padding:10px 13px;border:1px solid var(--border);border-radius:10px;background:#fbfbfc;cursor:pointer;font-size:13px}.radio-card input{width:auto;min-height:0;accent-color:var(--navy)}
-.toggle-box{margin-bottom:16px;padding:14px;border:1px solid var(--border);border-radius:12px;background:var(--bg)}.toggle-box label{display:flex;align-items:center;gap:10px;font-weight:700;color:var(--navy)}.toggle-box input{width:20px;height:20px;min-height:0;accent-color:var(--navy)}
-.hidden{display:none!important}.file-box{padding:15px;border:1px dashed #b8bdc7;border-radius:12px;background:#fbfbfc}.file-box input{padding:9px;background:#fff}
-.preview{display:none;max-width:100%;max-height:240px;margin:12px auto 0;border-radius:10px;border:1px solid var(--border);object-fit:contain}.preview.show{display:block}.file-status{display:block;margin-top:9px;padding:8px 10px;border-radius:8px;color:#69707a;background:#eef0f3;font-size:11px;line-height:1.5;word-break:break-all}.file-status.selected{color:var(--ok);background:#e9f5ee;font-weight:700}
-.consent{display:flex;align-items:flex-start;gap:11px;padding:15px;border:1px solid var(--border);border-radius:12px;background:var(--bg);font-size:13px;line-height:1.7}.consent input{width:20px;height:20px;min-height:0;margin-top:2px;accent-color:var(--navy)}
-.submit-btn{width:100%;min-height:56px;margin-top:20px;border:0;border-radius:13px;color:#fff;background:linear-gradient(135deg,var(--navy),var(--navy-dark));font-size:16px;font-weight:800;cursor:pointer}.submit-btn:disabled{opacity:.55;cursor:not-allowed}
-.auto-save-note{text-align:center;color:#858a93;font-size:10.5px;line-height:1.7;margin:12px 0 0}.error-summary{display:none;margin-bottom:16px;padding:14px;border-radius:11px;color:#7a1c15;background:#fff0ee;border:1px solid #f0b7b1;font-size:12px;line-height:1.7}.error-summary.show{display:block}
-.modal{display:none;position:fixed;inset:0;z-index:2000;padding:18px;background:rgba(5,12,25,.72);overflow:auto}.modal.show{display:block}
-.modal-card{max-width:700px;margin:20px auto;background:#fff;border-radius:18px;padding:22px;box-shadow:0 24px 60px rgba(0,0,0,.35)}.modal-card h2{margin:0 0 8px;color:var(--navy)}
-.confirm-list{display:grid;gap:10px;margin:18px 0}.confirm-row{padding:11px 12px;border-radius:9px;background:var(--bg);font-size:12px;line-height:1.6}.confirm-row strong{display:block;color:var(--navy);margin-bottom:3px}
-.modal-actions{display:grid;grid-template-columns:1fr 1fr;gap:10px}.btn-secondary,.btn-primary{min-height:50px;border-radius:11px;font:inherit;font-weight:800;cursor:pointer}.btn-secondary{border:1px solid var(--navy);color:var(--navy);background:#fff}.btn-primary{border:0;color:#fff;background:linear-gradient(135deg,var(--navy),var(--navy-dark))}
-@media(max-width:620px){.page{padding:12px 9px 28px}.hero,.section-card{border-radius:16px}.hero{padding:24px 16px}.section-card{padding:18px 14px}.logo img{max-width:360px}h1{font-size:23px}.grid{grid-template-columns:1fr}.field.full{grid-column:auto}.section-title{font-size:17px}.section-head{align-items:flex-start}.section-state{margin-top:4px}.modal-actions{grid-template-columns:1fr}}
+input[type="date"]{-webkit-appearance:none;appearance:none;display:block}
+input:focus,select:focus,textarea:focus{outline:none;background:#fff;border-color:var(--navy);box-shadow:0 0 0 4px rgba(16,36,74,.09)}
+.field-note{display:block;margin-top:6px;color:#838892;font-size:10.5px;line-height:1.6}
+.radio-row{display:flex;flex-wrap:wrap;gap:10px}
+.radio-card{display:flex;align-items:center;gap:8px;min-height:45px;padding:10px 13px;border:1px solid var(--border);border-radius:10px;background:#fbfbfc;cursor:pointer;font-size:13px}
+.radio-card input{width:auto;min-height:0;accent-color:var(--navy)}
+.contract-choice{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.contract-card{position:relative;display:flex;align-items:center;gap:12px;padding:16px;border:1px solid var(--border);border-radius:13px;background:#fbfbfc;cursor:pointer}
+.contract-card input{width:22px;height:22px;min-height:0;accent-color:var(--navy)}
+.contract-card strong{display:block;color:var(--navy);font-size:15px}.contract-card small{display:block;margin-top:3px;color:#777;font-size:10.5px;line-height:1.5}
+.toggle-box{margin-bottom:16px;padding:14px;border:1px solid var(--border);border-radius:12px;background:var(--bg)}
+.toggle-box label{display:flex;align-items:center;gap:10px;font-weight:700;color:var(--navy)}
+.toggle-box input{width:20px;height:20px;min-height:0;accent-color:var(--navy)}
+.hidden{display:none!important}
+.file-box{padding:15px;border:1px dashed #b8bdc7;border-radius:12px;background:#fbfbfc}
+.file-box input{padding:9px;background:#fff}
+.preview{display:none;max-width:100%;max-height:240px;margin:12px auto 0;border-radius:10px;border:1px solid var(--border);object-fit:contain}
+.preview.show{display:block}
+.file-status{display:block;margin-top:9px;padding:8px 10px;border-radius:8px;color:#69707a;background:#eef0f3;font-size:11px;line-height:1.5;word-break:break-all}
+.file-status.selected{color:var(--ok);background:#e9f5ee;font-weight:700}
+.consent{display:flex;align-items:flex-start;gap:11px;padding:15px;border:1px solid var(--border);border-radius:12px;background:var(--bg);font-size:13px;line-height:1.7}
+.consent input{width:20px;height:20px;min-height:0;margin-top:2px;accent-color:var(--navy)}
+.submit-btn{width:100%;min-height:56px;margin-top:20px;border:0;border-radius:13px;color:#fff;background:linear-gradient(135deg,var(--navy),var(--navy-dark));font-size:16px;font-weight:800;cursor:pointer}
+.submit-btn:disabled{opacity:.55;cursor:not-allowed}
+.auto-save-note{text-align:center;color:#858a93;font-size:10.5px;line-height:1.7;margin:12px 0 0}
+.error-summary{display:none;margin-bottom:16px;padding:14px;border-radius:11px;color:#7a1c15;background:#fff0ee;border:1px solid #f0b7b1;font-size:12px;line-height:1.7}
+.error-summary.show{display:block}
+.modal{display:none;position:fixed;inset:0;z-index:2000;padding:18px;background:rgba(5,12,25,.72);overflow:auto}
+.modal.show{display:block}
+.modal-card{max-width:700px;margin:20px auto;background:#fff;border-radius:18px;padding:22px;box-shadow:0 24px 60px rgba(0,0,0,.35)}
+.modal-card h2{margin:0 0 8px;color:var(--navy)}
+.confirm-list{display:grid;gap:10px;margin:18px 0}
+.confirm-row{padding:11px 12px;border-radius:9px;background:var(--bg);font-size:12px;line-height:1.6}
+.confirm-row strong{display:block;color:var(--navy);margin-bottom:3px}
+.modal-actions{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.btn-secondary,.btn-primary{min-height:50px;border-radius:11px;font:inherit;font-weight:800;cursor:pointer}
+.btn-secondary{border:1px solid var(--navy);color:var(--navy);background:#fff}
+.btn-primary{border:0;color:#fff;background:linear-gradient(135deg,var(--navy),var(--navy-dark))}
+@media(max-width:620px){
+  .page{padding:12px 9px 28px}.hero,.section-card{border-radius:16px}.hero{padding:24px 16px}.section-card{padding:18px 14px}
+  .logo img{max-width:360px}h1{font-size:23px}.grid,.contract-choice{grid-template-columns:1fr}.field.full{grid-column:auto}
+  .section-title{font-size:17px}.section-head{align-items:flex-start}.section-state{margin-top:4px}.modal-actions{grid-template-columns:1fr}
+}
 </style>
 </head>
 <body>
-<div class="progress-fixed"><div class="progress-inner"><div class="progress-top"><span>入力状況</span><span id="progressPercent">0%</span></div><div class="progress-track"><div class="progress-fill" id="progressFill"></div></div></div></div>
+<div class="progress-fixed">
+  <div class="progress-inner">
+    <div class="progress-top"><span>入力状況</span><span id="progressPercent">0%</span></div>
+    <div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
+  </div>
+</div>
+
 <main class="page">
-<section class="hero"><div class="logo"><img src="../logo.png" alt="株式会社RH Rich Happiness"></div><h1>賃貸申込フォーム</h1><p>必要事項をご入力のうえ、本人確認書類を添付して送信してください。<br>入力途中の内容は、この端末のブラウザに自動保存されます。</p></section>
+<section class="hero">
+  <div class="logo"><img src="../logo.png" alt="株式会社RH Rich Happiness"></div>
+  <h1>賃貸申込フォーム</h1>
+  <p>契約形態を選択すると、必要な入力項目が表示されます。<br>入力途中の内容は、この端末のブラウザに自動保存されます。</p>
+</section>
+
 <form id="applicationForm" novalidate>
 <div id="errorSummary" class="error-summary"></div>
 
-<section class="section-card" data-section><div class="section-head"><span class="section-number">1</span><h2 class="section-title">個人情報の取り扱い</h2><span class="section-state">未入力</span></div><div class="guide">ご入力いただいた個人情報は、賃貸借契約に関する審査・契約・連絡・本人確認の目的で使用します。</div><label class="consent"><input id="agree" type="checkbox" required data-progress><span>個人情報の取り扱いに同意します。<span class="badge required">必須</span></span></label></section>
+<section class="section-card" data-section>
+  <div class="section-head"><span class="section-number">1</span><h2 class="section-title">個人情報の取り扱い</h2><span class="section-state">未入力</span></div>
+  <div class="guide">ご入力いただいた個人情報は、賃貸借契約に関する審査・契約・連絡・本人確認の目的で使用します。</div>
+  <label class="consent"><input id="agree" type="checkbox" required data-progress><span>個人情報の取り扱いに同意します。<span class="badge required">必須</span></span></label>
+</section>
 
-<section class="section-card" data-section><div class="section-head"><span class="section-number">2</span><h2 class="section-title">賃貸条件</h2><span class="section-state">未入力</span></div><div class="grid">
-<div class="field full"><label class="field-label" for="movein">入居希望日<span class="badge required">必須</span></label><input id="movein" type="date" required data-progress></div>
-<div class="field"><label class="field-label">駐車場<span class="badge required">必須</span></label><div class="radio-row"><label class="radio-card"><input type="radio" name="parking" value="希望する" required data-progress>希望する</label><label class="radio-card"><input type="radio" name="parking" value="希望しない">希望しない</label></div></div>
-<div class="field"><label class="field-label">駐輪場<span class="badge required">必須</span></label><div class="radio-row"><label class="radio-card"><input type="radio" name="cycle" value="希望する" required data-progress>希望する</label><label class="radio-card"><input type="radio" name="cycle" value="希望しない">希望しない</label></div></div>
-<div class="field"><label class="field-label">バイク置き場<span class="badge required">必須</span></label><div class="radio-row"><label class="radio-card"><input type="radio" name="bike" value="希望する" required data-progress>希望する</label><label class="radio-card"><input type="radio" name="bike" value="希望しない">希望しない</label></div></div>
-<div class="field"><label class="field-label">ペット<span class="badge required">必須</span></label><div class="radio-row"><label class="radio-card"><input type="radio" name="pet" value="あり" required data-progress>あり</label><label class="radio-card"><input type="radio" name="pet" value="なし">なし</label></div></div>
-</div></section>
+<section class="section-card" data-section>
+  <div class="section-head"><span class="section-number">2</span><h2 class="section-title">契約形態</h2><span class="section-state">未入力</span></div>
+  <div class="contract-choice">
+    <label class="contract-card"><input type="radio" name="contractType" value="個人契約" required data-progress><span><strong>個人契約</strong><small>個人名義でお申込みの場合</small></span></label>
+    <label class="contract-card"><input type="radio" name="contractType" value="法人契約"><span><strong>法人契約</strong><small>会社名義・社宅契約の場合</small></span></label>
+  </div>
+</section>
 
-<section class="section-card" data-section><div class="section-head"><span class="section-number">3</span><h2 class="section-title">契約者情報</h2><span class="section-state">未入力</span></div><div class="grid">
-<div class="field"><label class="field-label" for="lastName">姓<span class="badge required">必須</span></label><input id="lastName" required data-progress></div>
-<div class="field"><label class="field-label" for="firstName">名<span class="badge required">必須</span></label><input id="firstName" required data-progress></div>
-<div class="field"><label class="field-label" for="lastKana">フリガナ（姓）<span class="badge required">必須</span></label><input id="lastKana" required data-progress></div>
-<div class="field"><label class="field-label" for="firstKana">フリガナ（名）<span class="badge required">必須</span></label><input id="firstKana" required data-progress></div>
-<div class="field"><label class="field-label" for="gender">性別<span class="badge required">必須</span></label><select id="gender" required data-progress><option value="">選択してください</option><option>男性</option><option>女性</option><option>その他・回答しない</option></select></div>
-<div class="field"><label class="field-label" for="birth">生年月日<span class="badge required">必須</span></label><input id="birth" type="date" required data-progress></div>
-<div class="field"><label class="field-label" for="tel">電話番号<span class="badge required">必須</span></label><input id="tel" type="tel" inputmode="tel" required data-progress></div>
-<div class="field"><label class="field-label" for="email">メールアドレス<span class="badge required">必須</span></label><input id="email" type="email" required data-progress></div>
-<div class="field"><label class="field-label" for="spouse">配偶者<span class="badge required">必須</span></label><select id="spouse" required data-progress><option value="">選択してください</option><option>あり</option><option>なし</option></select></div>
-<div class="field"><label class="field-label" for="family">家族構成<span class="badge required">必須</span></label><input id="family" placeholder="例：本人、妻、子1名" required data-progress></div>
-</div></section>
+<div id="applicationSections" class="hidden">
 
-<section class="section-card" data-section><div class="section-head"><span class="section-number">4</span><h2 class="section-title">現住所</h2><span class="section-state">未入力</span></div><div class="grid">
-<div class="field"><label class="field-label" for="zipcode">郵便番号<span class="badge required">必須</span></label><input id="zipcode" inputmode="numeric" required data-progress><span class="field-note">7桁を入力すると住所を自動検索します。</span></div>
-<div class="field"><label class="field-label" for="pref">都道府県<span class="badge required">必須</span></label><input id="pref" required data-progress></div>
-<div class="field full"><label class="field-label" for="city">市区町村<span class="badge required">必須</span></label><input id="city" required data-progress></div>
-<div class="field"><label class="field-label" for="address1">番地<span class="badge required">必須</span></label><input id="address1" required data-progress></div>
-<div class="field"><label class="field-label" for="address2">建物・部屋番号<span class="badge required">必須</span></label><input id="address2" placeholder="該当しない場合は「なし」" required data-progress></div>
-<div class="field"><label class="field-label" for="houseType">現住居形態<span class="badge required">必須</span></label><select id="houseType" required data-progress><option value="">選択してください</option><option>賃貸</option><option>持家</option><option>社宅</option><option>実家</option><option>その他</option></select></div>
-<div class="field"><label class="field-label" for="rent">現在の家賃<span class="badge required">必須</span></label><input id="rent" required data-progress></div>
-<div class="field"><label class="field-label" for="years">居住年数<span class="badge required">必須</span></label><input id="years" required data-progress></div>
-<div class="field full"><label class="field-label" for="reason">転居理由<span class="badge required">必須</span></label><textarea id="reason" required data-progress></textarea></div>
-</div></section>
+<section class="section-card" data-section>
+  <div class="section-head"><span class="section-number">3</span><h2 class="section-title">賃貸条件</h2><span class="section-state">未入力</span></div>
+  <div class="grid">
+    <div class="field full"><label class="field-label" for="movein">入居希望日<span class="badge required">必須</span></label><input id="movein" type="date" required data-progress></div>
+    <div class="field"><label class="field-label">駐車場<span class="badge required">必須</span></label><div class="radio-row"><label class="radio-card"><input type="radio" name="parking" value="希望する" required data-progress>希望する</label><label class="radio-card"><input type="radio" name="parking" value="希望しない">希望しない</label></div></div>
+    <div class="field"><label class="field-label">駐輪場<span class="badge required">必須</span></label><div class="radio-row"><label class="radio-card"><input type="radio" name="cycle" value="希望する" required data-progress>希望する</label><label class="radio-card"><input type="radio" name="cycle" value="希望しない">希望しない</label></div></div>
+    <div class="field"><label class="field-label">バイク置き場<span class="badge required">必須</span></label><div class="radio-row"><label class="radio-card"><input type="radio" name="bike" value="希望する" required data-progress>希望する</label><label class="radio-card"><input type="radio" name="bike" value="希望しない">希望しない</label></div></div>
+    <div class="field"><label class="field-label">ペット<span class="badge required">必須</span></label><div class="radio-row"><label class="radio-card"><input type="radio" name="pet" value="あり" required data-progress>あり</label><label class="radio-card"><input type="radio" name="pet" value="なし">なし</label></div></div>
+  </div>
+</section>
 
-<section class="section-card" data-section><div class="section-head"><span class="section-number">5</span><h2 class="section-title">勤務先情報</h2><span class="section-state">未入力</span></div><div class="grid">
-<div class="field"><label class="field-label" for="company">勤務先名<span class="badge required">必須</span></label><input id="company" required data-progress></div>
-<div class="field"><label class="field-label" for="companyKana">勤務先フリガナ<span class="badge required">必須</span></label><input id="companyKana" required data-progress></div>
-<div class="field full"><label class="field-label" for="companyAddress">勤務先住所<span class="badge required">必須</span></label><input id="companyAddress" required data-progress></div>
-<div class="field"><label class="field-label" for="companyTel">勤務先電話番号<span class="badge required">必須</span></label><input id="companyTel" type="tel" required data-progress></div>
-<div class="field"><label class="field-label" for="employeeCount">従業員数<span class="badge required">必須</span></label><input id="employeeCount" required data-progress></div>
-<div class="field"><label class="field-label" for="income">年収<span class="badge required">必須</span></label><input id="income" inputmode="numeric" placeholder="例：500" required data-progress><span class="field-note">数字で入力すると、自動で「万円」を付けます。</span></div>
-<div class="field"><label class="field-label" for="workYears">勤続年数<span class="badge required">必須</span></label><input id="workYears" required data-progress></div>
-<div class="field"><label class="field-label" for="job">職業<span class="badge required">必須</span></label><input id="job" required data-progress></div>
-<div class="field"><label class="field-label" for="industry">業種<span class="badge required">必須</span></label><input id="industry" required data-progress></div>
-<div class="field full"><label class="field-label" for="department">所属部署<span class="badge required">必須</span></label><input id="department" placeholder="部署がない場合は「なし」" required data-progress></div>
-</div></section>
+<div id="personalSections" class="hidden">
+<section class="section-card branch-section" data-section>
+  <div class="section-head"><span class="section-number">4</span><h2 class="section-title">契約者情報</h2><span class="section-state">未入力</span></div>
+  <div class="grid">
+    <div class="field"><label class="field-label" for="lastName">姓<span class="badge required">必須</span></label><input id="lastName" data-branch-required data-progress></div>
+    <div class="field"><label class="field-label" for="firstName">名<span class="badge required">必須</span></label><input id="firstName" data-branch-required data-progress></div>
+    <div class="field"><label class="field-label" for="lastKana">フリガナ（姓）<span class="badge required">必須</span></label><input id="lastKana" data-branch-required data-progress></div>
+    <div class="field"><label class="field-label" for="firstKana">フリガナ（名）<span class="badge required">必須</span></label><input id="firstKana" data-branch-required data-progress></div>
+    <div class="field"><label class="field-label" for="gender">性別<span class="badge required">必須</span></label><select id="gender" data-branch-required data-progress><option value="">選択してください</option><option>男性</option><option>女性</option><option>その他・回答しない</option></select></div>
+    <div class="field"><label class="field-label" for="birth">生年月日<span class="badge required">必須</span></label><input id="birth" type="date" data-branch-required data-progress></div>
+    <div class="field"><label class="field-label" for="tel">電話番号<span class="badge required">必須</span></label><input id="tel" type="tel" inputmode="tel" data-branch-required data-progress></div>
+    <div class="field"><label class="field-label" for="email">メールアドレス<span class="badge required">必須</span></label><input id="email" type="email" data-branch-required data-progress></div>
+    <div class="field"><label class="field-label" for="spouse">配偶者<span class="badge required">必須</span></label><select id="spouse" data-branch-required data-progress><option value="">選択してください</option><option>あり</option><option>なし</option></select></div>
+    <div class="field"><label class="field-label" for="family">家族構成<span class="badge required">必須</span></label><input id="family" data-branch-required data-progress></div>
+  </div>
+</section>
 
-<section class="section-card" data-section><div class="section-head"><span class="section-number">6</span><h2 class="section-title">入居者・同居者情報</h2><span class="section-state">任意</span></div>
-<div class="toggle-box"><label><input id="hasOccupant" type="checkbox">契約者以外の入居者・同居者がいる</label></div>
-<div id="occupantFields" class="hidden"><div class="grid">
-<div class="field"><label class="field-label" for="occupantLastName">姓<span class="badge required">必須</span></label><input id="occupantLastName"></div>
-<div class="field"><label class="field-label" for="occupantFirstName">名<span class="badge required">必須</span></label><input id="occupantFirstName"></div>
-<div class="field"><label class="field-label" for="occupantLastKana">フリガナ（姓）<span class="badge required">必須</span></label><input id="occupantLastKana"></div>
-<div class="field"><label class="field-label" for="occupantFirstKana">フリガナ（名）<span class="badge required">必須</span></label><input id="occupantFirstKana"></div>
-<div class="field"><label class="field-label" for="occupantGender">性別<span class="badge required">必須</span></label><select id="occupantGender"><option value="">選択してください</option><option>男性</option><option>女性</option><option>その他・回答しない</option></select></div>
-<div class="field"><label class="field-label" for="occupantBirth">生年月日<span class="badge required">必須</span></label><input id="occupantBirth" type="date"></div>
-<div class="field"><label class="field-label" for="occupantTel">電話番号<span class="badge required">必須</span></label><input id="occupantTel" type="tel"></div>
-<div class="field"><label class="field-label" for="occupantRelationship">契約者との続柄<span class="badge required">必須</span></label><input id="occupantRelationship"></div>
-<div class="field full"><label class="field-label" for="occupantAddress">現住居<span class="badge required">必須</span></label><input id="occupantAddress"></div>
-</div></div></section>
+<section class="section-card branch-section" data-section>
+  <div class="section-head"><span class="section-number">5</span><h2 class="section-title">現住所</h2><span class="section-state">未入力</span></div>
+  <div class="grid">
+    <div class="field"><label class="field-label" for="zipcode">郵便番号<span class="badge required">必須</span></label><input id="zipcode" inputmode="numeric" data-branch-required data-progress><span class="field-note">7桁を入力すると住所を自動検索します。</span></div>
+    <div class="field"><label class="field-label" for="pref">都道府県<span class="badge required">必須</span></label><input id="pref" data-branch-required data-progress></div>
+    <div class="field full"><label class="field-label" for="city">市区町村<span class="badge required">必須</span></label><input id="city" data-branch-required data-progress></div>
+    <div class="field"><label class="field-label" for="address1">番地<span class="badge required">必須</span></label><input id="address1" data-branch-required data-progress></div>
+    <div class="field"><label class="field-label" for="address2">建物・部屋番号<span class="badge required">必須</span></label><input id="address2" placeholder="該当しない場合は「なし」" data-branch-required data-progress></div>
+    <div class="field"><label class="field-label" for="houseType">現住居形態<span class="badge required">必須</span></label><select id="houseType" data-branch-required data-progress><option value="">選択してください</option><option>賃貸</option><option>持家</option><option>社宅</option><option>実家</option><option>その他</option></select></div>
+    <div class="field"><label class="field-label" for="rent">現在の家賃<span class="badge required">必須</span></label><input id="rent" data-branch-required data-progress></div>
+    <div class="field"><label class="field-label" for="years">居住年数<span class="badge required">必須</span></label><input id="years" data-branch-required data-progress></div>
+    <div class="field full"><label class="field-label" for="reason">転居理由<span class="badge required">必須</span></label><textarea id="reason" data-branch-required data-progress></textarea></div>
+  </div>
+</section>
 
-<section class="section-card" data-section><div class="section-head"><span class="section-number">7</span><h2 class="section-title">緊急連絡先</h2><span class="section-state">未入力</span></div><div class="grid">
-<div class="field"><label class="field-label" for="emergencyName">氏名<span class="badge required">必須</span></label><input id="emergencyName" required data-progress></div>
-<div class="field"><label class="field-label" for="emergencyKana">フリガナ<span class="badge required">必須</span></label><input id="emergencyKana" required data-progress></div>
-<div class="field"><label class="field-label" for="relationship">続柄<span class="badge required">必須</span></label><input id="relationship" required data-progress></div>
-<div class="field"><label class="field-label" for="emergencyBirth">生年月日<span class="badge required">必須</span></label><input id="emergencyBirth" type="date" required data-progress></div>
-<div class="field"><label class="field-label" for="emergencyTel">電話番号<span class="badge required">必須</span></label><input id="emergencyTel" type="tel" required data-progress></div>
-<div class="field full"><label class="field-label" for="emergencyAddress">住所<span class="badge required">必須</span></label><input id="emergencyAddress" required data-progress></div>
-</div></section>
+<section class="section-card branch-section" data-section>
+  <div class="section-head"><span class="section-number">6</span><h2 class="section-title">勤務先情報</h2><span class="section-state">未入力</span></div>
+  <div class="grid">
+    <div class="field"><label class="field-label" for="company">勤務先名<span class="badge required">必須</span></label><input id="company" data-branch-required data-progress></div>
+    <div class="field"><label class="field-label" for="companyKana">勤務先フリガナ<span class="badge required">必須</span></label><input id="companyKana" data-branch-required data-progress></div>
+    <div class="field full"><label class="field-label" for="companyAddress">勤務先住所<span class="badge required">必須</span></label><input id="companyAddress" data-branch-required data-progress></div>
+    <div class="field"><label class="field-label" for="companyTel">勤務先電話番号<span class="badge required">必須</span></label><input id="companyTel" type="tel" data-branch-required data-progress></div>
+    <div class="field"><label class="field-label" for="employeeCount">従業員数<span class="badge required">必須</span></label><input id="employeeCount" data-branch-required data-progress></div>
+    <div class="field"><label class="field-label" for="income">年収<span class="badge required">必須</span></label><input id="income" inputmode="numeric" placeholder="例：500" data-branch-required data-progress><span class="field-note">数字で入力すると、自動で「万円」を付けます。</span></div>
+    <div class="field"><label class="field-label" for="workYears">勤続年数<span class="badge required">必須</span></label><input id="workYears" data-branch-required data-progress></div>
+    <div class="field"><label class="field-label" for="job">職業<span class="badge required">必須</span></label><input id="job" data-branch-required data-progress></div>
+    <div class="field"><label class="field-label" for="industry">業種<span class="badge required">必須</span></label><input id="industry" data-branch-required data-progress></div>
+    <div class="field full"><label class="field-label" for="department">所属部署<span class="badge required">必須</span></label><input id="department" placeholder="部署がない場合は「なし」" data-branch-required data-progress></div>
+  </div>
+</section>
+</div>
 
-<section class="section-card" data-section><div class="section-head"><span class="section-number">8</span><h2 class="section-title">本人確認・追加書類</h2><span class="section-state">未入力</span></div><div class="guide">運転免許証、マイナンバーカード（表面のみ）、在留カード、パスポートなどを添付してください。追加書類は必要なものだけ任意で添付できます。画像またはPDFに対応しています。</div><div class="grid">
-<div class="field"><label class="field-label" for="contractFront">契約者本人確認書類・表面<span class="badge required">必須</span></label><div class="file-box"><input id="contractFront" type="file" accept="image/*,application/pdf" required data-progress><span id="contractFrontStatus" class="file-status">ファイル未選択</span><img id="contractFrontPreview" class="preview" alt=""></div></div>
-<div class="field"><label class="field-label" for="contractBack">契約者本人確認書類・裏面<span class="badge optional">任意</span></label><div class="file-box"><input id="contractBack" type="file" accept="image/*,application/pdf"><span id="contractBackStatus" class="file-status">ファイル未選択</span><img id="contractBackPreview" class="preview" alt=""></div><span class="field-note">裏面がある書類の場合に添付してください。</span></div>
-<div class="field"><label class="field-label" for="occupantFront">入居者・同居者本人確認書類・表面<span class="badge optional">任意</span></label><div class="file-box"><input id="occupantFront" type="file" accept="image/*,application/pdf"><span id="occupantFrontStatus" class="file-status">ファイル未選択</span><img id="occupantFrontPreview" class="preview" alt=""></div></div>
-<div class="field"><label class="field-label" for="occupantBack">入居者・同居者本人確認書類・裏面<span class="badge optional">任意</span></label><div class="file-box"><input id="occupantBack" type="file" accept="image/*,application/pdf"><span id="occupantBackStatus" class="file-status">ファイル未選択</span><img id="occupantBackPreview" class="preview" alt=""></div></div>
-<div class="field"><label class="field-label" for="insuranceFront">健康保険証・表面<span class="badge optional">任意</span></label><div class="file-box"><input id="insuranceFront" type="file" accept="image/*,application/pdf"><span id="insuranceFrontStatus" class="file-status">ファイル未選択</span><img id="insuranceFrontPreview" class="preview" alt=""></div></div>
-<div class="field"><label class="field-label" for="insuranceBack">健康保険証・裏面<span class="badge optional">任意</span></label><div class="file-box"><input id="insuranceBack" type="file" accept="image/*,application/pdf"><span id="insuranceBackStatus" class="file-status">ファイル未選択</span><img id="insuranceBackPreview" class="preview" alt=""></div></div>
-<div class="field"><label class="field-label" for="incomeProof">収入証明書<span class="badge optional">任意</span></label><div class="file-box"><input id="incomeProof" type="file" accept="image/*,application/pdf"><span id="incomeProofStatus" class="file-status">ファイル未選択</span><img id="incomeProofPreview" class="preview" alt=""></div><span class="field-note">源泉徴収票・給与明細・確定申告書など。</span></div>
-<div class="field"><label class="field-label" for="offerLetter">内定通知書<span class="badge optional">任意</span></label><div class="file-box"><input id="offerLetter" type="file" accept="image/*,application/pdf"><span id="offerLetterStatus" class="file-status">ファイル未選択</span><img id="offerLetterPreview" class="preview" alt=""></div></div>
-<div class="field full"><label class="field-label" for="otherDocument">その他書類<span class="badge optional">任意</span></label><div class="file-box"><input id="otherDocument" type="file" accept="image/*,application/pdf"><span id="otherDocumentStatus" class="file-status">ファイル未選択</span><img id="otherDocumentPreview" class="preview" alt=""></div><span class="field-note">学生証・雇用契約書・在留カードなど、担当者から案内された書類にご利用ください。</span></div>
-</div></section>
+<div id="corporateSections" class="hidden">
+<section class="section-card branch-section" data-section>
+  <div class="section-head"><span class="section-number">4</span><h2 class="section-title">法人情報</h2><span class="section-state">未入力</span></div>
+  <div class="grid">
+    <div class="field"><label class="field-label" for="corporateName">法人名<span class="badge required">必須</span></label><input id="corporateName" data-branch-required data-progress></div>
+    <div class="field"><label class="field-label" for="corporateKana">法人名フリガナ<span class="badge required">必須</span></label><input id="corporateKana" data-branch-required data-progress></div>
+    <div class="field full"><label class="field-label" for="headOfficeAddress">本社所在地<span class="badge required">必須</span></label><input id="headOfficeAddress" data-branch-required data-progress></div>
+    <div class="field"><label class="field-label" for="corporateTel">法人電話番号<span class="badge required">必須</span></label><input id="corporateTel" type="tel" data-branch-required data-progress></div>
+    <div class="field"><label class="field-label" for="representativeName">代表者氏名<span class="badge required">必須</span></label><input id="representativeName" data-branch-required data-progress></div>
+    <div class="field"><label class="field-label" for="establishedDate">設立年月日<span class="badge required">必須</span></label><input id="establishedDate" type="date" data-branch-required data-progress></div>
+    <div class="field"><label class="field-label" for="capital">資本金<span class="badge required">必須</span></label><input id="capital" placeholder="例：1,000万円" data-branch-required data-progress></div>
+    <div class="field"><label class="field-label" for="corporateEmployeeCount">従業員数<span class="badge required">必須</span></label><input id="corporateEmployeeCount" data-branch-required data-progress></div>
+    <div class="field"><label class="field-label" for="corporateIndustry">業種<span class="badge required">必須</span></label><input id="corporateIndustry" data-branch-required data-progress></div>
+    <div class="field"><label class="field-label" for="contactDepartment">担当部署<span class="badge required">必須</span></label><input id="contactDepartment" placeholder="部署がない場合は「なし」" data-branch-required data-progress></div>
+    <div class="field"><label class="field-label" for="contactPersonName">担当者氏名<span class="badge optional">任意</span></label><input id="contactPersonName"></div>
+    <div class="field"><label class="field-label" for="contactPersonTel">担当者電話番号<span class="badge optional">任意</span></label><input id="contactPersonTel" type="tel"></div>
+    <div class="field full"><label class="field-label" for="contactPersonEmail">担当者メールアドレス<span class="badge optional">任意</span></label><input id="contactPersonEmail" type="email"></div>
+    <div class="field full"><label class="field-label" for="corporateReason">転居理由<span class="badge required">必須</span></label><textarea id="corporateReason" data-branch-required data-progress></textarea></div>
+  </div>
+</section>
 
-<section class="section-card"><div class="section-head"><span class="section-number">9</span><h2 class="section-title">送信前の確認</h2></div><div class="guide">入力内容をご確認のうえ、「入力内容を確認する」を押してください。</div><button class="submit-btn" id="reviewButton" type="button">入力内容を確認する</button><p class="auto-save-note">入力内容は自動保存されます。送信完了後に、この端末の保存データを削除します。</p></section>
-</form></main>
+<section class="section-card branch-section" data-section>
+  <div class="section-head"><span class="section-number">5</span><h2 class="section-title">社宅代行</h2><span class="section-state">未入力</span></div>
+  <div class="radio-row">
+    <label class="radio-card"><input type="radio" name="agencyUse" value="あり" data-branch-required data-progress>あり</label>
+    <label class="radio-card"><input type="radio" name="agencyUse" value="なし">なし</label>
+  </div>
+  <div id="agencyCompanyBox" class="grid hidden" style="margin-top:15px">
+    <div class="field full"><label class="field-label" for="agencyCompany">社宅代行会社<span class="badge required">必須</span></label><input id="agencyCompany"></div>
+  </div>
+</section>
 
-<div id="confirmModal" class="modal" aria-hidden="true"><div class="modal-card"><h2>送信前にご確認ください</h2><p class="field-note">主な入力内容を表示しています。</p><div id="confirmList" class="confirm-list"></div><div class="modal-actions"><button id="backButton" class="btn-secondary" type="button">戻って修正</button><button id="sendButton" class="btn-primary" type="button">この内容で送信</button></div></div></div>
+<section class="section-card branch-section" data-section>
+  <div class="section-head"><span class="section-number">6</span><h2 class="section-title">法人必要書類</h2><span class="section-state">任意</span></div>
+  <div class="guide">すぐに用意できない場合は、後日ご提出いただけます。現在お持ちの書類のみ添付してください。</div>
+  <div class="grid">
+    <div class="field"><label class="field-label" for="corporateRegistry">登記簿謄本<span class="badge optional">任意</span></label><div class="file-box"><input id="corporateRegistry" type="file" accept="image/*,application/pdf"><span id="corporateRegistryStatus" class="file-status">ファイル未選択</span><img id="corporateRegistryPreview" class="preview" alt=""></div></div>
+    <div class="field"><label class="field-label" for="financialStatements">決算書<span class="badge optional">任意</span></label><div class="file-box"><input id="financialStatements" type="file" accept="image/*,application/pdf"><span id="financialStatementsStatus" class="file-status">ファイル未選択</span><img id="financialStatementsPreview" class="preview" alt=""></div></div>
+    <div class="field"><label class="field-label" for="companyProfile">会社概要・会社案内<span class="badge optional">任意</span></label><div class="file-box"><input id="companyProfile" type="file" accept="image/*,application/pdf"><span id="companyProfileStatus" class="file-status">ファイル未選択</span><img id="companyProfilePreview" class="preview" alt=""></div></div>
+    <div class="field"><label class="field-label" for="corporateOtherDocument">その他法人書類<span class="badge optional">任意</span></label><div class="file-box"><input id="corporateOtherDocument" type="file" accept="image/*,application/pdf"><span id="corporateOtherDocumentStatus" class="file-status">ファイル未選択</span><img id="corporateOtherDocumentPreview" class="preview" alt=""></div></div>
+  </div>
+</section>
+</div>
+
+<section class="section-card" data-section>
+  <div class="section-head"><span class="section-number">7</span><h2 class="section-title">入居者・同居者情報</h2><span class="section-state">任意</span></div>
+  <div id="occupantToggleBox" class="toggle-box"><label><input id="hasOccupant" type="checkbox">契約者以外の入居者・同居者がいる</label></div>
+  <div id="corporateOccupantGuide" class="guide hidden">法人契約では、実際に入居される方の情報をご入力ください。</div>
+  <div id="occupantFields" class="hidden">
+    <div class="grid">
+      <div class="field"><label class="field-label" for="occupantLastName">姓<span class="badge required">必須</span></label><input id="occupantLastName"></div>
+      <div class="field"><label class="field-label" for="occupantFirstName">名<span class="badge required">必須</span></label><input id="occupantFirstName"></div>
+      <div class="field"><label class="field-label" for="occupantLastKana">フリガナ（姓）<span class="badge required">必須</span></label><input id="occupantLastKana"></div>
+      <div class="field"><label class="field-label" for="occupantFirstKana">フリガナ（名）<span class="badge required">必須</span></label><input id="occupantFirstKana"></div>
+      <div class="field"><label class="field-label" for="occupantGender">性別<span class="badge required">必須</span></label><select id="occupantGender"><option value="">選択してください</option><option>男性</option><option>女性</option><option>その他・回答しない</option></select></div>
+      <div class="field"><label class="field-label" for="occupantBirth">生年月日<span class="badge required">必須</span></label><input id="occupantBirth" type="date"></div>
+      <div class="field"><label class="field-label" for="occupantTel">電話番号<span class="badge required">必須</span></label><input id="occupantTel" type="tel"></div>
+      <div class="field"><label class="field-label" for="occupantRelationship">契約者との続柄<span class="badge required">必須</span></label><input id="occupantRelationship" placeholder="法人契約の場合は「入居者」等"></div>
+      <div class="field full"><label class="field-label" for="occupantAddress">現住居<span class="badge required">必須</span></label><input id="occupantAddress"></div>
+    </div>
+  </div>
+</section>
+
+<section class="section-card" data-section>
+  <div class="section-head"><span class="section-number">8</span><h2 class="section-title">緊急連絡先</h2><span class="section-state">未入力</span></div>
+  <div class="grid">
+    <div class="field"><label class="field-label" for="emergencyName">氏名<span class="badge required">必須</span></label><input id="emergencyName" required data-progress></div>
+    <div class="field"><label class="field-label" for="emergencyKana">フリガナ<span class="badge required">必須</span></label><input id="emergencyKana" required data-progress></div>
+    <div class="field"><label class="field-label" for="relationship">続柄<span class="badge required">必須</span></label><input id="relationship" required data-progress></div>
+    <div class="field"><label class="field-label" for="emergencyBirth">生年月日<span class="badge required">必須</span></label><input id="emergencyBirth" type="date" required data-progress></div>
+    <div class="field"><label class="field-label" for="emergencyTel">電話番号<span class="badge required">必須</span></label><input id="emergencyTel" type="tel" required data-progress></div>
+    <div class="field full"><label class="field-label" for="emergencyAddress">住所<span class="badge required">必須</span></label><input id="emergencyAddress" required data-progress></div>
+  </div>
+</section>
+
+<section class="section-card" data-section>
+  <div class="section-head"><span class="section-number">9</span><h2 class="section-title">入居者必要書類</h2><span class="section-state">未入力</span></div>
+  <div class="guide">個人契約の場合は契約者、法人契約の場合は実際の入居者の書類を添付してください。追加書類は必要なものだけ任意で添付できます。</div>
+  <div class="grid">
+    <div class="field"><label class="field-label" for="contractFront">本人確認書類・表面<span class="badge required">必須</span></label><div class="file-box"><input id="contractFront" type="file" accept="image/*,application/pdf" required data-progress><span id="contractFrontStatus" class="file-status">ファイル未選択</span><img id="contractFrontPreview" class="preview" alt=""></div></div>
+    <div class="field"><label class="field-label" for="contractBack">本人確認書類・裏面<span class="badge optional">任意</span></label><div class="file-box"><input id="contractBack" type="file" accept="image/*,application/pdf"><span id="contractBackStatus" class="file-status">ファイル未選択</span><img id="contractBackPreview" class="preview" alt=""></div></div>
+    <div class="field"><label class="field-label" for="insuranceFront">健康保険証・表面<span class="badge optional">任意</span></label><div class="file-box"><input id="insuranceFront" type="file" accept="image/*,application/pdf"><span id="insuranceFrontStatus" class="file-status">ファイル未選択</span><img id="insuranceFrontPreview" class="preview" alt=""></div></div>
+    <div class="field"><label class="field-label" for="insuranceBack">健康保険証・裏面<span class="badge optional">任意</span></label><div class="file-box"><input id="insuranceBack" type="file" accept="image/*,application/pdf"><span id="insuranceBackStatus" class="file-status">ファイル未選択</span><img id="insuranceBackPreview" class="preview" alt=""></div></div>
+    <div class="field"><label class="field-label" for="incomeProof">収入証明書<span class="badge optional">任意</span></label><div class="file-box"><input id="incomeProof" type="file" accept="image/*,application/pdf"><span id="incomeProofStatus" class="file-status">ファイル未選択</span><img id="incomeProofPreview" class="preview" alt=""></div></div>
+    <div class="field"><label class="field-label" for="offerLetter">内定通知書<span class="badge optional">任意</span></label><div class="file-box"><input id="offerLetter" type="file" accept="image/*,application/pdf"><span id="offerLetterStatus" class="file-status">ファイル未選択</span><img id="offerLetterPreview" class="preview" alt=""></div></div>
+    <div class="field full"><label class="field-label" for="otherDocument">その他書類<span class="badge optional">任意</span></label><div class="file-box"><input id="otherDocument" type="file" accept="image/*,application/pdf"><span id="otherDocumentStatus" class="file-status">ファイル未選択</span><img id="otherDocumentPreview" class="preview" alt=""></div></div>
+  </div>
+</section>
+
+<section class="section-card">
+  <div class="section-head"><span class="section-number">10</span><h2 class="section-title">送信前の確認</h2></div>
+  <div class="guide">入力内容をご確認のうえ、「入力内容を確認する」を押してください。</div>
+  <button class="submit-btn" id="reviewButton" type="button">入力内容を確認する</button>
+  <p class="auto-save-note">入力内容は自動保存されます。送信完了後に、この端末の保存データを削除します。</p>
+</section>
+
+</div>
+</form>
+</main>
+
+<div id="confirmModal" class="modal" aria-hidden="true">
+  <div class="modal-card">
+    <h2>送信前にご確認ください</h2>
+    <p class="field-note">主な入力内容を表示しています。</p>
+    <div id="confirmList" class="confirm-list"></div>
+    <div class="modal-actions">
+      <button id="backButton" class="btn-secondary" type="button">戻って修正</button>
+      <button id="sendButton" class="btn-primary" type="button">この内容で送信</button>
+    </div>
+  </div>
+</div>
 
 <script>
 const GAS_URL="https://script.google.com/macros/s/AKfycbwh5u1LSDMJccA1FNo6T7AvTBADOeGyPpCmn6H69XMSC1xhe7XgQ7OeomhkXh1WNoI/exec";
-const STORAGE_KEY="rh-rental-application-v1";
-const form=document.getElementById("applicationForm"),hasOccupant=document.getElementById("hasOccupant"),occupantFields=document.getElementById("occupantFields"),progressFill=document.getElementById("progressFill"),progressPercent=document.getElementById("progressPercent"),errorSummary=document.getElementById("errorSummary"),modal=document.getElementById("confirmModal"),sendButton=document.getElementById("sendButton");
-const occupantRequiredIds=["occupantLastName","occupantFirstName","occupantLastKana","occupantFirstKana","occupantGender","occupantBirth","occupantTel","occupantRelationship","occupantAddress"];
+const STORAGE_KEY="rh-rental-application-v2";
+const form=document.getElementById("applicationForm");
 const byId=id=>document.getElementById(id);
 const valueOfRadio=name=>document.querySelector(`input[name="${name}"]:checked`)?.value||"";
-const normalizePhone=v=>String(v||"").replace(/[^\d]/g,"");
-function formatPhone(value){
-  const digits=normalizePhone(value);
-  if(digits.length===11)return digits.replace(/(\d{3})(\d{4})(\d{4})/,"$1-$2-$3");
-  if(digits.length===10){
-    if(/^0[36]/.test(digits))return digits.replace(/(\d{2})(\d{4})(\d{4})/,"$1-$2-$3");
-    return digits.replace(/(\d{3})(\d{3})(\d{4})/,"$1-$2-$3");
+const contractType=()=>valueOfRadio("contractType");
+const applicationSections=byId("applicationSections");
+const personalSections=byId("personalSections");
+const corporateSections=byId("corporateSections");
+const hasOccupant=byId("hasOccupant");
+const occupantFields=byId("occupantFields");
+const occupantToggleBox=byId("occupantToggleBox");
+const corporateOccupantGuide=byId("corporateOccupantGuide");
+const agencyCompanyBox=byId("agencyCompanyBox");
+const errorSummary=byId("errorSummary");
+const modal=byId("confirmModal");
+const sendButton=byId("sendButton");
+
+const occupantIds=["occupantLastName","occupantFirstName","occupantLastKana","occupantFirstKana","occupantGender","occupantBirth","occupantTel","occupantRelationship","occupantAddress"];
+
+function setRequiredWithin(container,enabled){
+  container.querySelectorAll("[data-branch-required]").forEach(el=>{
+    if(el.type==="radio"){
+      const group=document.querySelectorAll(`input[name="${el.name}"]`);
+      group.forEach(r=>{r.required=enabled});
+    }else{
+      el.required=enabled;
+    }
+  });
+}
+function setOccupantRequired(enabled){
+  occupantIds.forEach(id=>{
+    const el=byId(id);
+    el.required=enabled;
+    if(enabled)el.setAttribute("data-progress","");
+    else el.removeAttribute("data-progress");
+  });
+}
+function updateContractBranch(){
+  const type=contractType();
+  const selected=Boolean(type);
+  applicationSections.classList.toggle("hidden",!selected);
+  personalSections.classList.toggle("hidden",type!=="個人契約");
+  corporateSections.classList.toggle("hidden",type!=="法人契約");
+  setRequiredWithin(personalSections,type==="個人契約");
+  setRequiredWithin(corporateSections,type==="法人契約");
+
+  const corporate=type==="法人契約";
+  occupantToggleBox.classList.toggle("hidden",corporate);
+  corporateOccupantGuide.classList.toggle("hidden",!corporate);
+  if(corporate){
+    hasOccupant.checked=true;
+    occupantFields.classList.remove("hidden");
+    setOccupantRequired(true);
+  }else{
+    occupantFields.classList.toggle("hidden",!hasOccupant.checked);
+    setOccupantRequired(hasOccupant.checked);
   }
-  return digits;
+  updateAgencyState();
+  updateProgress();updateSectionStates();saveDraft();
 }
-function formatIncome(value){
-  const normalized=String(value||"").trim();
-  if(!normalized)return "";
-  if(/万円$/.test(normalized))return normalized;
-  const digits=normalized.replace(/[^\d.]/g,"");
-  return digits?digits+"万円":normalized;
+function updateOccupantState(){
+  if(contractType()==="法人契約")return;
+  occupantFields.classList.toggle("hidden",!hasOccupant.checked);
+  setOccupantRequired(hasOccupant.checked);
+  updateProgress();updateSectionStates();saveDraft();
 }
-const fullCurrentAddress=()=>[byId("pref").value,byId("city").value,byId("address1").value,byId("address2").value].filter(Boolean).join("");
-function setOccupantState(){const enabled=hasOccupant.checked;occupantFields.classList.toggle("hidden",!enabled);occupantRequiredIds.forEach(id=>{byId(id).required=enabled;if(enabled)byId(id).setAttribute("data-progress","");else byId(id).removeAttribute("data-progress")});updateProgress();updateSectionStates();saveDraft()}
-hasOccupant.addEventListener("change",setOccupantState);
-let addressTimer;byId("zipcode").addEventListener("input",()=>{clearTimeout(addressTimer);addressTimer=setTimeout(searchAddress,350)});
-async function searchAddress(){const zip=byId("zipcode").value.replace(/\D/g,"");if(zip.length!==7)return;try{const res=await fetch("https://zipcloud.ibsnet.co.jp/api/search?zipcode="+zip);const data=await res.json();if(data.results&&data.results[0]){byId("pref").value=data.results[0].address1;byId("city").value=data.results[0].address2+data.results[0].address3;updateProgress();saveDraft();updateSectionStates()}}catch(e){}}
-["tel","companyTel","occupantTel","emergencyTel"].forEach(id=>byId(id).addEventListener("blur",e=>{e.target.value=formatPhone(e.target.value);saveDraft()}));
-byId("income").addEventListener("blur",e=>{e.target.value=formatIncome(e.target.value);saveDraft()});
-function fieldIsFilled(el){if(el.type==="checkbox")return el.checked;if(el.type==="radio")return Boolean(document.querySelector(`input[name="${el.name}"]:checked`));if(el.type==="file")return el.files&&el.files.length>0;return String(el.value||"").trim()!==""}
-function progressFields(){return Array.from(document.querySelectorAll("[data-progress]")).filter((el,index,arr)=>el.type!=="radio"||arr.findIndex(x=>x.name===el.name)===index)}
-function updateProgress(){const fields=progressFields(),done=fields.filter(fieldIsFilled).length,percent=fields.length?Math.round(done/fields.length*100):0;progressFill.style.width=percent+"%";progressPercent.textContent=percent+"%"}
-function updateSectionStates(){document.querySelectorAll("[data-section]").forEach(section=>{const state=section.querySelector(".section-state");if(!state)return;const fields=Array.from(section.querySelectorAll("[required]")).filter((el,index,arr)=>el.type!=="radio"||arr.findIndex(x=>x.name===el.name)===index);if(fields.length===0){state.textContent="任意";state.classList.remove("complete");return}const complete=fields.every(fieldIsFilled);state.textContent=complete?"入力済み":"未入力";state.classList.toggle("complete",complete)})}
-function draftData(){const data={};form.querySelectorAll("input,select,textarea").forEach(el=>{if(!el.id&&!el.name)return;if(el.type==="file")return;if(el.type==="radio"){if(el.checked)data["radio:"+el.name]=el.value}else if(el.type==="checkbox"){data[el.id]=el.checked}else data[el.id]=el.value});return data}
+function updateAgencyState(){
+  const use=valueOfRadio("agencyUse");
+  const corporate=contractType()==="法人契約";
+  const show=corporate&&use==="あり";
+  agencyCompanyBox.classList.toggle("hidden",!show);
+  byId("agencyCompany").required=show;
+  if(show)byId("agencyCompany").setAttribute("data-progress","");
+  else byId("agencyCompany").removeAttribute("data-progress");
+}
+document.querySelectorAll('input[name="contractType"]').forEach(el=>el.addEventListener("change",updateContractBranch));
+document.querySelectorAll('input[name="agencyUse"]').forEach(el=>el.addEventListener("change",()=>{updateAgencyState();updateProgress();updateSectionStates();saveDraft()}));
+hasOccupant.addEventListener("change",updateOccupantState);
+
+function normalizePhone(v){return String(v||"").replace(/[^\d]/g,"")}
+function formatPhone(v){
+  const d=normalizePhone(v);
+  if(d.length===11)return d.replace(/(\d{3})(\d{4})(\d{4})/,"$1-$2-$3");
+  if(d.length===10){
+    if(/^0[36]/.test(d))return d.replace(/(\d{2})(\d{4})(\d{4})/,"$1-$2-$3");
+    return d.replace(/(\d{3})(\d{3})(\d{4})/,"$1-$2-$3");
+  }
+  return d;
+}
+["tel","companyTel","occupantTel","emergencyTel","corporateTel","contactPersonTel"].forEach(id=>{
+  byId(id).addEventListener("blur",e=>{e.target.value=formatPhone(e.target.value);saveDraft()});
+});
+byId("income").addEventListener("blur",e=>{
+  const d=String(e.target.value||"").replace(/[^\d.]/g,"");
+  if(d)e.target.value=d+"万円";
+  saveDraft();
+});
+
+let addressTimer;
+byId("zipcode").addEventListener("input",()=>{
+  clearTimeout(addressTimer);addressTimer=setTimeout(searchAddress,350);
+});
+async function searchAddress(){
+  const zip=byId("zipcode").value.replace(/\D/g,"");
+  if(zip.length!==7)return;
+  try{
+    const res=await fetch("https://zipcloud.ibsnet.co.jp/api/search?zipcode="+zip);
+    const data=await res.json();
+    if(data.results&&data.results[0]){
+      byId("pref").value=data.results[0].address1;
+      byId("city").value=data.results[0].address2+data.results[0].address3;
+      updateProgress();saveDraft();updateSectionStates();
+    }
+  }catch(e){}
+}
+
+function fieldIsFilled(el){
+  if(el.type==="checkbox")return el.checked;
+  if(el.type==="radio")return Boolean(document.querySelector(`input[name="${el.name}"]:checked`));
+  if(el.type==="file")return el.files&&el.files.length>0;
+  return String(el.value||"").trim()!=="";
+}
+function progressFields(){
+  return Array.from(document.querySelectorAll("[data-progress]"))
+    .filter(el=>!el.closest(".hidden"))
+    .filter((el,index,arr)=>el.type!=="radio"||arr.findIndex(x=>x.name===el.name)===index);
+}
+function updateProgress(){
+  const fields=progressFields();
+  const done=fields.filter(fieldIsFilled).length;
+  const percent=fields.length?Math.round(done/fields.length*100):0;
+  byId("progressFill").style.width=percent+"%";
+  byId("progressPercent").textContent=percent+"%";
+}
+function updateSectionStates(){
+  document.querySelectorAll("[data-section]").forEach(section=>{
+    if(section.closest(".hidden"))return;
+    const state=section.querySelector(".section-state");
+    if(!state)return;
+    const fields=Array.from(section.querySelectorAll("[required]"))
+      .filter(el=>!el.closest(".hidden"))
+      .filter((el,index,arr)=>el.type!=="radio"||arr.findIndex(x=>x.name===el.name)===index);
+    if(fields.length===0){state.textContent="任意";state.classList.remove("complete");return}
+    const complete=fields.every(fieldIsFilled);
+    state.textContent=complete?"入力済み":"未入力";
+    state.classList.toggle("complete",complete);
+  });
+}
+function draftData(){
+  const data={};
+  form.querySelectorAll("input,select,textarea").forEach(el=>{
+    if(!el.id&&!el.name)return;
+    if(el.type==="file")return;
+    if(el.type==="radio"){if(el.checked)data["radio:"+el.name]=el.value}
+    else if(el.type==="checkbox")data[el.id]=el.checked;
+    else data[el.id]=el.value;
+  });
+  return data;
+}
 function saveDraft(){try{localStorage.setItem(STORAGE_KEY,JSON.stringify(draftData()))}catch(e){}}
-function loadDraft(){try{const data=JSON.parse(localStorage.getItem(STORAGE_KEY)||"{}");Object.entries(data).forEach(([key,value])=>{if(key.startsWith("radio:")){const name=key.replace("radio:",""),radio=document.querySelector(`input[name="${name}"][value="${CSS.escape(value)}"]`);if(radio)radio.checked=true}else{const el=byId(key);if(!el)return;if(el.type==="checkbox")el.checked=Boolean(value);else el.value=value}})}catch(e){}setOccupantState()}
-form.addEventListener("input",()=>{updateProgress();updateSectionStates();saveDraft()});form.addEventListener("change",()=>{updateProgress();updateSectionStates();saveDraft()});
-function setupPreview(inputId,previewId,statusId){
-  const input=byId(inputId),preview=byId(previewId),status=byId(statusId);
+function loadDraft(){
+  try{
+    const data=JSON.parse(localStorage.getItem(STORAGE_KEY)||"{}");
+    Object.entries(data).forEach(([key,value])=>{
+      if(key.startsWith("radio:")){
+        const name=key.replace("radio:","");
+        const radio=Array.from(document.querySelectorAll(`input[name="${name}"]`)).find(el=>el.value===value);
+        if(radio)radio.checked=true;
+      }else{
+        const el=byId(key);
+        if(!el)return;
+        if(el.type==="checkbox")el.checked=Boolean(value);
+        else el.value=value;
+      }
+    });
+  }catch(e){}
+  updateContractBranch();
+}
+form.addEventListener("input",()=>{updateProgress();updateSectionStates();saveDraft()});
+form.addEventListener("change",()=>{updateProgress();updateSectionStates();saveDraft()});
+
+function setupPreview(inputId){
+  const input=byId(inputId),preview=byId(inputId+"Preview"),status=byId(inputId+"Status");
   input.addEventListener("change",()=>{
     const file=input.files[0];
     preview.classList.remove("show");preview.removeAttribute("src");
@@ -190,39 +490,116 @@ function setupPreview(inputId,previewId,statusId){
   });
 }
 [
-  ["contractFront","contractFrontPreview","contractFrontStatus"],
-  ["contractBack","contractBackPreview","contractBackStatus"],
-  ["occupantFront","occupantFrontPreview","occupantFrontStatus"],
-  ["occupantBack","occupantBackPreview","occupantBackStatus"],
-  ["insuranceFront","insuranceFrontPreview","insuranceFrontStatus"],
-  ["insuranceBack","insuranceBackPreview","insuranceBackStatus"],
-  ["incomeProof","incomeProofPreview","incomeProofStatus"],
-  ["offerLetter","offerLetterPreview","offerLetterStatus"],
-  ["otherDocument","otherDocumentPreview","otherDocumentStatus"]
-].forEach(args=>setupPreview(...args));
-function validateForm(){errorSummary.classList.remove("show");const invalid=Array.from(form.querySelectorAll(":invalid"));if(invalid.length){const first=invalid[0];errorSummary.textContent="未入力または入力内容に誤りがある項目があります。";errorSummary.classList.add("show");first.scrollIntoView({behavior:"smooth",block:"center"});first.focus({preventScroll:true});return false}return true}
+ "contractFront","contractBack","insuranceFront","insuranceBack","incomeProof","offerLetter","otherDocument",
+ "corporateRegistry","financialStatements","companyProfile","corporateOtherDocument"
+].forEach(setupPreview);
+
+function validateForm(){
+  errorSummary.classList.remove("show");
+  const invalid=Array.from(form.querySelectorAll(":invalid")).filter(el=>!el.closest(".hidden"));
+  if(invalid.length){
+    const first=invalid[0];
+    errorSummary.textContent="未入力または入力内容に誤りがある項目があります。";
+    errorSummary.classList.add("show");
+    first.scrollIntoView({behavior:"smooth",block:"center"});
+    first.focus({preventScroll:true});
+    return false;
+  }
+  return true;
+}
 const safeText=v=>String(v||"").replace(/[&<>"']/g,s=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[s]));
-function showConfirmation(){if(!validateForm())return;const rows=[["契約者氏名",`${byId("lastName").value} ${byId("firstName").value}`],["フリガナ",`${byId("lastKana").value} ${byId("firstKana").value}`],["電話番号",byId("tel").value],["メールアドレス",byId("email").value],["現住所",fullCurrentAddress()],["勤務先",byId("company").value],["入居希望日",byId("movein").value],["入居者・同居者",hasOccupant.checked?`${byId("occupantLastName").value} ${byId("occupantFirstName").value}`:"なし"],["緊急連絡先",`${byId("emergencyName").value}（${byId("relationship").value}）`],["添付書類",[
-      "契約者表面："+(byId("contractFront").files[0]?.name||"未選択"),
-      byId("contractBack").files[0]?"契約者裏面："+byId("contractBack").files[0].name:"",
-      byId("occupantFront").files[0]?"同居者表面："+byId("occupantFront").files[0].name:"",
-      byId("occupantBack").files[0]?"同居者裏面："+byId("occupantBack").files[0].name:"",
-      byId("insuranceFront").files[0]?"保険証表面："+byId("insuranceFront").files[0].name:"",
-      byId("insuranceBack").files[0]?"保険証裏面："+byId("insuranceBack").files[0].name:"",
-      byId("incomeProof").files[0]?"収入証明："+byId("incomeProof").files[0].name:"",
-      byId("offerLetter").files[0]?"内定通知書："+byId("offerLetter").files[0].name:"",
-      byId("otherDocument").files[0]?"その他："+byId("otherDocument").files[0].name:""
-    ].filter(Boolean).join(" / ")]];byId("confirmList").innerHTML=rows.map(([k,v])=>`<div class="confirm-row"><strong>${safeText(k)}</strong>${safeText(v)}</div>`).join("");modal.classList.add("show")}
-byId("reviewButton").addEventListener("click",showConfirmation);byId("backButton").addEventListener("click",()=>modal.classList.remove("show"));
-function fileToPayload(file){if(!file)return Promise.resolve(null);return new Promise((resolve,reject)=>{const reader=new FileReader();reader.onload=()=>resolve({base64:String(reader.result).split(",")[1],fileName:file.name,fileType:file.type||"application/octet-stream"});reader.onerror=()=>reject(new Error("ファイルの読み込みに失敗しました。"));reader.readAsDataURL(file)})}
-async function submitApplication(){if(!validateForm())return;sendButton.disabled=true;sendButton.textContent="送信中です…";try{const [contractFront,contractBack,occupantFront,occupantBack,insuranceFront,insuranceBack,incomeProof,offerLetter,otherDocument]=await Promise.all([
-fileToPayload(byId("contractFront").files[0]),fileToPayload(byId("contractBack").files[0]),
-fileToPayload(byId("occupantFront").files[0]),fileToPayload(byId("occupantBack").files[0]),
-fileToPayload(byId("insuranceFront").files[0]),fileToPayload(byId("insuranceBack").files[0]),
-fileToPayload(byId("incomeProof").files[0]),fileToPayload(byId("offerLetter").files[0]),
-fileToPayload(byId("otherDocument").files[0])
-]);const payload={movein:byId("movein").value,parking:valueOfRadio("parking"),cycle:valueOfRadio("cycle"),bike:valueOfRadio("bike"),pet:valueOfRadio("pet"),lastName:byId("lastName").value,firstName:byId("firstName").value,lastKana:byId("lastKana").value,firstKana:byId("firstKana").value,gender:byId("gender").value,birth:byId("birth").value,tel:formatPhone(byId("tel").value),email:byId("email").value,spouse:byId("spouse").value,family:byId("family").value,zipcode:byId("zipcode").value,pref:byId("pref").value,city:byId("city").value,address1:byId("address1").value,address2:byId("address2").value,houseType:byId("houseType").value,rent:byId("rent").value,years:byId("years").value,reason:byId("reason").value,company:byId("company").value,companyKana:byId("companyKana").value,companyAddress:byId("companyAddress").value,companyTel:formatPhone(byId("companyTel").value),employeeCount:byId("employeeCount").value,income:formatIncome(byId("income").value),workYears:byId("workYears").value,job:byId("job").value,industry:byId("industry").value,department:byId("department").value,hasOccupant:hasOccupant.checked,occupantLastName:hasOccupant.checked?byId("occupantLastName").value:"",occupantFirstName:hasOccupant.checked?byId("occupantFirstName").value:"",occupantLastKana:hasOccupant.checked?byId("occupantLastKana").value:"",occupantFirstKana:hasOccupant.checked?byId("occupantFirstKana").value:"",occupantGender:hasOccupant.checked?byId("occupantGender").value:"",occupantBirth:hasOccupant.checked?byId("occupantBirth").value:"",occupantTel:hasOccupant.checked?formatPhone(byId("occupantTel").value):"",occupantRelationship:hasOccupant.checked?byId("occupantRelationship").value:"",occupantAddress:hasOccupant.checked?byId("occupantAddress").value:"",emergencyName:byId("emergencyName").value,emergencyKana:byId("emergencyKana").value,relationship:byId("relationship").value,emergencyBirth:byId("emergencyBirth").value,emergencyTel:formatPhone(byId("emergencyTel").value),emergencyAddress:byId("emergencyAddress").value,files:{contractFront,contractBack,occupantFront,occupantBack,insuranceFront,insuranceBack,incomeProof,offerLetter,otherDocument}};const response=await fetch(GAS_URL,{method:"POST",body:JSON.stringify(payload)});const text=await response.text();if(!text.includes("OK"))throw new Error(text||"送信に失敗しました。");localStorage.removeItem(STORAGE_KEY);window.location.href="thanks.html"}catch(error){alert("送信できませんでした。\n"+error.message);sendButton.disabled=false;sendButton.textContent="この内容で送信"}}
-sendButton.addEventListener("click",submitApplication);loadDraft();updateProgress();updateSectionStates();
+function selectedFileNames(){
+  const labels={
+    contractFront:"本人確認表面",contractBack:"本人確認裏面",insuranceFront:"保険証表面",insuranceBack:"保険証裏面",
+    incomeProof:"収入証明",offerLetter:"内定通知書",otherDocument:"その他書類",
+    corporateRegistry:"登記簿謄本",financialStatements:"決算書",companyProfile:"会社概要",corporateOtherDocument:"その他法人書類"
+  };
+  return Object.entries(labels).map(([id,label])=>byId(id).files[0]?label+"："+byId(id).files[0].name:"").filter(Boolean).join(" / ");
+}
+function showConfirmation(){
+  if(!validateForm())return;
+  const corporate=contractType()==="法人契約";
+  const rows=[
+    ["契約形態",contractType()],
+    [corporate?"法人名":"契約者氏名",corporate?byId("corporateName").value:`${byId("lastName").value} ${byId("firstName").value}`],
+    ["入居希望日",byId("movein").value],
+    ["入居者",`${byId("occupantLastName").value} ${byId("occupantFirstName").value}`.trim()||"なし"],
+    ["緊急連絡先",`${byId("emergencyName").value}（${byId("relationship").value}）`],
+    ["社宅代行",corporate?valueOfRadio("agencyUse")+(valueOfRadio("agencyUse")==="あり"?"／"+byId("agencyCompany").value:""):"対象外"],
+    ["添付書類",selectedFileNames()||"本人確認表面のみ"]
+  ];
+  byId("confirmList").innerHTML=rows.map(([k,v])=>`<div class="confirm-row"><strong>${safeText(k)}</strong>${safeText(v)}</div>`).join("");
+  modal.classList.add("show");
+}
+byId("reviewButton").addEventListener("click",showConfirmation);
+byId("backButton").addEventListener("click",()=>modal.classList.remove("show"));
+
+function fileToPayload(file){
+  if(!file)return Promise.resolve(null);
+  return new Promise((resolve,reject)=>{
+    const reader=new FileReader();
+    reader.onload=()=>resolve({base64:String(reader.result).split(",")[1],fileName:file.name,fileType:file.type||"application/octet-stream"});
+    reader.onerror=()=>reject(new Error("ファイルの読み込みに失敗しました。"));
+    reader.readAsDataURL(file);
+  });
+}
+async function collectFiles(){
+  const ids=[
+    "contractFront","contractBack","insuranceFront","insuranceBack","incomeProof","offerLetter","otherDocument",
+    "corporateRegistry","financialStatements","companyProfile","corporateOtherDocument"
+  ];
+  const values=await Promise.all(ids.map(id=>fileToPayload(byId(id).files[0])));
+  return Object.fromEntries(ids.map((id,i)=>[id,values[i]]));
+}
+function inputValue(id){return byId(id)?.value||""}
+async function submitApplication(){
+  if(!validateForm())return;
+  sendButton.disabled=true;sendButton.textContent="送信中です…";
+  try{
+    const files=await collectFiles();
+    const payload={
+      contractType:contractType(),
+      movein:inputValue("movein"),parking:valueOfRadio("parking"),cycle:valueOfRadio("cycle"),bike:valueOfRadio("bike"),pet:valueOfRadio("pet"),
+
+      lastName:inputValue("lastName"),firstName:inputValue("firstName"),lastKana:inputValue("lastKana"),firstKana:inputValue("firstKana"),
+      gender:inputValue("gender"),birth:inputValue("birth"),tel:formatPhone(inputValue("tel")),email:inputValue("email"),
+      spouse:inputValue("spouse"),family:inputValue("family"),
+      zipcode:inputValue("zipcode"),pref:inputValue("pref"),city:inputValue("city"),address1:inputValue("address1"),address2:inputValue("address2"),
+      houseType:inputValue("houseType"),rent:inputValue("rent"),years:inputValue("years"),reason:inputValue("reason"),
+      company:inputValue("company"),companyKana:inputValue("companyKana"),companyAddress:inputValue("companyAddress"),
+      companyTel:formatPhone(inputValue("companyTel")),employeeCount:inputValue("employeeCount"),income:inputValue("income"),
+      workYears:inputValue("workYears"),job:inputValue("job"),industry:inputValue("industry"),department:inputValue("department"),
+
+      corporateName:inputValue("corporateName"),corporateKana:inputValue("corporateKana"),headOfficeAddress:inputValue("headOfficeAddress"),
+      corporateTel:formatPhone(inputValue("corporateTel")),representativeName:inputValue("representativeName"),
+      establishedDate:inputValue("establishedDate"),capital:inputValue("capital"),corporateEmployeeCount:inputValue("corporateEmployeeCount"),
+      corporateIndustry:inputValue("corporateIndustry"),contactDepartment:inputValue("contactDepartment"),
+      contactPersonName:inputValue("contactPersonName"),contactPersonTel:formatPhone(inputValue("contactPersonTel")),
+      contactPersonEmail:inputValue("contactPersonEmail"),corporateReason:inputValue("corporateReason"),
+      agencyUse:valueOfRadio("agencyUse"),agencyCompany:inputValue("agencyCompany"),
+
+      hasOccupant:contractType()==="法人契約"||hasOccupant.checked,
+      occupantLastName:inputValue("occupantLastName"),occupantFirstName:inputValue("occupantFirstName"),
+      occupantLastKana:inputValue("occupantLastKana"),occupantFirstKana:inputValue("occupantFirstKana"),
+      occupantGender:inputValue("occupantGender"),occupantBirth:inputValue("occupantBirth"),
+      occupantTel:formatPhone(inputValue("occupantTel")),occupantRelationship:inputValue("occupantRelationship"),occupantAddress:inputValue("occupantAddress"),
+
+      emergencyName:inputValue("emergencyName"),emergencyKana:inputValue("emergencyKana"),relationship:inputValue("relationship"),
+      emergencyBirth:inputValue("emergencyBirth"),emergencyTel:formatPhone(inputValue("emergencyTel")),emergencyAddress:inputValue("emergencyAddress"),
+      files
+    };
+    const response=await fetch(GAS_URL,{method:"POST",body:JSON.stringify(payload)});
+    const text=await response.text();
+    if(!text.includes("OK"))throw new Error(text||"送信に失敗しました。");
+    localStorage.removeItem(STORAGE_KEY);
+    window.location.href="thanks.html";
+  }catch(error){
+    alert("送信できませんでした。\n"+error.message);
+    sendButton.disabled=false;sendButton.textContent="この内容で送信";
+  }
+}
+sendButton.addEventListener("click",submitApplication);
+loadDraft();updateProgress();updateSectionStates();
 </script>
 </body>
 </html>
