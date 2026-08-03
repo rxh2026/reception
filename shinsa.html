@@ -1,0 +1,2292 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>入居審査診断 | 株式会社RH</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:"Yu Gothic","Hiragino Sans","Meiryo",sans-serif;
+}
+
+body{
+
+    background:#eef2f7;
+    color:#333;
+    line-height:1.7;
+
+}
+
+.header{
+
+    background:linear-gradient(135deg,#102847,#1d3d66);
+    color:#fff;
+    text-align:center;
+    padding:45px 20px;
+
+    box-shadow:0 6px 18px rgba(0,0,0,.15);
+
+}
+
+.header h1{
+
+    font-size:34px;
+    margin-bottom:12px;
+
+}
+
+.header p{
+
+    color:#e4e8ef;
+    font-size:16px;
+
+}
+
+.container{
+
+    max-width:900px;
+    margin:40px auto;
+    padding:0 20px;
+
+}
+
+.card{
+
+    background:#fff;
+    border-radius:18px;
+    padding:30px;
+
+    margin-bottom:25px;
+
+    box-shadow:0 10px 25px rgba(0,0,0,.08);
+
+}
+
+.step{
+
+    display:inline-block;
+
+    background:#c9a24f;
+    color:#fff;
+
+    padding:6px 15px;
+
+    border-radius:30px;
+
+    font-size:13px;
+
+    margin-bottom:15px;
+
+    font-weight:bold;
+
+}
+
+h2{
+
+    color:#102847;
+
+    margin-bottom:20px;
+
+}
+
+.notice{
+
+    background:#fff8e9;
+
+    border-left:5px solid #c9a24f;
+
+    padding:18px;
+
+    border-radius:10px;
+
+    margin-bottom:30px;
+
+}
+
+.notice strong{
+
+    color:#102847;
+
+}
+
+.form-group{
+
+    margin-bottom:22px;
+
+}
+
+label{
+
+    display:block;
+
+    font-weight:bold;
+
+    margin-bottom:10px;
+
+}
+
+select,
+input{
+
+    width:100%;
+
+    padding:13px;
+
+    border:1px solid #d6d6d6;
+
+    border-radius:10px;
+
+    font-size:15px;
+
+    transition:.3s;
+
+}
+
+select:focus,
+input:focus{
+
+    border-color:#c9a24f;
+
+    outline:none;
+
+    box-shadow:0 0 0 4px rgba(201,162,79,.15);
+
+}
+
+.grid{
+
+    display:grid;
+
+    grid-template-columns:1fr 1fr;
+
+    gap:18px;
+
+}
+
+@media(max-width:768px){
+
+.grid{
+
+grid-template-columns:1fr;
+
+}
+
+.header h1{
+
+font-size:28px;
+
+}
+
+.card{
+
+padding:22px;
+
+}
+
+}
+
+.btn{
+
+    width:100%;
+
+    padding:17px;
+
+    border:none;
+
+    border-radius:12px;
+
+    background:linear-gradient(135deg,#c9a24f,#b68d37);
+
+    color:#fff;
+
+    font-size:18px;
+
+    font-weight:bold;
+
+    cursor:pointer;
+
+    transition:.25s;
+
+}
+
+.btn:hover{
+
+transform:translateY(-2px);
+
+box-shadow:0 8px 20px rgba(0,0,0,.18);
+
+}
+
+.small{
+
+font-size:13px;
+
+color:#666;
+
+margin-top:8px;
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="header">
+
+<h1>入居審査診断</h1>
+
+<p>
+
+約1分で一般的な入居審査の目安を診断できます
+
+</p>
+
+</div>
+
+<div class="container">
+
+<div class="notice">
+
+<strong>ご利用にあたって</strong><br><br>
+
+この診断は一般的な審査傾向をもとにした参考診断です。<br>
+
+実際の審査結果は保証会社・管理会社・貸主様の判断によって異なります。
+
+</div>
+
+<div class="card">
+
+<div class="step">
+
+STEP1
+
+</div>
+
+<h2>
+
+基本情報
+
+</h2>
+
+<div class="grid">
+
+<div class="form-group">
+
+<label>年齢</label>
+
+<select id="age">
+
+<option value="">選択してください</option>
+
+<option>18〜19歳</option>
+
+<option>20〜24歳</option>
+
+<option>25〜29歳</option>
+
+<option>30〜39歳</option>
+
+<option>40〜49歳</option>
+
+<option>50歳以上</option>
+
+</select>
+
+</div>
+
+<div class="form-group">
+
+<label>職業</label>
+
+<select id="job">
+
+<option value="">選択してください</option>
+
+<option>会社員</option>
+
+<option>公務員</option>
+
+<option>会社役員</option>
+
+<option>経営者</option>
+
+<option>自営業・フリーランス</option>
+
+<option>学生</option>
+
+<option>アルバイト・パート</option>
+
+<option>その他</option>
+
+</select>
+
+</div>
+
+<div class="form-group">
+
+<label>雇用形態</label>
+
+<select id="employment">
+
+<option value="">選択してください</option>
+
+<option>正社員</option>
+
+<option>契約社員</option>
+
+<option>派遣社員</option>
+
+<option>アルバイト</option>
+
+<option>業務委託</option>
+
+<option>その他</option>
+
+</select>
+
+</div>
+
+<div class="form-group">
+
+<label>勤続年数</label>
+
+<select id="service">
+
+<option value="">選択してください</option>
+
+<option>半年未満</option>
+
+<option>半年〜1年</option>
+
+<option>1〜3年</option>
+
+<option>3〜5年</option>
+
+<option>5年以上</option>
+
+</select>
+
+</div>
+
+<div class="form-group">
+
+<label>年収（税込）</label>
+
+<select id="income">
+
+<option value="">選択してください</option>
+
+<option value="200">200万円未満</option>
+
+<option value="300">200〜300万円</option>
+
+<option value="400">300〜400万円</option>
+
+<option value="500">400〜500万円</option>
+
+<option value="700">500〜700万円</option>
+
+<option value="1000">700〜1000万円</option>
+
+<option value="1200">1000万円以上</option>
+
+</select>
+
+</div>
+
+<div class="form-group">
+
+<label>転職回数</label>
+
+<select id="change">
+
+<option value="">選択してください</option>
+
+<option>なし</option>
+
+<option>1回</option>
+
+<option>2〜3回</option>
+
+<option>4回以上</option>
+
+</select>
+
+</div>
+
+</div>
+
+</div>
+
+<div class="card">
+
+<div class="step">
+
+STEP2
+
+</div>
+
+<h2>
+
+希望条件
+
+</h2>
+
+<div class="grid">
+
+<div class="form-group">
+
+<label>希望家賃（円）</label>
+
+<input
+type="number"
+id="rent"
+placeholder="例：120000">
+
+<div class="small">
+
+管理費を除いた家賃をご入力ください。
+
+</div>
+
+</div>
+
+<div class="form-group">
+
+<label>管理費（円）</label>
+
+<input
+type="number"
+id="fee"
+placeholder="例：10000">
+
+</div>
+
+<div class="form-group">
+
+<label>契約形態</label>
+
+<select id="contract">
+
+<option>個人契約</option>
+
+<option>法人契約</option>
+
+</select>
+
+</div>
+
+<div class="form-group">
+
+<label>外国籍</label>
+
+<select id="nation">
+
+<option>日本国籍</option>
+
+<option>外国籍</option>
+
+</select>
+
+</div>
+
+<div class="form-group">
+
+<label>同居人数</label>
+
+<select id="family">
+
+<option>1人</option>
+
+<option>2人</option>
+
+<option>3人以上</option>
+
+</select>
+
+</div>
+
+</div>
+
+</div>
+
+<div class="card">
+
+<div class="step">
+STEP3
+</div>
+
+<h2>
+契約・属性
+</h2>
+
+<div class="grid">
+
+<div class="form-group">
+
+<label>学生ですか？</label>
+
+<select id="student">
+
+<option value="0">いいえ</option>
+<option value="1">はい</option>
+
+</select>
+
+</div>
+
+<div class="form-group">
+
+<label>自営業・フリーランスですか？</label>
+
+<select id="self">
+
+<option value="0">いいえ</option>
+<option value="1">はい</option>
+
+</select>
+
+</div>
+
+<div class="form-group">
+
+<label>3か月以内に転職予定はありますか？</label>
+
+<select id="changeJob">
+
+<option value="0">ありません</option>
+<option value="1">あります</option>
+
+</select>
+
+</div>
+
+<div class="form-group">
+
+<label>過去の家賃滞納歴</label>
+
+<select id="delay">
+
+<option value="0">ありません</option>
+<option value="1">数回あります</option>
+<option value="2">現在もあります</option>
+<option value="3">回答したくない</option>
+
+</select>
+
+</div>
+
+</div>
+
+</div>
+
+
+<button class="btn" onclick="diagnosis()">
+
+診断する
+
+</button>
+
+
+
+<style>
+
+/* ========================================
+   診断結果
+======================================== */
+
+.result-card{
+    background:#fff;
+    border-radius:18px;
+    padding:30px;
+    margin-bottom:25px;
+    box-shadow:0 10px 25px rgba(0,0,0,.08);
+}
+
+.result-header{
+    text-align:center;
+    padding:25px 15px;
+    border-radius:15px;
+    background:
+        linear-gradient(
+            145deg,
+            #102847,
+            #1d3d66
+        );
+    color:#fff;
+}
+
+.result-label{
+    font-size:14px;
+    color:#e8edf5;
+    margin-bottom:10px;
+}
+
+.result-stars{
+    color:#e3bd67;
+    font-size:44px;
+    letter-spacing:5px;
+    line-height:1.3;
+}
+
+.result-status{
+    margin-top:12px;
+    font-size:21px;
+    font-weight:bold;
+}
+
+.result-message{
+    margin-top:12px;
+    color:#e8edf5;
+    font-size:13px;
+    line-height:1.8;
+}
+
+.score-grid{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:14px;
+    margin-top:22px;
+}
+
+.score-box{
+    padding:18px;
+    border:1px solid #e0e5ec;
+    border-radius:13px;
+    background:#f8fafc;
+}
+
+.score-title{
+    color:#102847;
+    font-size:14px;
+    font-weight:bold;
+    margin-bottom:8px;
+}
+
+.score-number{
+    color:#c2943d;
+    font-size:27px;
+    font-weight:bold;
+}
+
+.score-comment{
+    color:#667080;
+    font-size:12px;
+    margin-top:6px;
+    line-height:1.7;
+}
+
+.point-list{
+    display:grid;
+    gap:10px;
+    margin-top:16px;
+}
+
+.point-item{
+    padding:13px 14px;
+    border-radius:11px;
+    font-size:13px;
+    line-height:1.7;
+}
+
+.point-good{
+    background:#edf8f1;
+    border-left:4px solid #3d9660;
+    color:#35664a;
+}
+
+.point-caution{
+    background:#fff6e8;
+    border-left:4px solid #d79a36;
+    color:#755b34;
+}
+
+.point-important{
+    background:#fff0ee;
+    border-left:4px solid #c75a4b;
+    color:#7b4039;
+}
+
+.advice-box{
+    margin-top:16px;
+    padding:18px;
+    border-radius:13px;
+    background:#f4f6fa;
+    border:1px solid #e1e5eb;
+    color:#505866;
+    font-size:13px;
+    line-height:1.9;
+}
+
+.company-list{
+    display:grid;
+    gap:14px;
+    margin-top:18px;
+}
+
+.company-card{
+    position:relative;
+    padding:18px;
+    border:1px solid #e0e4ea;
+    border-radius:14px;
+    background:#fff;
+    box-shadow:0 5px 14px rgba(16,40,71,.06);
+}
+
+.company-rank{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    min-width:38px;
+    height:28px;
+    margin-bottom:10px;
+    padding:0 10px;
+    border-radius:99px;
+    background:#102847;
+    color:#fff;
+    font-size:12px;
+    font-weight:bold;
+}
+
+.company-name{
+    color:#102847;
+    font-size:17px;
+    font-weight:bold;
+}
+
+.company-score{
+    margin-top:6px;
+    color:#c2943d;
+    font-size:15px;
+    font-weight:bold;
+}
+
+.company-type{
+    display:inline-block;
+    margin-top:9px;
+    padding:4px 9px;
+    border-radius:6px;
+    background:#f1f3f6;
+    color:#626b78;
+    font-size:10px;
+    font-weight:bold;
+}
+
+.company-reason{
+    margin-top:10px;
+    color:#616977;
+    font-size:12px;
+    line-height:1.8;
+}
+
+.company-note{
+    margin-top:18px;
+    padding:14px;
+    border-radius:11px;
+    background:#fff8e9;
+    color:#725b34;
+    font-size:11px;
+    line-height:1.8;
+}
+
+.link-button{
+    display:block;
+    width:100%;
+    margin-top:22px;
+    padding:16px;
+    border-radius:12px;
+    background:#102847;
+    color:#fff;
+    text-align:center;
+    text-decoration:none;
+    font-weight:bold;
+    transition:.25s;
+}
+
+.link-button:hover{
+    transform:translateY(-2px);
+    box-shadow:0 8px 18px rgba(16,40,71,.2);
+}
+
+.retry-button{
+    display:block;
+    width:100%;
+    margin-top:14px;
+    padding:14px;
+    border:1px solid #102847;
+    border-radius:12px;
+    background:#fff;
+    color:#102847;
+    font-size:15px;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+.loading-spinner{
+    width:52px;
+    height:52px;
+    margin:22px auto;
+    border:5px solid #e1e5eb;
+    border-top-color:#c9a24f;
+    border-radius:50%;
+    animation:spin .8s linear infinite;
+}
+
+@keyframes spin{
+    to{
+        transform:rotate(360deg);
+    }
+}
+
+.fade-result{
+    opacity:0;
+    transform:translateY(18px);
+    animation:resultFade .6s ease forwards;
+}
+
+@keyframes resultFade{
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+
+@media(max-width:600px){
+
+    .score-grid{
+        grid-template-columns:1fr;
+    }
+
+    .result-stars{
+        font-size:35px;
+        letter-spacing:3px;
+    }
+
+    .result-card{
+        padding:21px;
+    }
+
+}
+
+</style>
+
+
+<div id="loading"
+style="
+display:none;
+margin-top:35px;
+text-align:center;
+">
+
+<div class="card">
+
+<h2 style="color:#102847;">
+診断中です
+</h2>
+
+<div class="loading-spinner"></div>
+
+<p>
+入力された条件をもとに、<br>
+一般的な審査傾向を確認しています。
+</p>
+
+<progress
+id="progress"
+value="0"
+max="100"
+style="
+width:100%;
+height:18px;
+margin-top:24px;
+">
+</progress>
+
+</div>
+
+</div>
+
+
+<div id="result"
+style="
+display:none;
+margin-top:40px;
+">
+
+
+<div class="result-card fade-result">
+
+<div class="result-header">
+
+<div class="result-label">
+総合評価
+</div>
+
+<div
+id="rank"
+class="result-stars">
+★★★★★
+</div>
+
+<div
+id="status"
+class="result-status">
+通過可能性の目安
+</div>
+
+<div
+id="resultMessage"
+class="result-message">
+診断結果を表示します。
+</div>
+
+</div>
+
+
+<div class="score-grid">
+
+<div class="score-box">
+
+<div class="score-title">
+年間賃料倍率
+</div>
+
+<div
+id="multiple"
+class="score-number">
+－
+</div>
+
+<div
+id="multipleComment"
+class="score-comment">
+年収と年間の家賃等を比較します。
+</div>
+
+</div>
+
+
+<div class="score-box">
+
+<div class="score-title">
+月収に対する負担率
+</div>
+
+<div
+id="rate"
+class="score-number">
+－
+</div>
+
+<div
+id="rateComment"
+class="score-comment">
+月収に対する毎月の家賃等の割合です。
+</div>
+
+</div>
+
+
+<div class="score-box">
+
+<div class="score-title">
+一般的な年収目安
+</div>
+
+<div
+id="requiredIncome"
+class="score-number">
+－
+</div>
+
+<div class="score-comment">
+家賃等の36倍を目安として計算します。
+</div>
+
+</div>
+
+
+<div class="score-box">
+
+<div class="score-title">
+診断スコア
+</div>
+
+<div
+id="totalScore"
+class="score-number">
+－
+</div>
+
+<div class="score-comment">
+入力条件を総合的に確認した参考値です。
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+
+<div class="result-card fade-result">
+
+<h2>
+診断ポイント
+</h2>
+
+<div
+id="pointList"
+class="point-list">
+</div>
+
+</div>
+
+
+<div class="result-card fade-result">
+
+<h2>
+RHからのアドバイス
+</h2>
+
+<div
+id="advice"
+class="advice-box">
+</div>
+
+</div>
+
+
+<div class="result-card fade-result">
+
+<h2>
+条件との相性を確認しやすい保証会社
+</h2>
+
+<p class="small">
+入力された契約形態や属性をもとに、
+保証会社の種類・対応傾向との相性を表示しています。
+</p>
+
+<div
+id="companyList"
+class="company-list">
+</div>
+
+<div class="company-note">
+
+※保証会社の審査基準は公表されておらず、
+申込内容・物件・管理会社・貸主様・保証商品などによって
+審査結果は異なります。<br><br>
+
+ここで表示する順位や点数は、
+審査の承認を保証するものではなく、
+各社の一般的な特徴や対応範囲をもとにした参考情報です。
+
+</div>
+
+<a
+href="guarantee.html"
+class="link-button">
+
+保証会社について詳しく見る
+
+</a>
+
+<button
+type="button"
+class="retry-button"
+onclick="retryDiagnosis()">
+
+条件を変更してもう一度診断する
+
+</button>
+
+</div>
+
+</div>
+
+
+</div><!-- /.container -->
+
+<script>
+
+/* ========================================
+   保証会社データ
+   easeScoreは審査の通りやすさではなく、
+   診断画面での初期相性値です。
+======================================== */
+
+const guaranteeCompanies = [
+
+{
+    name:"ジェイリース",
+    category:"独立系保証会社",
+    baseScore:82,
+    individual:true,
+    corporation:true,
+    foreign:true,
+    student:true,
+    selfEmployed:true,
+    partTime:true,
+    reason:"個人契約・法人契約を含む幅広い申込条件で、比較対象にしやすい保証会社です。"
+},
+
+{
+    name:"Casa",
+    category:"独立系保証会社",
+    baseScore:80,
+    individual:true,
+    corporation:true,
+    foreign:true,
+    student:true,
+    selfEmployed:true,
+    partTime:true,
+    reason:"幅広い契約者属性で利用されることがあり、条件に応じて検討しやすい保証会社です。"
+},
+
+{
+    name:"日本セーフティー",
+    category:"独立系保証会社",
+    baseScore:81,
+    individual:true,
+    corporation:true,
+    foreign:true,
+    student:true,
+    selfEmployed:true,
+    partTime:true,
+    reason:"取扱物件が比較的多く、さまざまな契約形態で候補となることがあります。"
+},
+
+{
+    name:"全保連",
+    category:"独立系保証会社",
+    baseScore:79,
+    individual:true,
+    corporation:true,
+    foreign:true,
+    student:true,
+    selfEmployed:true,
+    partTime:true,
+    reason:"全国的に取り扱われており、個人・法人を問わず比較候補となることがあります。"
+},
+
+{
+    name:"フォーシーズ",
+    category:"独立系保証会社",
+    baseScore:76,
+    individual:true,
+    corporation:true,
+    foreign:true,
+    student:true,
+    selfEmployed:true,
+    partTime:true,
+    reason:"住居用・事業用など複数の保証商品があり、契約内容に応じて候補となります。"
+},
+
+{
+    name:"エルズサポート",
+    category:"独立系保証会社",
+    baseScore:75,
+    individual:true,
+    corporation:true,
+    foreign:true,
+    student:true,
+    selfEmployed:true,
+    partTime:true,
+    reason:"管理会社や物件によって指定されることがあり、幅広い契約で利用されています。"
+},
+
+{
+    name:"いえらぶパートナーズ",
+    category:"独立系保証会社",
+    baseScore:74,
+    individual:true,
+    corporation:true,
+    foreign:true,
+    student:true,
+    selfEmployed:true,
+    partTime:true,
+    reason:"賃貸保証を中心としたサービスを提供しており、条件に応じて候補となります。"
+},
+
+{
+    name:"ナップ賃貸保証",
+    category:"独立系保証会社",
+    baseScore:73,
+    individual:true,
+    corporation:true,
+    foreign:true,
+    student:true,
+    selfEmployed:true,
+    partTime:true,
+    reason:"個人・法人などの契約条件に応じて利用される保証会社の一つです。"
+},
+
+{
+    name:"K-net",
+    category:"独立系保証会社",
+    baseScore:72,
+    individual:true,
+    corporation:true,
+    foreign:true,
+    student:true,
+    selfEmployed:true,
+    partTime:true,
+    reason:"物件や管理会社の指定により利用されることがある保証会社です。"
+},
+
+{
+    name:"GTN",
+    category:"外国籍向け保証サービス",
+    baseScore:70,
+    individual:true,
+    corporation:false,
+    foreign:true,
+    student:true,
+    selfEmployed:true,
+    partTime:true,
+    reason:"外国籍の方に向けた家賃保証や多言語サポートを提供しています。"
+},
+
+{
+    name:"エポスカード ROOM iD",
+    category:"信販系保証会社",
+    baseScore:67,
+    individual:true,
+    corporation:true,
+    foreign:false,
+    student:true,
+    selfEmployed:false,
+    partTime:false,
+    reason:"信販系の仕組みを利用した保証サービスで、物件指定の場合に利用されます。"
+},
+
+{
+    name:"オリコフォレントインシュア",
+    category:"信販系保証会社",
+    baseScore:66,
+    individual:true,
+    corporation:true,
+    foreign:false,
+    student:true,
+    selfEmployed:false,
+    partTime:false,
+    reason:"信販系保証会社として多くの管理会社で採用されている保証サービスです。"
+},
+
+{
+    name:"クレディセゾン",
+    category:"信販系保証会社",
+    baseScore:65,
+    individual:true,
+    corporation:true,
+    foreign:false,
+    student:true,
+    selfEmployed:false,
+    partTime:false,
+    reason:"信販会社の情報を利用する保証商品があり、指定物件などで利用されます。"
+},
+
+{
+    name:"アプラス",
+    category:"信販系保証会社",
+    baseScore:64,
+    individual:true,
+    corporation:true,
+    foreign:false,
+    student:true,
+    selfEmployed:false,
+    partTime:false,
+    reason:"信販系保証サービスとして、管理会社や物件の指定により利用されます。"
+}
+
+];
+
+
+/* ========================================
+   診断開始
+======================================== */
+
+function diagnosis(){
+
+    const income =
+        Number(
+            document.getElementById("income").value
+        );
+
+    const rent =
+        Number(
+            document.getElementById("rent").value
+        );
+
+    const fee =
+        Number(
+            document.getElementById("fee").value || 0
+        );
+
+    if(!income){
+
+        alert(
+            "年収を選択してください。"
+        );
+
+        document
+        .getElementById("income")
+        .focus();
+
+        return;
+
+    }
+
+    if(!rent || rent <= 0){
+
+        alert(
+            "希望家賃を入力してください。"
+        );
+
+        document
+        .getElementById("rent")
+        .focus();
+
+        return;
+
+    }
+
+    document
+    .getElementById("result")
+    .style.display="none";
+
+    document
+    .getElementById("loading")
+    .style.display="block";
+
+    document
+    .getElementById("loading")
+    .scrollIntoView({
+        behavior:"smooth",
+        block:"center"
+    });
+
+    let progress=0;
+
+    const bar =
+        document.getElementById("progress");
+
+    bar.value=0;
+
+    const timer=setInterval(function(){
+
+        progress+=5;
+
+        bar.value=progress;
+
+        if(progress>=100){
+
+            clearInterval(timer);
+
+            document
+            .getElementById("loading")
+            .style.display="none";
+
+            showResult();
+
+        }
+
+    },45);
+
+}
+
+
+/* ========================================
+   診断結果作成
+======================================== */
+
+function showResult(){
+
+    const income =
+        Number(
+            document.getElementById("income").value
+        );
+
+    const rent =
+        Number(
+            document.getElementById("rent").value
+        );
+
+    const fee =
+        Number(
+            document.getElementById("fee").value || 0
+        );
+
+    const employment =
+        document.getElementById("employment").value;
+
+    const service =
+        document.getElementById("service").value;
+
+    const change =
+        document.getElementById("change").value;
+
+    const contract =
+        document.getElementById("contract").value;
+
+    const nation =
+        document.getElementById("nation").value;
+
+    const student =
+        document.getElementById("student").value;
+
+    const self =
+        document.getElementById("self").value;
+
+    const changeJob =
+        document.getElementById("changeJob").value;
+
+    const delay =
+        document.getElementById("delay").value;
+
+    const totalMonthlyRent=rent+fee;
+
+    const annualIncome=income*10000;
+
+    const monthlyIncome=annualIncome/12;
+
+    const annualHousingCost=
+        totalMonthlyRent*12;
+
+    const incomeMultiple=
+        annualHousingCost > 0
+        ? annualIncome / annualHousingCost
+        : 0;
+
+    const rentRate=
+        monthlyIncome > 0
+        ? totalMonthlyRent / monthlyIncome * 100
+        : 0;
+
+    const requiredIncome=
+        totalMonthlyRent*36;
+
+    let score=100;
+
+    const goodPoints=[];
+
+    const cautionPoints=[];
+
+    const importantPoints=[];
+
+
+/* ========================================
+   年間賃料倍率
+======================================== */
+
+    if(incomeMultiple>=3){
+
+        goodPoints.push(
+            "年収は、家賃等の36倍以上となる一般的な目安を満たしています。"
+        );
+
+    }
+
+    else if(incomeMultiple>=2.7){
+
+        score-=8;
+
+        cautionPoints.push(
+            "年収と家賃等のバランスは、審査先によって判断が分かれる可能性があります。"
+        );
+
+    }
+
+    else if(incomeMultiple>=2.4){
+
+        score-=18;
+
+        cautionPoints.push(
+            "年収に対して家賃等がやや高めです。家賃を見直すことで選択肢が広がる可能性があります。"
+        );
+
+    }
+
+    else{
+
+        score-=30;
+
+        importantPoints.push(
+            "年収に対する家賃等の割合が高いため、物件や保証会社によっては慎重に審査される可能性があります。"
+        );
+
+    }
+
+
+/* ========================================
+   月収に対する家賃負担率
+======================================== */
+
+    if(rentRate<=30){
+
+        goodPoints.push(
+            "月収に対する家賃等の割合は30％以内です。"
+        );
+
+    }
+
+    else if(rentRate<=35){
+
+        score-=6;
+
+        cautionPoints.push(
+            "家賃等の負担率は30％を超えていますが、審査先によっては検討可能な範囲です。"
+        );
+
+    }
+
+    else if(rentRate<=40){
+
+        score-=14;
+
+        cautionPoints.push(
+            "月収に対する家賃等の負担率がやや高めです。"
+        );
+
+    }
+
+    else{
+
+        score-=24;
+
+        importantPoints.push(
+            "月収に対する家賃等の割合が高いため、無理のない家賃設定か確認することをおすすめします。"
+        );
+
+    }
+
+
+/* ========================================
+   雇用形態
+======================================== */
+
+    if(
+        employment==="正社員" ||
+        employment==="公務員"
+    ){
+
+        goodPoints.push(
+            "比較的安定した雇用形態です。"
+        );
+
+    }
+
+    else if(
+        employment==="契約社員" ||
+        employment==="派遣社員"
+    ){
+
+        score-=5;
+
+        cautionPoints.push(
+            "契約社員・派遣社員の場合、勤続年数や収入証明を確認されることがあります。"
+        );
+
+    }
+
+    else if(
+        employment==="アルバイト" ||
+        employment==="業務委託"
+    ){
+
+        score-=12;
+
+        cautionPoints.push(
+            "収入の継続性を確認するため、給与明細や収入証明を求められることがあります。"
+        );
+
+    }
+
+
+/* ========================================
+   勤続年数
+======================================== */
+
+    if(
+        service==="5年以上" ||
+        service==="3〜5年"
+    ){
+
+        goodPoints.push(
+            "勤続年数が長く、収入の継続性を説明しやすい条件です。"
+        );
+
+    }
+
+    else if(service==="1〜3年"){
+
+        goodPoints.push(
+            "勤続年数は一般的な範囲です。"
+        );
+
+    }
+
+    else if(service==="半年〜1年"){
+
+        score-=6;
+
+        cautionPoints.push(
+            "勤続1年未満の場合、給与明細や雇用条件通知書が必要になることがあります。"
+        );
+
+    }
+
+    else if(service==="半年未満"){
+
+        score-=12;
+
+        cautionPoints.push(
+            "転職直後の場合は、内定通知書・雇用条件通知書・給与明細などをご用意いただくとスムーズです。"
+        );
+
+    }
+
+
+/* ========================================
+   転職回数・転職予定
+======================================== */
+
+    if(change==="4回以上"){
+
+        score-=5;
+
+        cautionPoints.push(
+            "転職回数のみで結果が決まるわけではありませんが、現在の勤務状況を確認されることがあります。"
+        );
+
+    }
+
+    if(changeJob==="1"){
+
+        score-=8;
+
+        cautionPoints.push(
+            "近く転職予定がある場合は、転職後の雇用条件や収入予定を確認される可能性があります。"
+        );
+
+    }
+
+
+/* ========================================
+   学生・自営業
+======================================== */
+
+    if(student==="1"){
+
+        score-=4;
+
+        cautionPoints.push(
+            "学生の方は、親権者様の情報・合格通知書・学生証などが必要になることがあります。"
+        );
+
+    }
+
+    if(self==="1"){
+
+        score-=7;
+
+        cautionPoints.push(
+            "自営業・フリーランスの方は、確定申告書・課税証明書・納税証明書などをご用意いただくとスムーズです。"
+        );
+
+    }
+
+
+/* ========================================
+   外国籍・法人契約
+======================================== */
+
+    if(nation==="外国籍"){
+
+        score-=3;
+
+        cautionPoints.push(
+            "外国籍の方は、在留カード・パスポート・在留期間などの確認が必要になることがあります。"
+        );
+
+    }
+
+    if(contract==="法人契約"){
+
+        goodPoints.push(
+            "法人契約として、法人情報・業歴・決算内容・入居者情報などをもとに審査されます。"
+        );
+
+    }
+
+
+/* ========================================
+   滞納歴
+======================================== */
+
+    if(delay==="1"){
+
+        score-=18;
+
+        importantPoints.push(
+            "過去の家賃滞納について、保証会社の確認状況によっては審査へ影響する可能性があります。"
+        );
+
+    }
+
+    else if(delay==="2"){
+
+        score-=38;
+
+        importantPoints.push(
+            "現在も滞納がある場合は、審査が慎重になる可能性があります。まず現在の支払状況をご確認ください。"
+        );
+
+    }
+
+    else if(delay==="3"){
+
+        score-=5;
+
+        cautionPoints.push(
+            "滞納歴を回答しない場合でも診断できますが、実際の審査では保証会社が独自に確認する場合があります。"
+        );
+
+    }
+
+
+/* ========================================
+   最低・最高点調整
+======================================== */
+
+    score=Math.max(
+        5,
+        Math.min(100,score)
+    );
+
+
+/* ========================================
+   総合評価
+======================================== */
+
+    let stars=5;
+
+    let status="比較的検討しやすい条件です";
+
+    let resultMessage=
+        "一般的な目安では、比較的多くの物件で審査を進められる可能性があります。";
+
+    if(score>=85){
+
+        stars=5;
+
+    }
+
+    else if(score>=70){
+
+        stars=4;
+
+        status="標準的な条件です";
+
+        resultMessage=
+            "物件や保証会社によって確認項目は異なりますが、一般的には検討可能な条件です。";
+
+    }
+
+    else if(score>=55){
+
+        stars=3;
+
+        status="条件に応じた確認が必要です";
+
+        resultMessage=
+            "保証会社の種類や提出書類によって、審査の進め方が変わる可能性があります。";
+
+    }
+
+    else if(score>=35){
+
+        stars=2;
+
+        status="慎重に物件を選ぶ必要があります";
+
+        resultMessage=
+            "家賃設定や保証会社の種類を含め、申込方法を工夫することをおすすめします。";
+
+    }
+
+    else{
+
+        stars=1;
+
+        status="個別相談をおすすめします";
+
+        resultMessage=
+            "一般的な基準では慎重な確認が必要です。条件に合う物件や申込方法をご相談ください。";
+
+    }
+
+
+/* ========================================
+   数値表示
+======================================== */
+
+    document
+    .getElementById("rank")
+    .textContent=
+        "★".repeat(stars)+
+        "☆".repeat(5-stars);
+
+    document
+    .getElementById("status")
+    .textContent=status;
+
+    document
+    .getElementById("resultMessage")
+    .textContent=resultMessage;
+
+    document
+    .getElementById("multiple")
+    .textContent=
+        incomeMultiple.toFixed(2)+"倍";
+
+    document
+    .getElementById("rate")
+    .textContent=
+        rentRate.toFixed(1)+"％";
+
+    document
+    .getElementById("requiredIncome")
+    .textContent=
+        Math.ceil(requiredIncome/10000)+
+        "万円";
+
+    document
+    .getElementById("totalScore")
+    .textContent=
+        score+"点";
+
+
+/* ========================================
+   数値コメント
+======================================== */
+
+    document
+    .getElementById("multipleComment")
+    .textContent=
+        incomeMultiple>=3
+        ? "家賃等の36倍以上の年収となる目安を満たしています。"
+        : "家賃等の36倍以上の年収目安には届いていません。";
+
+    document
+    .getElementById("rateComment")
+    .textContent=
+        rentRate<=30
+        ? "月収に対する家賃等の割合は30％以内です。"
+        : rentRate<=35
+        ? "負担率はやや高めですが、検討可能な場合があります。"
+        : "負担率が高めのため、家賃設定の確認をおすすめします。";
+
+
+/* ========================================
+   ポイント表示
+======================================== */
+
+    const pointList=
+        document.getElementById("pointList");
+
+    pointList.innerHTML="";
+
+    goodPoints.forEach(function(text){
+
+        pointList.insertAdjacentHTML(
+            "beforeend",
+            `
+            <div class="point-item point-good">
+            ◎ ${escapeHtml(text)}
+            </div>
+            `
+        );
+
+    });
+
+    cautionPoints.forEach(function(text){
+
+        pointList.insertAdjacentHTML(
+            "beforeend",
+            `
+            <div class="point-item point-caution">
+            △ ${escapeHtml(text)}
+            </div>
+            `
+        );
+
+    });
+
+    importantPoints.forEach(function(text){
+
+        pointList.insertAdjacentHTML(
+            "beforeend",
+            `
+            <div class="point-item point-important">
+            ! ${escapeHtml(text)}
+            </div>
+            `
+        );
+
+    });
+
+
+/* ========================================
+   RHからのアドバイス
+======================================== */
+
+    const adviceTexts=[];
+
+    if(incomeMultiple<3){
+
+        const recommendedMonthlyRent=
+            Math.floor(
+                annualIncome/36/1000
+            )*1000;
+
+        adviceTexts.push(
+            "一般的な年収目安を基準にすると、管理費等を含む毎月の支払額を約"+
+            recommendedMonthlyRent.toLocaleString()+
+            "円以内にすると、条件が改善する可能性があります。"
+        );
+
+    }
+
+    if(service==="半年未満"){
+
+        adviceTexts.push(
+            "勤続年数が短い場合でも、内定通知書・雇用条件通知書・直近の給与明細などで今後の収入を説明できる場合があります。"
+        );
+
+    }
+
+    if(self==="1"){
+
+        adviceTexts.push(
+            "自営業・フリーランスの場合は、直近の確定申告書だけでなく、課税証明書や事業内容が分かる資料も準備しておくと安心です。"
+        );
+
+    }
+
+    if(student==="1"){
+
+        adviceTexts.push(
+            "学生の場合は、親権者様やご家族の情報、合格通知書・学生証などを早めにご準備ください。"
+        );
+
+    }
+
+    if(nation==="外国籍"){
+
+        adviceTexts.push(
+            "外国籍の方は、外国籍向け保証サービスや多言語対応を行う保証会社が指定されている物件もあります。"
+        );
+
+    }
+
+    if(contract==="法人契約"){
+
+        adviceTexts.push(
+            "法人契約では、登記簿謄本・決算書・会社概要・入居者様の本人確認書類などが必要になることがあります。"
+        );
+
+    }
+
+    if(adviceTexts.length===0){
+
+        adviceTexts.push(
+            "現在の条件は一般的な目安の範囲です。気になる物件がございましたら、物件ごとの保証会社や審査条件を確認しながら進めましょう。"
+        );
+
+    }
+
+    document
+    .getElementById("advice")
+    .innerHTML=
+        adviceTexts
+        .map(function(text){
+
+            return(
+                "<p style='margin-bottom:12px;'>"+
+                "・"+
+                escapeHtml(text)+
+                "</p>"
+            );
+
+        })
+        .join("");
+
+
+/* ========================================
+   保証会社相性計算
+======================================== */
+
+    const companyResults=
+        guaranteeCompanies
+        .map(function(company){
+
+            let compatibility=
+                company.baseScore;
+
+            const reasons=[];
+
+            if(
+                contract==="法人契約" &&
+                company.corporation
+            ){
+
+                compatibility+=8;
+
+                reasons.push(
+                    "法人契約の比較候補"
+                );
+
+            }
+
+            if(
+                contract==="個人契約" &&
+                company.individual
+            ){
+
+                compatibility+=3;
+
+            }
+
+            if(
+                nation==="外国籍" &&
+                company.foreign
+            ){
+
+                compatibility+=12;
+
+                reasons.push(
+                    "外国籍契約に対応"
+                );
+
+            }
+
+            else if(
+                nation==="外国籍" &&
+                !company.foreign
+            ){
+
+                compatibility-=18;
+
+            }
+
+            if(
+                student==="1" &&
+                company.student
+            ){
+
+                compatibility+=7;
+
+                reasons.push(
+                    "学生契約の比較候補"
+                );
+
+            }
+
+            if(
+                self==="1" &&
+                company.selfEmployed
+            ){
+
+                compatibility+=7;
+
+                reasons.push(
+                    "自営業・フリーランスの比較候補"
+                );
+
+            }
+
+            if(
+                employment==="アルバイト" &&
+                company.partTime
+            ){
+
+                compatibility+=6;
+
+                reasons.push(
+                    "アルバイト契約の比較候補"
+                );
+
+            }
+
+            if(
+                delay==="1" ||
+                delay==="2"
+            ){
+
+                compatibility-=10;
+
+            }
+
+            compatibility=
+                Math.max(
+                    20,
+                    Math.min(
+                        99,
+                        compatibility
+                    )
+                );
+
+            return{
+
+                ...company,
+
+                compatibility:
+                    compatibility,
+
+                matchReasons:
+                    reasons
+
+            };
+
+        })
+        .sort(function(a,b){
+
+            return(
+                b.compatibility-
+                a.compatibility
+            );
+
+        })
+        .slice(0,5);
+
+
+/* ========================================
+   保証会社カード表示
+======================================== */
+
+    const companyList=
+        document.getElementById("companyList");
+
+    companyList.innerHTML="";
+
+    companyResults.forEach(
+        function(company,index){
+
+            const reasonText=
+                company.matchReasons.length
+                ? company.matchReasons.join("・")
+                : "入力条件との総合的な相性をもとに表示";
+
+            companyList.insertAdjacentHTML(
+                "beforeend",
+                `
+                <div class="company-card">
+
+                    <div class="company-rank">
+                    ${index+1}位
+                    </div>
+
+                    <div class="company-name">
+                    ${escapeHtml(company.name)}
+                    </div>
+
+                    <div class="company-score">
+                    相性目安 ${company.compatibility}点
+                    </div>
+
+                    <div class="company-type">
+                    ${escapeHtml(company.category)}
+                    </div>
+
+                    <div class="company-reason">
+
+                    <strong>
+                    表示理由：
+                    </strong>
+
+                    ${escapeHtml(reasonText)}
+
+                    <br><br>
+
+                    ${escapeHtml(company.reason)}
+
+                    </div>
+
+                </div>
+                `
+            );
+
+        }
+    );
+
+
+/* ========================================
+   結果画面表示
+======================================== */
+
+    const result=
+        document.getElementById("result");
+
+    result.style.display="block";
+
+    result.scrollIntoView({
+        behavior:"smooth",
+        block:"start"
+    });
+
+}
+
+
+/* ========================================
+   再診断
+======================================== */
+
+function retryDiagnosis(){
+
+    document
+    .getElementById("result")
+    .style.display="none";
+
+    window.scrollTo({
+        top:0,
+        behavior:"smooth"
+    });
+
+}
+
+
+/* ========================================
+   HTMLエスケープ
+======================================== */
+
+function escapeHtml(value){
+
+    return String(value)
+    .replace(/&/g,"&amp;")
+    .replace(/</g,"&lt;")
+    .replace(/>/g,"&gt;")
+    .replace(/"/g,"&quot;")
+    .replace(/'/g,"&#039;");
+
+}
+
+</script>
+
+</body>
+
+</html>
