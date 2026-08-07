@@ -336,6 +336,15 @@ select {
   accent-color: var(--navy);
 }
 
+
+.parking-options{display:grid;gap:10px;margin-top:9px;}
+.parking-option{padding:12px;border:1px solid #ddd;border-radius:9px;background:#fafafa;}
+.parking-option-head{display:flex;align-items:center;gap:9px;cursor:pointer;color:#333;font-size:15px;}
+.parking-option-head input[type="checkbox"]{width:18px;height:18px;margin:0;accent-color:var(--navy);}
+.parking-note{display:none;margin-top:10px;}
+.parking-note.is-visible{display:block;}
+.parking-note input{min-height:46px;}
+
 .submit-area {
   padding-top: 26px;
 }
@@ -953,16 +962,57 @@ select {
         </div>
 
         <div class="field">
-          <label class="field-label" for="parking">
-            駐車場
-            <span class="optional-badge">任意</span>
-          </label>
+          <div class="field-label">
+            駐車・駐輪希望
+            <span class="optional-badge">複数選択可</span>
+          </div>
 
-          <select id="parking" name="parking">
-            <option value="">選択してください</option>
-            <option>必要</option>
-            <option>不要</option>
-          </select>
+          <p class="field-note">
+            必要なものをすべて選択してください。車・バイクは車種もご入力いただけます。
+          </p>
+
+          <div class="parking-options">
+
+            <div class="parking-option">
+              <label class="parking-option-head">
+                <input type="checkbox" id="parkingCar">
+                <span>駐車場希望</span>
+              </label>
+              <div class="parking-note" id="parkingCarNoteWrap">
+                <input type="text" id="parkingCarNote"
+                  placeholder="車種・サイズ等　例：アルファード／ハイルーフ">
+              </div>
+            </div>
+
+            <div class="parking-option">
+              <label class="parking-option-head">
+                <input type="checkbox" id="parkingBike">
+                <span>バイク置場希望</span>
+              </label>
+              <div class="parking-note" id="parkingBikeNoteWrap">
+                <input type="text" id="parkingBikeNote"
+                  placeholder="車種・排気量等　例：PCX125">
+              </div>
+            </div>
+
+            <label class="parking-option parking-option-head">
+              <input type="checkbox" id="parkingCycle1">
+              <span>駐輪場 1台</span>
+            </label>
+
+            <label class="parking-option parking-option-head">
+              <input type="checkbox" id="parkingCycle2">
+              <span>駐輪場 2台</span>
+            </label>
+
+            <label class="parking-option parking-option-head">
+              <input type="checkbox" id="parkingCycle3">
+              <span>駐輪場 3台以上</span>
+            </label>
+
+          </div>
+
+          <input type="hidden" id="parking" name="parking" value="">
         </div>
 
         <div class="field">
@@ -1058,11 +1108,63 @@ const submitButton = document.getElementById("submitButton");
 const formArea = document.getElementById("formArea");
 const thankYou = document.getElementById("thankYou");
 
+
+const parkingCar = document.getElementById("parkingCar");
+const parkingBike = document.getElementById("parkingBike");
+const parkingCycle1 = document.getElementById("parkingCycle1");
+const parkingCycle2 = document.getElementById("parkingCycle2");
+const parkingCycle3 = document.getElementById("parkingCycle3");
+const parkingCarNote = document.getElementById("parkingCarNote");
+const parkingBikeNote = document.getElementById("parkingBikeNote");
+const parkingCarNoteWrap = document.getElementById("parkingCarNoteWrap");
+const parkingBikeNoteWrap = document.getElementById("parkingBikeNoteWrap");
+const parkingHidden = document.getElementById("parking");
+
+function toggleParkingNote(checkbox, wrap, input) {
+  if (checkbox.checked) {
+    wrap.classList.add("is-visible");
+  } else {
+    wrap.classList.remove("is-visible");
+    input.value = "";
+  }
+}
+
+parkingCar.addEventListener("change", () =>
+  toggleParkingNote(parkingCar, parkingCarNoteWrap, parkingCarNote)
+);
+
+parkingBike.addEventListener("change", () =>
+  toggleParkingNote(parkingBike, parkingBikeNoteWrap, parkingBikeNote)
+);
+
+function buildParkingAnswer() {
+  const answers = [];
+
+  if (parkingCar.checked) {
+    const note = parkingCarNote.value.trim();
+    answers.push(note ? `駐車場希望（${note}）` : "駐車場希望");
+  }
+
+  if (parkingBike.checked) {
+    const note = parkingBikeNote.value.trim();
+    answers.push(note ? `バイク置場希望（${note}）` : "バイク置場希望");
+  }
+
+  if (parkingCycle1.checked) answers.push("駐輪場1台");
+  if (parkingCycle2.checked) answers.push("駐輪場2台");
+  if (parkingCycle3.checked) answers.push("駐輪場3台以上");
+
+  parkingHidden.value = answers.length ? answers.join(" / ") : "希望なし";
+}
+
+
 form.addEventListener("submit", async function (e) {
   e.preventDefault();
 
   submitButton.disabled = true;
   submitButton.textContent = "送信中です…";
+
+  buildParkingAnswer();
 
   const data = new FormData(form);
 
