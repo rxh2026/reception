@@ -59,7 +59,6 @@ body {
     );
 }
 
-/* フォーム全体 */
 .form-container,
 .thank-you-container {
   width: 100%;
@@ -75,7 +74,6 @@ body {
     0 2px 8px rgba(0,0,0,0.12);
 }
 
-/* 上部ヘッダー */
 .form-header {
   padding: 28px 24px 24px;
   text-align: center;
@@ -111,7 +109,6 @@ body {
     );
 }
 
-/* ロゴ */
 .company-logo {
   margin: 0 auto 24px;
 }
@@ -124,7 +121,6 @@ body {
   margin: 0 auto;
 }
 
-/* タイトル */
 .form-title {
   margin: 0;
   color: var(--navy);
@@ -145,12 +141,10 @@ body {
   line-height: 1.9;
 }
 
-/* フォーム本文 */
 .form-body {
   padding: 24px;
 }
 
-/* セクション */
 .form-section {
   margin-bottom: 22px;
   padding: 20px 18px;
@@ -194,7 +188,6 @@ body {
     );
 }
 
-/* 入力項目 */
 .field {
   margin-top: 18px;
 }
@@ -216,32 +209,6 @@ body {
   font-weight: 700;
 }
 
-/* 必須・任意 */
-.required-badge,
-.optional-badge {
-  display: inline-flex;
-  align-items: center;
-
-  padding: 3px 7px;
-
-  border-radius: 999px;
-
-  font-size: 10px;
-  font-weight: 700;
-  line-height: 1;
-}
-
-.required-badge {
-  color: #ffffff;
-  background: var(--navy);
-}
-
-.optional-badge {
-  color: #6a6f78;
-  background: #e7e9ed;
-}
-
-/* 入力欄 */
 input,
 select {
   width: 100%;
@@ -278,7 +245,6 @@ select:focus {
     0 0 0 4px rgba(16,36,74,0.09);
 }
 
-/* セレクトの見た目 */
 select {
   appearance: none;
   cursor: pointer;
@@ -299,7 +265,6 @@ select {
   padding-right: 40px;
 }
 
-/* 補足 */
 .field-note {
   margin: 7px 2px 0;
   color: #858a93;
@@ -307,7 +272,6 @@ select {
   line-height: 1.6;
 }
 
-/* 送信エリア */
 .submit-area {
   padding-top: 26px;
 }
@@ -371,7 +335,6 @@ select {
   line-height: 1.7;
 }
 
-/* サンクス画面 */
 #thankYou {
   display: none;
 }
@@ -467,7 +430,6 @@ select {
   line-height: 1.8;
 }
 
-/* スマホ用 */
 @media (max-width: 520px) {
   body {
     padding: 12px 9px 22px;
@@ -565,7 +527,6 @@ select {
         <div class="field">
           <label class="field-label" for="name">
             お名前（フリガナ）
-            <span class="required-badge">必須</span>
           </label>
 
           <input
@@ -581,7 +542,6 @@ select {
         <div class="field">
           <label class="field-label" for="age">
             年齢
-            <span class="optional-badge">任意</span>
           </label>
 
           <input
@@ -598,7 +558,6 @@ select {
         <div class="field">
           <label class="field-label" for="phone">
             電話番号
-            <span class="required-badge">必須</span>
           </label>
 
           <input
@@ -619,7 +578,6 @@ select {
         <div class="field">
           <label class="field-label" for="email">
             メールアドレス
-            <span class="optional-badge">任意</span>
           </label>
 
           <input
@@ -635,7 +593,6 @@ select {
         <div class="field">
           <label class="field-label" for="address">
             住所
-            <span class="optional-badge">任意</span>
           </label>
 
           <input
@@ -658,7 +615,6 @@ select {
         <div class="field">
           <label class="field-label" for="work">
             勤務先名・学校名
-            <span class="optional-badge">任意</span>
           </label>
 
           <input
@@ -673,7 +629,6 @@ select {
         <div class="field">
           <label class="field-label" for="job">
             ご職業
-            <span class="optional-badge">任意</span>
           </label>
 
           <select id="job" name="job">
@@ -694,7 +649,6 @@ select {
         <div class="field">
           <label class="field-label" for="contract">
             契約名義
-            <span class="required-badge">必須</span>
           </label>
 
           <select
@@ -721,7 +675,6 @@ select {
         <div class="field">
           <label class="field-label" for="realestate">
             不動産の購入や売却を検討されていますか
-            <span class="optional-badge">任意</span>
           </label>
 
           <select
