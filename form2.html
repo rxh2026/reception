@@ -336,7 +336,6 @@ select {
   accent-color: var(--navy);
 }
 
-
 .parking-options{display:grid;gap:10px;margin-top:9px;}
 .parking-option{padding:12px;border:1px solid #ddd;border-radius:9px;background:#fafafa;}
 .parking-option-head{display:flex;align-items:center;gap:9px;cursor:pointer;color:#333;font-size:15px;}
@@ -598,7 +597,6 @@ select {
         <div class="field">
           <label class="field-label" for="name">
             お名前（フリガナ）
-            <span class="required-badge">必須</span>
           </label>
 
           <input
@@ -614,7 +612,6 @@ select {
         <div class="field">
           <label class="field-label" for="age">
             年齢
-            <span class="optional-badge">任意</span>
           </label>
 
           <input
@@ -631,7 +628,6 @@ select {
         <div class="field">
           <label class="field-label" for="phone">
             電話番号
-            <span class="required-badge">必須</span>
           </label>
 
           <input
@@ -652,7 +648,6 @@ select {
         <div class="field">
           <label class="field-label" for="email">
             メールアドレス
-            <span class="optional-badge">任意</span>
           </label>
 
           <input
@@ -668,7 +663,6 @@ select {
         <div class="field">
           <label class="field-label" for="address">
             住所
-            <span class="optional-badge">任意</span>
           </label>
 
           <input
@@ -691,7 +685,6 @@ select {
         <div class="field">
           <label class="field-label" for="work">
             勤務先名・学校名
-            <span class="optional-badge">任意</span>
           </label>
 
           <input
@@ -706,7 +699,6 @@ select {
         <div class="field">
           <label class="field-label" for="job">
             ご職業
-            <span class="optional-badge">任意</span>
           </label>
 
           <select id="job" name="job">
@@ -727,7 +719,6 @@ select {
         <div class="field">
           <label class="field-label" for="contract">
             契約名義
-            <span class="required-badge">必須</span>
           </label>
 
           <select id="contract" name="contract" required>
@@ -742,7 +733,6 @@ select {
         <div class="field">
           <label class="field-label" for="realestate">
             不動産の購入や売却を検討されていますか
-            <span class="optional-badge">任意</span>
           </label>
 
           <select id="realestate" name="realestate">
@@ -764,7 +754,6 @@ select {
         <div class="field">
           <label class="field-label" for="reason">
             引越理由
-            <span class="optional-badge">任意</span>
           </label>
 
           <input
@@ -778,7 +767,6 @@ select {
         <div class="field">
           <label class="field-label" for="timing">
             引越時期
-            <span class="optional-badge">任意</span>
           </label>
 
           <select id="timing" name="timing">
@@ -802,7 +790,6 @@ select {
         <div class="field">
           <label class="field-label" for="rent">
             希望家賃
-            <span class="optional-badge">任意</span>
           </label>
 
           <input
@@ -862,7 +849,6 @@ select {
         <div class="field">
           <label class="field-label" for="size">
             希望の広さ
-            <span class="optional-badge">任意</span>
           </label>
 
           <input
@@ -876,7 +862,6 @@ select {
         <div class="field">
           <label class="field-label" for="buildingage">
             築年数
-            <span class="optional-badge">任意</span>
           </label>
 
           <select id="buildingage" name="buildingage">
@@ -893,7 +878,6 @@ select {
         <div class="field">
           <label class="field-label" for="area">
             希望エリア
-            <span class="optional-badge">任意</span>
           </label>
 
           <input
@@ -907,7 +891,6 @@ select {
         <div class="field">
           <label class="field-label" for="station">
             駅から徒歩
-            <span class="optional-badge">任意</span>
           </label>
 
           <select id="station" name="station">
@@ -922,7 +905,6 @@ select {
         <div class="field">
           <label class="field-label" for="floor">
             階数
-            <span class="optional-badge">任意</span>
           </label>
 
           <select id="floor" name="floor">
@@ -936,7 +918,6 @@ select {
         <div class="field">
           <label class="field-label" for="sun">
             日当たり
-            <span class="optional-badge">任意</span>
           </label>
 
           <select id="sun" name="sun">
@@ -950,7 +931,6 @@ select {
         <div class="field">
           <label class="field-label" for="noise">
             音（防音・静かさ）
-            <span class="optional-badge">任意</span>
           </label>
 
           <select id="noise" name="noise">
@@ -1018,7 +998,6 @@ select {
         <div class="field">
           <label class="field-label" for="net">
             インターネット環境
-            <span class="optional-badge">任意</span>
           </label>
 
           <select id="net" name="net">
@@ -1032,7 +1011,6 @@ select {
         <div class="field">
           <label class="field-label" for="request">
             その他ご要望
-            <span class="optional-badge">任意</span>
           </label>
 
           <textarea
@@ -1108,7 +1086,6 @@ const submitButton = document.getElementById("submitButton");
 const formArea = document.getElementById("formArea");
 const thankYou = document.getElementById("thankYou");
 
-
 const parkingCar = document.getElementById("parkingCar");
 const parkingBike = document.getElementById("parkingBike");
 const parkingCycle1 = document.getElementById("parkingCycle1");
@@ -1156,7 +1133,6 @@ function buildParkingAnswer() {
 
   parkingHidden.value = answers.length ? answers.join(" / ") : "希望なし";
 }
-
 
 form.addEventListener("submit", async function (e) {
   e.preventDefault();
