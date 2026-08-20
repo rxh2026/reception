@@ -295,6 +295,7 @@ input:focus,select:focus,textarea:focus{outline:none;background:#fff;border-colo
 
 <script>
 const GAS_URL="https://script.google.com/macros/s/AKfycbwh5u1LSDMJccA1FNo6T7AvTBADOeGyPpCmn6H69XMSC1xhe7XgQ7OeomhkXh1WNoI/exec";
+const CUSTOMER_ID=(new URLSearchParams(window.location.search).get("customerId")||"").trim();
 const STORAGE_KEY="rh-rental-application-v2";
 const form=document.getElementById("applicationForm");
 const byId=id=>document.getElementById(id);
@@ -554,10 +555,15 @@ async function collectFiles(){
 function inputValue(id){return byId(id)?.value||""}
 async function submitApplication(){
   if(!validateForm())return;
+  if(!CUSTOMER_ID){
+    alert("お客様専用URLを確認できませんでした。担当者からご案内された申込フォームURLを開き直してください。");
+    return;
+  }
   sendButton.disabled=true;sendButton.textContent="送信中です…";
   try{
     const files=await collectFiles();
     const payload={
+      customerId:CUSTOMER_ID,
       contractType:contractType(),
       movein:inputValue("movein"),parking:valueOfRadio("parking"),cycle:valueOfRadio("cycle"),bike:valueOfRadio("bike"),pet:valueOfRadio("pet"),
 
