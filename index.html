@@ -101,6 +101,7 @@ body {
   transform: translateX(-50%);
 
   border-radius: 99px;
+
   background:
     linear-gradient(
       90deg,
@@ -124,11 +125,13 @@ body {
 .form-title {
   margin: 0;
   color: var(--navy);
+
   font-family:
     "Yu Mincho",
     "Hiragino Mincho ProN",
     "Times New Roman",
     serif;
+
   font-size: 25px;
   font-weight: 700;
   letter-spacing: 0.08em;
@@ -369,6 +372,7 @@ select {
   border-radius: 50%;
 
   color: #ffffff;
+
   background:
     linear-gradient(
       135deg,
@@ -712,6 +716,7 @@ select {
 
 </div>
 
+
 <div id="thankYou">
 
   <div class="thank-you-container">
@@ -747,64 +752,150 @@ select {
 
 </div>
 
+
 <script>
-const form = document.getElementById("myForm");
-const submitButton = document.getElementById("submitButton");
-const formArea = document.getElementById("formArea");
-const thankYou = document.getElementById("thankYou");
 
-form.addEventListener("submit", async function (e) {
-  e.preventDefault();
+const form =
+  document.getElementById("myForm");
 
-  submitButton.disabled = true;
-  submitButton.textContent = "送信中です…";
+const submitButton =
+  document.getElementById("submitButton");
 
-  const data = new FormData(form);
+const formArea =
+  document.getElementById("formArea");
 
-  try {
-    const response = await fetch(
-      "https://script.google.com/macros/s/AKfycbxooGYEGWQ2-Mj1bi-U7AN_S7xwoLqu7YRg79OddV9XEzz1sISf0RQVyL1C6UZC70P-/exec",
-      {
-        method: "POST",
-        body: data
-      }
-    );
+const thankYou =
+  document.getElementById("thankYou");
 
-    const text = await response.text();
 
-    if (
-      response.ok &&
-      (
-        text.includes("OK") ||
-        text.trim() === ""
-      )
-    ) {
-      formArea.style.display = "none";
-      thankYou.style.display = "block";
+// =========================================================
+// 重複送信防止
+// =========================================================
 
-      window.scrollTo({
-        top: 0,
-        behavior: "smooth"
-      });
+let isSubmitting = false;
 
-    } else {
-      throw new Error(
-        text || "送信処理でエラーが発生しました"
-      );
+let submissionId = "";
+
+function createSubmissionId() {
+
+  if (
+    window.crypto &&
+    typeof window.crypto.randomUUID === "function"
+  ) {
+
+    return window.crypto.randomUUID();
+
+  }
+
+  return (
+    Date.now().toString(36) +
+    "-" +
+    Math.random().toString(36).slice(2) +
+    "-" +
+    Math.random().toString(36).slice(2)
+  );
+
+}
+
+
+form.addEventListener(
+  "submit",
+  async function (e) {
+
+    e.preventDefault();
+
+    // すでに送信処理中なら何もしない
+    if (isSubmitting) {
+      return;
     }
 
-  } catch (error) {
-    alert(
-      "送信に失敗しました。\n" +
-      "時間をおいて再度お試しいただくか、担当者へご連絡ください。"
+    isSubmitting = true;
+
+    submitButton.disabled = true;
+    submitButton.textContent = "送信中です…";
+
+    // この送信にだけ使う一意のID
+    if (!submissionId) {
+      submissionId =
+        createSubmissionId();
+    }
+
+    const data =
+      new FormData(form);
+
+    data.set(
+      "submissionId",
+      submissionId
     );
 
-    submitButton.disabled = false;
-    submitButton.textContent = "入力内容を送信する";
+    try {
 
-    console.error(error);
+      const response =
+        await fetch(
+          "https://script.google.com/macros/s/AKfycbxooGYEGWQ2-Mj1bi-U7AN_S7xwoLqu7YRg79OddV9XEzz1sISf0RQVyL1C6UZC70P-/exec",
+          {
+            method: "POST",
+            body: data
+          }
+        );
+
+      const text =
+        await response.text();
+
+      if (
+        response.ok &&
+        (
+          text.includes("OK") ||
+          text.includes("DUPLICATE") ||
+          text.trim() === ""
+        )
+      ) {
+
+        formArea.style.display =
+          "none";
+
+        thankYou.style.display =
+          "block";
+
+        window.scrollTo({
+          top: 0,
+          behavior: "smooth"
+        });
+
+      } else {
+
+        throw new Error(
+          text ||
+          "送信処理でエラーが発生しました"
+        );
+
+      }
+
+    } catch (error) {
+
+      alert(
+        "送信に失敗しました。\n" +
+        "時間をおいて再度お試しいただくか、担当者へご連絡ください。"
+      );
+
+      // 通信エラー時だけ再送可能にする。
+      // submissionIdは同じものを再利用するので、
+      // 実は1回目が登録済みだった場合でも二重登録されない。
+      isSubmitting = false;
+
+      submitButton.disabled =
+        false;
+
+      submitButton.textContent =
+        "入力内容を送信する";
+
+      console.error(error);
+
+    }
+
   }
-});
+);
+
 </script>
 
 </body>
